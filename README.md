@@ -11,8 +11,8 @@ third tone, one typeface, hard edges, type cropped at the frame edge.
 - `assets/site.css` — the whole design system
 - `media/` — video and poster per issue
 
-**Typeface note:** the videos are set in Printvetica, which is licensed and is
-deliberately not redistributed here. This public site uses Archivo Black (OFL),
-which sits in the same register.
+**Typeface note:** set in Printvetica (Javier Guaschetti / Pixel Surplus), free for
+commercial use, subset here to only the glyphs this site renders. Archivo Black (OFL)
+is the fallback.
 
 Wordmark is tagged `data-wordmark` throughout, so renaming is a single change.

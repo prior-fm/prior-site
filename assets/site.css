@@ -12,9 +12,8 @@
   --black: #0a0a0a;
   --parch: #f1ecdf;
   --paper: #efece4;
-  /* Printvetica is licensed and not redistributed in this public repo.
-     Archivo Black is the OFL stand-in and sits in the same register. */
-  --face: "Archivo Black", system-ui, sans-serif;
+  /* Printvetica, subset for the web. Archivo Black is the fallback. */
+  --face: "Printvetica", "Archivo Black", system-ui, sans-serif;
   --face-mono: "JetBrains Mono", ui-monospace, monospace;
   --gutter: clamp(20px, 5vw, 72px);
 }
