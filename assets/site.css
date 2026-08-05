@@ -1,0 +1,292 @@
+/* ============================================================
+   Site — same design system as the videos.
+   Field modes, slab geometry, Printvetica, hard edges.
+   Palette measured off the reference poster.
+   ============================================================ */
+
+@import url("fonts.css");
+
+:root {
+  --blue: #b0cbd6;
+  --clay: #da9062;
+  --black: #0a0a0a;
+  --parch: #f1ecdf;
+  --paper: #efece4;
+  /* Printvetica is licensed and not redistributed in this public repo.
+     Archivo Black is the OFL stand-in and sits in the same register. */
+  --face: "Archivo Black", system-ui, sans-serif;
+  --face-mono: "JetBrains Mono", ui-monospace, monospace;
+  --gutter: clamp(20px, 5vw, 72px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--parch);
+  color: var(--black);
+  font-family: var(--face);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------- the recurring bracket mark ---------- */
+.mark {
+  display: block;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+}
+.mark path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 11;
+  stroke-linecap: square;
+}
+
+/* ---------- header ---------- */
+header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 28px var(--gutter);
+  border-bottom: 3px solid var(--black);
+}
+.word {
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+header nav {
+  margin-left: auto;
+  display: flex;
+  gap: 26px;
+  font-size: 15px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+header nav a {
+  text-decoration: none;
+  opacity: 0.65;
+}
+header nav a:hover {
+  opacity: 1;
+}
+
+/* ---------- a full-bleed field section ---------- */
+.field {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(56px, 9vw, 120px) var(--gutter);
+}
+.field.blue {
+  background: var(--blue);
+}
+.field.clay {
+  background: var(--clay);
+}
+.field.dark {
+  background: var(--black);
+  color: var(--paper);
+}
+.field.parch {
+  background: var(--parch);
+}
+.field > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* the slab geometry: two shapes, and the field showing through where they cross */
+.slabs {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---------- type ---------- */
+.eyebrow {
+  font-size: clamp(13px, 1.4vw, 17px);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 22px;
+}
+.huge {
+  font-size: clamp(58px, 13vw, 190px);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  margin-left: -0.06em; /* the crop: type runs at the edge, as in the videos */
+}
+.lede {
+  font-size: clamp(19px, 2.4vw, 34px);
+  line-height: 1.34;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  max-width: 20ch;
+  margin-top: clamp(24px, 4vw, 52px);
+}
+.small {
+  font-size: clamp(13px, 1.5vw, 17px);
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+h2.section {
+  font-size: clamp(13px, 1.4vw, 16px);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  padding: 0 var(--gutter);
+  margin: clamp(56px, 8vw, 96px) 0 26px;
+}
+
+/* ---------- latest issue ---------- */
+.latest {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: clamp(26px, 5vw, 64px);
+  align-items: start;
+}
+@media (max-width: 760px) {
+  .latest {
+    grid-template-columns: 1fr;
+  }
+}
+.latest video,
+.card video,
+.card img {
+  width: 100%;
+  display: block;
+  background: var(--black);
+}
+
+/* ---------- archive ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 2px;
+  padding: 0 var(--gutter) clamp(60px, 9vw, 120px);
+  background: var(--black);
+  border-top: 3px solid var(--black);
+  border-bottom: 3px solid var(--black);
+}
+.card {
+  background: var(--parch);
+  padding: 20px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.card:nth-child(2n) {
+  background: var(--blue);
+}
+.card .no {
+  font-size: 13px;
+  letter-spacing: 0.24em;
+  opacity: 0.55;
+}
+.card .ttl {
+  font-size: clamp(21px, 2.2vw, 30px);
+  line-height: 1.02;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+.card:hover .ttl {
+  color: var(--clay);
+}
+
+/* ---------- subscribe ---------- */
+form.sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+  max-width: 560px;
+}
+form.sub input {
+  flex: 1 1 240px;
+  min-width: 0;
+  padding: 16px 18px;
+  border: 3px solid currentColor;
+  background: transparent;
+  color: inherit;
+  font-family: var(--face);
+  font-size: 17px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+form.sub input::placeholder {
+  color: currentColor;
+  opacity: 0.45;
+}
+form.sub button {
+  padding: 16px 30px;
+  border: 3px solid currentColor;
+  background: currentColor;
+  font-family: var(--face);
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+form.sub button span {
+  color: var(--clay);
+  mix-blend-mode: normal;
+}
+
+/* ---------- steps ---------- */
+ol.steps {
+  list-style: none;
+  counter-reset: s;
+  display: grid;
+  gap: 2px;
+  margin-top: 34px;
+}
+ol.steps li {
+  counter-increment: s;
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-top: 2px solid currentColor;
+  font-size: clamp(15px, 1.8vw, 22px);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+ol.steps li::before {
+  content: counter(s, decimal-leading-zero);
+  font-size: clamp(13px, 1.4vw, 16px);
+  letter-spacing: 0.2em;
+  opacity: 0.5;
+  flex: 0 0 auto;
+}
+
+/* ---------- footer ---------- */
+footer {
+  padding: 40px var(--gutter) 70px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+footer .sp {
+  margin-left: auto;
+}

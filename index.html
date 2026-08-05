@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PRIOR — what you believed before the evidence</title>
+    <meta
+      name="description"
+      content="Short explainers on AI engineering and data science. What actually happens, not what the documentation claims."
+    />
+    <link rel="stylesheet" href="assets/site.css" />
+  </head>
+  <body>
+    <!-- ============ header ============ -->
+    <header>
+      <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
+      </svg>
+      <span class="word" data-wordmark>Prior</span>
+      <nav>
+        <a href="#latest">Latest</a>
+        <a href="#archive">Archive</a>
+        <a href="#subscribe">Subscribe</a>
+      </nav>
+    </header>
+
+    <!-- ============ hero — dark field, giant cropped type ============ -->
+    <section class="field dark">
+      <svg class="slabs" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <clipPath id="h1"><path d="M900 -60 L1560 -60 L1560 520 L820 620 Z" /></clipPath>
+        </defs>
+        <path d="M900 -60 L1560 -60 L1560 520 L820 620 Z" fill="#da9062" />
+        <path d="M1080 300 L1560 240 L1560 980 L1000 980 Z" fill="#b0cbd6" />
+        <g clip-path="url(#h1)"><path d="M1080 300 L1560 240 L1560 980 L1000 980 Z" fill="#0a0a0a" /></g>
+      </svg>
+      <div class="eyebrow">Short explainers &middot; AI engineering &amp; data science</div>
+      <div class="huge">What<br />actually<br />happens</div>
+      <p class="lede">Not what the documentation claims. One idea per video, drawn from first principles.</p>
+    </section>
+
+    <!-- ============ latest ============ -->
+    <h2 class="section" id="latest">Latest issue</h2>
+    <section class="field parch">
+      <div class="latest">
+        <video src="media/no-001.mp4" poster="media/no-001.jpg" controls playsinline preload="metadata"></video>
+        <div>
+          <div class="eyebrow">No. 001</div>
+          <div class="huge" style="font-size: clamp(40px, 7vw, 96px)">Data<br />Science<br />&amp; ML</div>
+          <p class="lede">
+            Thirteen charts, one visual system. Heatmaps, distributions, decision trees, clustering, forecasting.
+          </p>
+          <p class="small" style="margin-top: 28px">43 seconds &middot; 5 August 2026</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ how it works ============ -->
+    <section class="field clay">
+      <svg class="slabs" viewBox="0 0 1440 700" preserveAspectRatio="none" aria-hidden="true">
+        <defs><clipPath id="h2c"><path d="M-60 420 L620 340 L700 760 L-60 760 Z" /></clipPath></defs>
+        <path d="M-60 420 L620 340 L700 760 L-60 760 Z" fill="#0a0a0a" opacity=".14" />
+        <path d="M420 260 L1120 180 L1180 640 L400 740 Z" fill="#b0cbd6" opacity=".5" />
+        <g clip-path="url(#h2c)"><path d="M420 260 L1120 180 L1180 640 L400 740 Z" fill="#da9062" /></g>
+      </svg>
+      <div class="eyebrow">How it works</div>
+      <div class="huge" style="font-size: clamp(40px, 8vw, 120px)">Watch.<br />Comment.<br />Get the pack.</div>
+      <ol class="steps">
+        <li>Watch the issue on Instagram</li>
+        <li>Comment the keyword named in the caption</li>
+        <li>The pack arrives in your DMs — code, prompts, the diagram source</li>
+      </ol>
+    </section>
+
+    <!-- ============ subscribe ============ -->
+    <section class="field dark" id="subscribe">
+      <div class="eyebrow">The prior</div>
+      <div class="huge" style="font-size: clamp(44px, 9vw, 140px)">Every<br />Friday</div>
+      <p class="lede">One long-form teardown a week. The working code, not the summary.</p>
+      <form class="sub" action="#" method="post" onsubmit="return false">
+        <input type="email" name="email" placeholder="you@work.com" aria-label="Email address" required />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="small" style="margin-top: 18px; opacity: 0.5">No archive spam. Unsubscribe in one click.</p>
+    </section>
+
+    <!-- ============ archive ============ -->
+    <h2 class="section" id="archive">Archive</h2>
+    <div class="grid">
+      <a class="card" href="no-001.html">
+        <img src="media/no-001.jpg" alt="" loading="lazy" />
+        <span class="no">No. 001</span>
+        <span class="ttl">Data science &amp; ML</span>
+        <span class="small" style="opacity: 0.55">Thirteen charts, one system</span>
+      </a>
+      <a class="card" href="no-002.html">
+        <img src="media/no-002.jpg" alt="" loading="lazy" />
+        <span class="no">No. 002</span>
+        <span class="ttl">Tool call</span>
+        <span class="small" style="opacity: 0.55">What an agent actually does</span>
+      </a>
+    </div>
+
+    <footer>
+      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
+      </svg>
+      <span data-wordmark>Prior</span>
+      <span class="sp">&copy; 2026</span>
+    </footer>
+  </body>
+</html>
