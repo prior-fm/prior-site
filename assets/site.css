@@ -290,3 +290,42 @@ footer {
 footer .sp {
   margin-left: auto;
 }
+
+/* ---------- socials in the footer ---------- */
+footer .socials {
+  display: flex;
+  gap: 20px;
+  margin-left: 26px;
+}
+footer .socials a {
+  text-decoration: none;
+  opacity: 0.85;
+}
+footer .socials a:hover {
+  opacity: 1;
+  color: var(--clay);
+}
+@media (max-width: 620px) {
+  footer {
+    flex-wrap: wrap;
+  }
+  footer .socials {
+    margin-left: 0;
+    width: 100%;
+    order: 3;
+  }
+  footer .sp {
+    margin-left: auto;
+  }
+}
+
+/* ---------- prose on issue pages ---------- */
+.prose {
+  font-size: clamp(16px, 1.9vw, 22px);
+  line-height: 1.62;
+  letter-spacing: 0.01em;
+  max-width: 62ch;
+}
+.prose p + p {
+  margin-top: 1.1em;
+}

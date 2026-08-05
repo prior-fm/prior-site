@@ -3,15 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>PRIOR — what you believed before the evidence</title>
+    <title>Prior — what you believed before the evidence</title>
     <meta
       name="description"
       content="Short explainers on AI engineering and data science. What actually happens, not what the documentation claims."
     />
+    <meta property="og:title" content="Prior" />
+    <meta property="og:description" content="What actually happens. Not what the documentation claims." />
+    <meta property="og:image" content="media/no-001.jpg" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#f1ecdf" />
     <link rel="stylesheet" href="assets/site.css" />
+    <!-- privacy-friendly counts, no cookies -->
+    <script data-goatcounter="https://prior.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
   </head>
   <body>
-    <!-- ============ header ============ -->
     <header>
       <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
         <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
@@ -24,19 +30,17 @@
       </nav>
     </header>
 
-    <!-- ============ hero — dark field, giant cropped type ============ -->
+    <!-- ============ hero ============ -->
     <section class="field dark">
       <svg class="slabs" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <clipPath id="h1"><path d="M900 -60 L1560 -60 L1560 520 L820 620 Z" /></clipPath>
-        </defs>
+        <defs><clipPath id="h1"><path d="M900 -60 L1560 -60 L1560 520 L820 620 Z" /></clipPath></defs>
         <path d="M900 -60 L1560 -60 L1560 520 L820 620 Z" fill="#da9062" />
         <path d="M1080 300 L1560 240 L1560 980 L1000 980 Z" fill="#b0cbd6" />
         <g clip-path="url(#h1)"><path d="M1080 300 L1560 240 L1560 980 L1000 980 Z" fill="#0a0a0a" /></g>
       </svg>
-      <div class="eyebrow">Short explainers &middot; AI engineering &amp; data science</div>
-      <div class="huge">What<br />actually<br />happens</div>
-      <p class="lede">Not what the documentation claims. One idea per video, drawn from first principles.</p>
+      <div class="eyebrow">Prior &middot; AI engineering &amp; data science</div>
+      <h1 class="huge">What<br />actually<br />happens</h1>
+      <p class="lede">Not what the documentation claims. One idea per issue, drawn from first principles.</p>
     </section>
 
     <!-- ============ latest ============ -->
@@ -45,17 +49,17 @@
       <div class="latest">
         <video src="media/no-001.mp4" poster="media/no-001.jpg" controls playsinline preload="metadata"></video>
         <div>
-          <div class="eyebrow">No. 001</div>
+          <div class="eyebrow">No. 001 &middot; 43 seconds</div>
           <div class="huge" style="font-size: clamp(40px, 7vw, 96px)">Data<br />Science<br />&amp; ML</div>
-          <p class="lede">
-            Thirteen charts, one visual system. Heatmaps, distributions, decision trees, clustering, forecasting.
+          <p class="lede">Thirteen charts, one visual system.</p>
+          <p class="small" style="margin-top: 26px">
+            <a href="no-001.html" style="text-decoration: none; border-bottom: 3px solid currentColor">Read the issue &rarr;</a>
           </p>
-          <p class="small" style="margin-top: 28px">43 seconds &middot; 5 August 2026</p>
         </div>
       </div>
     </section>
 
-    <!-- ============ how it works ============ -->
+    <!-- ============ ritual ============ -->
     <section class="field clay">
       <svg class="slabs" viewBox="0 0 1440 700" preserveAspectRatio="none" aria-hidden="true">
         <defs><clipPath id="h2c"><path d="M-60 420 L620 340 L700 760 L-60 760 Z" /></clipPath></defs>
@@ -68,18 +72,19 @@
       <ol class="steps">
         <li>Watch the issue on Instagram</li>
         <li>Comment the keyword named in the caption</li>
-        <li>The pack arrives in your DMs — code, prompts, the diagram source</li>
+        <li>The pack lands in your DMs &mdash; code, prompts, the diagram source</li>
       </ol>
     </section>
 
     <!-- ============ subscribe ============ -->
     <section class="field dark" id="subscribe">
-      <div class="eyebrow">The prior</div>
+      <div class="eyebrow">The weekly</div>
       <div class="huge" style="font-size: clamp(44px, 9vw, 140px)">Every<br />Friday</div>
       <p class="lede">One long-form teardown a week. The working code, not the summary.</p>
-      <form class="sub" action="#" method="post" onsubmit="return false">
-        <input type="email" name="email" placeholder="you@work.com" aria-label="Email address" required />
-        <button type="submit">Subscribe</button>
+      <form class="sub" method="post" action="https://buttondown.com/api/emails/embed-subscribe/prior" target="popupwindow"
+            onsubmit="window.open('https://buttondown.com/prior','popupwindow')">
+        <input type="email" name="email" placeholder="you@work.com" aria-label="Email address" autocomplete="email" required />
+        <button type="submit">Subscribe &rarr;</button>
       </form>
       <p class="small" style="margin-top: 18px; opacity: 0.5">No archive spam. Unsubscribe in one click.</p>
     </section>
@@ -106,6 +111,12 @@
         <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
       </svg>
       <span data-wordmark>Prior</span>
+      <nav class="socials" aria-label="Social links">
+        <a href="https://instagram.com/prior.fm">Instagram</a>
+        <a href="https://tiktok.com/@prior.fm">TikTok</a>
+        <a href="https://youtube.com/@priorfm">YouTube</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
       <span class="sp">&copy; 2026</span>
     </footer>
   </body>
