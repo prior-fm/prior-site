@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>No. 002 — MCP and APIs — Prior</title>
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/site.css" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html" style="display:flex;align-items:center;gap:16px;text-decoration:none">
+        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" /></svg>
+        <span class="word" data-wordmark>Prior</span>
+      </a>
+      <nav><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
+    </header>
+
+    <section class="field parch">
+      <div class="eyebrow">No. 002 &middot; 3 minutes</div>
+      <div class="huge">MCP and APIs</div>
+      <p class="lede">Why a second protocol, when the first one still works</p>
+    </section>
+
+    <section class="field blue">
+      <div class="latest">
+        <video src="media/no-002.mp4" poster="media/no-002.jpg" controls playsinline preload="metadata"></video>
+        <div><p class="prose">An API is two programs talking, and it has worked for twenty years. The trouble starts at ten services and two apps, where the same authentication, request code, error handling and retries get written twenty times over and then maintained in parallel. MCP does not replace any of it &mdash; it puts one standard client in each app, one small server beside each service, and turns a multiplication into a sum.</p></div>
+      </div>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">The part people get wrong</div>
+      <div class="huge" style="font-size:clamp(32px,6vw,78px)">The model never<br />makes the call</div>
+      <p class="prose" style="margin-top:26px">The model emits text &mdash; the name of a tool and some arguments. Your code reads that text and decides whether to run it. That is where every guardrail you want has to live, because it is the only part of the system with a network stack.</p>
+    </section>
+
+    <section class="field blue">
+      <div class="eyebrow">The pack</div>
+      <div class="huge" style="font-size:clamp(36px,7vw,96px)">Run the<br />argument</div>
+      <p class="lede">Two MCP servers, two apps, and a script that counts the integrations for you.</p>
+      <p class="prose" style="margin-top:18px">TypeScript, no API keys, no accounts, no network &mdash; it runs offline. The second app is nineteen lines and not one of them is an integration, which is the whole claim made checkable. <code>npm run count -- 8 30</code> prints what your own numbers cost each way, including the cases where MCP is the wrong choice.</p>
+      <p style="margin-top:30px">
+        <a class="btnlink" href="packs/prior-no-002.zip" download>Download &mdash; 6 KB</a>
+      </p>
+    </section>
+
+    <div class="grid">
+      <a class="card" href="no-001.html"><span class="no">Previous</span><span class="ttl">No. 001</span></a>
+      <a class="card" href="index.html#archive"><span class="no">All</span><span class="ttl">Archive</span></a>
+    </div>
+
+    <footer>
+      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
+      </svg>
+      <span data-wordmark>Prior</span>
+    </footer>
+  </body>
+</html>
