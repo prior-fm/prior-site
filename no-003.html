@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>No. 003 — The watermark is in the choosing — Prior</title>
+    <meta
+      name="description"
+      content="Nothing is added to the text. The mark is in which of several equally good words got picked — and it survives translation."
+    />
+    <meta property="og:title" content="No. 003 — The watermark is in the choosing" />
+    <meta property="og:description" content="Nothing is added to the text. The mark is in which word got picked." />
+    <meta property="og:image" content="https://prior-fm.github.io/prior-site/media/no-003.jpg" />
+    <meta property="og:type" content="article" />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/site.css" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html" style="display:flex;align-items:center;gap:16px;text-decoration:none">
+        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" /></svg>
+        <span class="word" data-wordmark>Prior</span>
+      </a>
+      <nav><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
+    </header>
+
+    <section class="field parch">
+      <div class="eyebrow">No. 003 &middot; 64 seconds</div>
+      <div class="huge">The watermark<br />is in the<br />choosing</div>
+      <p class="lede">No hidden characters, no invisible spaces &mdash; the mark is in which word got picked</p>
+    </section>
+
+    <section class="field blue">
+      <div class="latest">
+        <video src="media/no-003.mp4" poster="media/no-003.jpg" controls playsinline preload="metadata"></video>
+        <div><p class="prose">At almost every word, a model has several choices that would all work equally well. Normally which one comes out is decided by an arbitrary random number. A text watermark swaps that source for a secret key &mdash; so the sequence of picks carries a pattern only someone with the key can test for. The file is exactly as long as it would have been, and every word was one the model would have said anyway.</p></div>
+      </div>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">Two things people get wrong</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">Not nudged.<br />Not lost in<br />translation.</div>
+      <p class="prose" style="margin-top:26px">Anthropic's own write-up on Claude's text watermark says the key changes the <em>source of the randomness</em> used to choose between candidates &mdash; not the odds themselves. Claude is not pushed toward odd or unusual words, and there is no fixed list of "AI words" to bias toward. The green-list / red-list diagram in wide circulation describes a different, published academic scheme (KGW) that <em>does</em> bias the model's choices &mdash; useful to know, but not a description of Claude's. And translation does not launder the mark: the translation is written by the model too, one chosen word at a time, so the pattern is right back in it.</p>
+    </section>
+
+    <section class="field blue">
+      <div class="eyebrow">The pack</div>
+      <div class="huge" style="font-size:clamp(36px,7vw,96px)">Run the<br />argument</div>
+      <p class="lede">A working watermarker, its detector, and the calculator for how many tokens a verdict actually needs.</p>
+      <p class="prose" style="margin-top:18px">Python, standard library only, no downloads, no API keys. It implements KGW &mdash; the published scheme, and the README says plainly that it is not Claude's, because Anthropic has not published theirs. <code>python significance.py tokens 0.42</code> prints how many innocent documents a given threshold flags per million &mdash; the number worth arguing about.</p>
+      <p style="margin-top:30px">
+        <a class="btnlink" href="packs/prior-no-003.zip" download>Download &mdash; 18 KB</a>
+      </p>
+    </section>
+
+    <div class="grid">
+      <a class="card" href="no-002.html"><span class="no">Previous</span><span class="ttl">No. 002</span></a>
+      <a class="card" href="index.html#archive"><span class="no">All</span><span class="ttl">Archive</span></a>
+    </div>
+
+    <footer>
+      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
+      </svg>
+      <span data-wordmark>Prior</span>
+    </footer>
+  </body>
+</html>
