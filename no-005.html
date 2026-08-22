@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>No. 005 — Load balancing — Prior</title>
+    <meta
+      name="description"
+      content="One server answered in 40 ms. Under load it answered in 480. Nothing about the server changed — requests started waiting for each other. A load balancer does not make a request faster; it stops the queue."
+    />
+    <meta property="og:title" content="No. 005 — Load balancing" />
+    <meta property="og:description" content="40 ms, then 480 under load, then 40 again. It never goes below 40, because that is the work. Everything you removed was queueing." />
+    <meta property="og:image" content="https://prior-fm.github.io/prior-site/media/no-005.jpg" />
+    <meta property="og:type" content="article" />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/site.css" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html" style="display:flex;align-items:center;gap:16px;text-decoration:none">
+        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" /></svg>
+        <span class="word" data-wordmark>Prior</span>
+      </a>
+      <nav><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
+    </header>
+
+    <section class="field parch">
+      <div class="eyebrow">No. 005 &middot; 18 seconds</div>
+      <div class="huge">480 ms<br />becomes<br />40 ms</div>
+      <p class="lede">And it never goes lower than 40 &mdash; because that part was never the problem</p>
+    </section>
+
+    <section class="field blue">
+      <div class="latest">
+        <video src="media/no-005.mp4" poster="media/no-005.jpg" controls playsinline preload="metadata"></video>
+        <div><p class="prose">One server, all the traffic. Requests arrive faster than it can finish them, so they queue, and the response time climbs with the queue &mdash; 40 ms to 480. Put a load balancer in front of three identical servers and it falls straight back to 40. Then one of the three stops responding, health checks take it out of rotation, and the number does not move.</p></div>
+      </div>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">The thing worth noticing</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">You did not<br />speed anything<br />up.</div>
+      <p class="prose" style="margin-top:26px">Three servers do not make a request three times faster. The work still takes 40 ms &mdash; the same parsing, the same query, the same serialising, on the same hardware. What disappears is the <em>waiting</em>. Latency under load is mostly queueing, and queueing is the part that grows without limit as you approach capacity. That is why the number in the film goes 480 back to 40 and then stops dead. It cannot go below 40. Forty is the work.</p>
+      <p class="prose" style="margin-top:18px">The corollary is the useful bit: if a request is slow when nothing else is happening, more servers will not help you at all. Adding capacity fixes contention. It does nothing for a slow query.</p>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">And the part that is not the balancer</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">Health checks<br />are what make<br />it survivable</div>
+      <p class="prose" style="margin-top:26px">At the end of the film a server dies and nothing changes. That is not the balancer &mdash; that is the loop polling each backend on its own clock and removing the one that stopped answering. A balancer that does not know a backend is dead keeps sending it a third of your traffic, which is <em>worse</em> than having one server: instead of everything being slow, one request in three fails outright.</p>
+      <p class="prose" style="margin-top:18px">Two details in the pack that are easy to get wrong and cost real outages. The health endpoint has to live somewhere that is not queueing behind your traffic, or a busy server looks dead exactly when you cannot spare it. And one failed check is not evidence of anything &mdash; networks drop packets &mdash; so a backend comes out after repeated failures and goes back in after repeated successes, never on a single sample.</p>
+    </section>
+
+    <section class="field blue">
+      <div class="eyebrow">The pack</div>
+      <div class="huge" style="font-size:clamp(36px,7vw,96px)">Run it<br />and break it<br />yourself</div>
+      <p class="lede">A balancer, three backends, active health checks, and a kill switch. Python, no dependencies.</p>
+      <p class="prose" style="margin-top:18px"><code>python run.py</code> and nothing else. It starts three servers and a balancer on localhost, fires a fixed 40 requests a second at them, and prints what happened &mdash; one server queueing and then dropping every request, three servers holding at the floor, and a failover you watch in real time. Every number on this page is one the script measures in front of you, and yours will differ. The shape will not.</p>
+      <p class="prose" style="margin-top:18px">Included as well: the <code>nginx.conf</code> the film puts on screen, filled in and annotated &mdash; including the bit the film simplifies. Open-source nginx has no active health checks. It notices a backend failing while it is serving your users, which means some of your users <em>are</em> the health check.</p>
+      <p style="margin-top:30px">
+        <a class="btnlink" href="packs/prior-no-005.zip" download>Download &mdash; 11 KB</a>
+      </p>
+    </section>
+
+    <div class="grid">
+      <a class="card" href="no-004.html"><span class="no">Previous</span><span class="ttl">No. 004</span></a>
+      <a class="card" href="index.html#archive"><span class="no">All</span><span class="ttl">Archive</span></a>
+    </div>
+
+    <footer>
+      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
+      </svg>
+      <span data-wordmark>Prior</span>
+    </footer>
+  </body>
+</html>
