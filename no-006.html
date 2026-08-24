@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>No. 006 — Valid parentheses — Prior</title>
+    <meta
+      name="description"
+      content="A counter tells you how many brackets are open. A stack tells you which ones. Over every eight-character bracket string there are 90,720 a counter waves through and a stack catches — and every single disagreement is a false accept."
+    />
+    <meta property="og:title" content="No. 006 — Valid parentheses" />
+    <meta property="og:description" content="([)] is balanced. It is not valid. The difference between those two sentences is a stack, and it is the same eight lines that tell you whether a model's streaming JSON is finished." />
+    <meta property="og:image" content="https://prior-fm.github.io/prior-site/media/no-006.jpg" />
+    <meta property="og:type" content="article" />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/site.css" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html" style="display:flex;align-items:center;gap:16px;text-decoration:none">
+        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" /></svg>
+        <span class="word" data-wordmark>Prior</span>
+      </a>
+      <nav><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
+    </header>
+
+    <section class="field blue">
+      <div class="eyebrow">No. 006 &middot; 11 seconds</div>
+      <div class="huge">Balanced<br />is not<br />valid</div>
+      <p class="lede">A counter says <code>([)]</code> is fine. The stack knows it is not</p>
+    </section>
+
+    <section class="field parch">
+      <div class="latest">
+        <video src="media/no-006.mp4" poster="media/no-006.jpg" controls playsinline preload="metadata"></video>
+        <div><p class="prose">Walk the string once. Every opening bracket goes onto a stack; every closing bracket has to match the one on top, or the string is invalid there and then. At the end it is valid only if the stack is empty. Eleven lines, one pass, and the whole thing turns on a single idea: the stack remembers <em>which</em> brackets are still open, in the order they were opened.</p></div>
+      </div>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">The thing worth noticing</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">A counter<br />knows how many.<br />A stack knows<br />which ones.</div>
+      <p class="prose" style="margin-top:26px">Almost everyone writes the counter first, and for one bracket type it is genuinely correct — add one for <code>(</code>, subtract one for <code>)</code>, never go below zero, finish at zero. The moment there are three types it stops working, because a number has no memory of what it counted. <code>([)]</code> has two openers and two closers and a counter is perfectly happy with it.</p>
+      <p class="prose" style="margin-top:18px">The pack measures how often that matters, exhaustively rather than by sampling — every string over <code>()[]{}</code> of a given length. At length 8 there are 90,720 strings the counter and the stack disagree about, out of 1,679,616. That is 5.4%, and it falls with length only because long random strings are overwhelmingly invalid in ways both methods catch.</p>
+      <p class="prose" style="margin-top:18px">The number that actually matters is a different one. <strong>Of all those disagreements, the count of times the counter wrongly rejects a valid string is zero.</strong> Every single one is a false <em>accept</em> — the counter waving through input the stack catches. That is the direction of failure that reaches production, because nothing downstream ever complains about input that was let in.</p>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">And the part the film has no room for</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">The same stack,<br />on a model&rsquo;s<br />streaming output</div>
+      <p class="prose" style="margin-top:26px">A model streams JSON a token at a time and you want to act the moment a complete value has arrived. The usual approach is <code>json.loads()</code> on every prefix inside a <code>try/except</code>. It works, and it re-parses the entire prefix every time — O(n&sup2;) to answer a question the stack answers in one pass. On an 18,000-character document one run here measured 1,612.6 ms against 6.1 ms for the same answer &mdash; 265&times;. Repeat runs on the same laptop landed between 249&times; and 291&times;, so treat the ratio as an order of magnitude and not a benchmark. Your numbers will differ; the exponent will not.</p>
+      <p class="prose" style="margin-top:18px">A stack also gives you something a boolean cannot: <strong>the closing suffix is the stack read backwards.</strong> Not just <em>whether</em> the stream is unbalanced, but exactly what would balance it — so you can show a user the largest piece of the answer that is real JSON, mid-stream, without ever handing them something that fails to parse.</p>
+      <p class="prose" style="margin-top:18px">One rule the film does not need and yours does: <strong>a bracket inside a string is not a bracket.</strong> <code>{"note": "a } inside a string"}</code> is valid JSON, and a bare bracket stack rejects it at character 8. A JSON scanner needs a string flag as well as a stack, and a backslash flag as well as that. It is the single most common bug in hand-rolled streaming JSON handling, and it only shows up on the inputs that contain user text — which is most of them.</p>
+    </section>
+
+    <section class="field blue">
+      <div class="eyebrow">The pack</div>
+      <div class="huge" style="font-size:clamp(36px,7vw,96px)">Run it<br />and check<br />the claim</div>
+      <p class="lede">The counter, the stack, and the streaming JSON scanner built on it. Python, no dependencies.</p>
+      <p class="prose" style="margin-top:18px"><code>python run.py</code> and nothing else. Three acts, about two seconds: every string of length 2, 4, 6 and 8 checked both ways with the disagreements counted; the scan printed step by step for a valid string and an invalid one; and the same stack timed against <code>json.loads</code>-per-prefix on a streaming document. There is no randomness anywhere in it — acts one and two are exhaustive and fixed, and the only varying number is a wall-clock timing.</p>
+      <p class="prose" style="margin-top:18px">Also in there: <code>truncate_to_valid</code>, which refuses to close a partial stream immediately after <code>{</code>, <code>[</code>, <code>,</code> or <code>:</code>. Closing there would parse — and it would hand back an element the model never sent. Truncating is honest; inventing an empty object is not, and it is worse than useless because it parses.</p>
+      <p style="margin-top:30px">
+        <a class="btnlink" href="packs/prior-no-006.zip" download>Download &mdash; 10 KB</a>
+      </p>
+    </section>
+
+    <div class="grid">
+      <a class="card" href="no-005.html"><span class="no">Previous</span><span class="ttl">No. 005</span></a>
+      <a class="card" href="index.html#archive"><span class="no">All</span><span class="ttl">Archive</span></a>
+    </div>
+
+    <footer>
+      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
+      </svg>
+      <span data-wordmark>Prior</span>
+    </footer>
+  </body>
+</html>
