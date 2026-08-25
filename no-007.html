@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>No. 007 — Why time speeds up — Prior</title>
+    <meta
+      name="description"
+      content="You judge an interval against the length of life you have already lived, so the same year is not the same amount of experience. Under that model the middle of a life is not its calendar midpoint but the geometric mean of first memory and life expectancy — and with 4 and 81 that is exactly 18."
+    />
+    <meta property="og:title" content="No. 007 — Why time speeds up" />
+    <meta property="og:description" content="By the calendar the middle of an eighty-year life is forty. By the only model that explains why time accelerates, it is eighteen — and for most people reading this, it has already gone." />
+    <meta property="og:image" content="https://prior-fm.github.io/prior-site/media/no-007.jpg" />
+    <meta property="og:type" content="article" />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/site.css" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html" style="display:flex;align-items:center;gap:16px;text-decoration:none">
+        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" /></svg>
+        <span class="word" data-wordmark>Prior</span>
+      </a>
+      <nav><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
+    </header>
+
+    <section class="field blue">
+      <div class="eyebrow">No. 007 &middot; 35 seconds</div>
+      <div class="huge">The middle<br />is not<br />forty</div>
+      <p class="lede">On paper it is. Ask anyone who was seven once</p>
+    </section>
+
+    <section class="field parch">
+      <div class="latest">
+        <video src="media/no-007.mp4" poster="media/no-007.jpg" controls playsinline preload="metadata"></video>
+        <div><p class="prose">Live to eighty and the calendar puts the middle at forty. But a single day at seven felt endless, and whole years now go by before you notice — the same amount of time, and only one of them registered. The reason is that you do not perceive time in a linear way. You judge an interval against the length of life you have already lived, which makes the scale logarithmic, and on a logarithmic scale the middle of a life sits somewhere very different.</p></div>
+      </div>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">The thing worth noticing</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">A year at seven<br />is a seventh of<br />everything you<br />remember.</div>
+      <p class="prose" style="margin-top:26px">A year at fifty is a forty-sixth of it. That is the whole model, and it is old — the proportional account of time perception usually credited to Paul Janet in 1897. It is the same Weber&ndash;Fechner logarithm that puts decibels and stellar magnitudes on log scales, applied to the one quantity nobody thinks of as a measurement.</p>
+      <p class="prose" style="margin-top:18px">Write it down and it stops being a metaphor. If felt duration is the interval divided by your current age, then the felt time accumulated between two ages is the integral of <code>1/t</code>, which is <code>ln(b) &minus; ln(a)</code>. The scale is not <em>like</em> a logarithm. It is one.</p>
+      <p class="prose" style="margin-top:18px">Two things follow straight away. A logarithmic scale <strong>cannot start at zero</strong>, because <code>ln(0)</code> is undefined — so the model has to be floored somewhere, and first memory is the honest place, since there is no experience before it to judge anything against. And the felt midpoint is the age where the felt time before equals the felt time after, which solves to <code>m = &radic;(a &middot; b)</code>. The geometric mean, not the arithmetic one.</p>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">And the part the film has no room for</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">18 is a model<br />output, and it<br />moves</div>
+      <p class="prose" style="margin-top:26px">The film derives its answer on screen from two stated inputs — first memories at 4, a life of 81 years — and <code>&radic;(4 &times; 81)</code> is 18 exactly. That exactness is doing rhetorical work it has not earned, and it is worth saying so plainly: <strong>4 and 81 are the only pair in any reasonable range that produce a whole number.</strong> That is presumably why they were chosen, here and everywhere else this claim circulates.</p>
+      <p class="prose" style="margin-top:18px">Move the inputs and the answer moves with them. First memory at 3 and a life of 79 gives 15.4. First memory at 6 and a life of 90 gives 23.2. Across defensible inputs the felt midpoint runs from about 12 to about 23, and the commonly cited form of Janet's law lands nearer twenty than eighteen. The pack prints that whole table, because a number you cannot move is a number you cannot check.</p>
+      <p class="prose" style="margin-top:18px">What is <em>not</em> in dispute is the direction. Nobody has measured that your felt midpoint is 18. What has been measured, repeatedly, is that people report time accelerating with age — and this is the oldest and simplest account of why. Take the shape seriously and the specific number lightly. That is the correct way to hold any modelled quantity, and it is a habit worth having well outside this topic.</p>
+    </section>
+
+    <section class="field blue">
+      <div class="eyebrow">The pack</div>
+      <div class="huge" style="font-size:clamp(36px,7vw,96px)">Put your<br />own age<br />into it</div>
+      <p class="lede">A calculator that gives you your felt midpoint, how much of your felt life is already spent, and how far the answer moves when you move the assumptions.</p>
+      <p class="prose" style="margin-top:18px">Two files, and neither installs anything or touches the network. <code>felt-time.html</code> opens in any browser: enter your age, drag either assumption, watch the curve and the answer respond. <code>felt_time.py</code> is the same model at a terminal in about twenty lines of standard-library Python — <code>python felt_time.py 31</code>, or <code>--sweep</code> for the table of how much the answer moves.</p>
+      <p class="prose" style="margin-top:18px">The README carries the full derivation rather than the result: the integral, why the scale cannot start at zero, and the three lines that turn <code>ln(m) &minus; ln(a) = ln(b) &minus; ln(m)</code> into the geometric mean. If you only take one thing from it, take the sweep table — it is the part that shows you how much of 18 is physics and how much is the choice of two numbers.</p>
+      <p style="margin-top:30px">
+        <a class="btnlink" href="packs/prior-no-007.zip" download>Download &mdash; 8 KB</a>
+      </p>
+    </section>
+
+    <div class="grid">
+      <a class="card" href="no-006.html"><span class="no">Previous</span><span class="ttl">No. 006</span></a>
+      <a class="card" href="index.html#archive"><span class="no">All</span><span class="ttl">Archive</span></a>
+    </div>
+
+    <footer>
+      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
+      </svg>
+      <span data-wordmark>Prior</span>
+    </footer>
+  </body>
+</html>
