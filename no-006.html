@@ -64,7 +64,7 @@
       <p class="prose" style="margin-top:18px"><code>python run.py</code> and nothing else. Three acts, about two seconds: every string of length 2, 4, 6 and 8 checked both ways with the disagreements counted; the scan printed step by step for a valid string and an invalid one; and the same stack timed against <code>json.loads</code>-per-prefix on a streaming document. There is no randomness anywhere in it — acts one and two are exhaustive and fixed, and the only varying number is a wall-clock timing.</p>
       <p class="prose" style="margin-top:18px">Also in there: <code>truncate_to_valid</code>, which refuses to close a partial stream immediately after <code>{</code>, <code>[</code>, <code>,</code> or <code>:</code>. Closing there would parse — and it would hand back an element the model never sent. Truncating is honest; inventing an empty object is not, and it is worse than useless because it parses.</p>
       <p style="margin-top:30px">
-        <a class="btnlink" href="packs/prior-no-006.zip" download>Download &mdash; 10 KB</a>
+        <a class="btnlink" data-goatcounter-click="no-006-download" href="packs/prior-no-006.zip" download>Download &mdash; 10 KB</a>
       </p>
     </section>
 
