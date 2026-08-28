@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>No. 009 — Pathfinding — Prior</title>
+    <meta
+      name="description"
+      content="Five pathfinding algorithms raced on the real Madrid street network — 72,234 corners, one query. Dijkstra touches 38,750 of them. Bidirectional A* finds the identical 8.37 km route touching 3,033."
+    />
+    <meta property="og:title" content="No. 009 — Pathfinding" />
+    <meta property="og:description" content="Dijkstra checks 38,750 corners of Madrid for one route. Bidirectional A* finds the SAME route checking 3,033. Every search is a real run on the real street network." />
+    <meta property="og:image" content="https://prior-fm.github.io/prior-site/media/no-009.jpg" />
+    <meta property="og:type" content="article" />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/site.css" />
+    <!-- analytics: GoatCounter. No cookies, no cross-site tracking, no
+         personal data. Declared in privacy.html. -->
+    <script data-goatcounter="https://prior.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="index.html" style="display:flex;align-items:center;gap:16px;text-decoration:none">
+        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" /></svg>
+        <span class="word" data-wordmark>Prior</span>
+      </a>
+      <nav><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
+    </header>
+
+    <section class="field blue">
+      <div class="eyebrow">No. 009 &middot; 38 seconds</div>
+      <div class="huge">Same route.<br />92% less<br />searching</div>
+      <p class="lede">Dijkstra checks 38,750 corners of Madrid. Bidirectional A* finds the identical route checking 3,033</p>
+    </section>
+
+    <section class="field parch">
+      <div class="latest">
+        <video src="media/no-009.mp4" poster="media/no-009.jpg" controls playsinline preload="metadata"></video>
+        <div><p class="prose">Five algorithms, one real map, one query. Every search in the film is a real instrumented run on the real Madrid street network &mdash; 72,234 corners of it, downloaded from OpenStreetMap &mdash; and every Nodes/Time caption is that run&rsquo;s own measurement. Dijkstra floods half the city. Greedy best-first sprints straight at the goal and touches 622 corners. A* and its bidirectional variant get the best of both: the optimal route, a fraction of the work. Nothing is animated by hand.</p></div>
+      </div>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">The thing worth noticing</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">Greedy is<br />fast. And<br />greedy is<br />wrong.</div>
+      <p class="prose" style="margin-top:26px">The fastest search in the race &mdash; 622 corners, about 2 milliseconds &mdash; hands back a route <strong>23.6% longer</strong> than the optimum. Greedy best-first ranks its frontier only by the distance still to go, so it never reconsiders a step that looked good at the time. That is not a bug in the implementation; it is the definition of the algorithm, and the race measures its price to the metre: 10.35 km against the true 8.37.</p>
+      <p class="prose" style="margin-top:18px">A* makes one change: rank by distance travelled <em>plus</em> the guess of what is left. That single addition restores the optimality guarantee &mdash; and the pack refuses to take that on authority. It asserts, in code, on every run, that Dijkstra, A* and both bidirectional variants return routes of <strong>identical length</strong>. If any of them ever disagreed, the script fails loudly instead of drawing a pretty picture.</p>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">And the part the film has no room for</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">What a<br />heuristic<br />buys you</div>
+      <p class="prose" style="margin-top:26px">A heuristic is a guess at the distance left &mdash; here, the straight-line distance to the goal. It cannot overestimate, and that one property is the whole contract: it lets A* ignore almost the entire map while still promising the best answer. Watch the shapes in the film: Dijkstra&rsquo;s circle knows nothing, so it grows evenly in every direction. A*&rsquo;s ellipse leans at the goal. Bidirectional A* is two thin corridors that meet in the middle &mdash; <strong>3,033 corners touched out of 72,234</strong>, 92% less work than Dijkstra for the same route.</p>
+      <p class="prose" style="margin-top:18px">This is the trade that runs your maps app, your game NPCs, and half of classical AI planning: pay a tiny cost per node to think about <em>where the goal is</em>, and stop paying the enormous cost of looking everywhere. The race makes the trade visible &mdash; and because the runs are real, the numbers move honestly when you change the city.</p>
+    </section>
+
+    <section class="field blue">
+      <div class="eyebrow">The pack</div>
+      <div class="huge" style="font-size:clamp(36px,7vw,96px)">Race them<br />on your<br />own city</div>
+      <p class="lede">All five algorithms, the real street network, the optimality assertion. Python, no dependencies.</p>
+      <p class="prose" style="margin-top:18px"><code>python race.py</code> and nothing else. It downloads central Madrid&rsquo;s drivable street network from OpenStreetMap (once, then cached), builds the 72,234-corner graph, races all five algorithms on the film&rsquo;s exact query, and prints the table &mdash; corners touched, wall time, route length &mdash; with the optimality check asserted in code. It also writes an SVG per algorithm so you can see precisely what each one explored. <code>--city berlin</code> or <code>--bbox S W N E</code> races anywhere on Earth.</p>
+      <p style="margin-top:30px">
+        <a class="btnlink" data-goatcounter-click="no-009-download" href="packs/prior-no-009.zip" download>Download &mdash; 5 KB</a>
+      </p>
+    </section>
+
+    <!-- THE VEKTOR POINTER. Founder's call 2026-08-25 — see no-008.html. -->
+    <section class="field parch">
+      <div class="eyebrow">Who makes this</div>
+      <p class="prose" style="margin-top:6px; max-width:56ch">Prior is made by the same person who writes <strong>Vektor</strong> &mdash; the how-I-actually-ship side of the same work: the tools, the pipeline, the things that go wrong on the way to a finished thing. Prior shows you the idea. Vektor shows you the build.</p>
+      <p style="margin-top:26px">
+        <a class="btnlink" data-goatcounter-click="no-009-to-vektor" href="https://vektor-fm.github.io/vektor-site/">Read Vektor &rarr;</a>
+      </p>
+      <p class="small" style="margin-top:16px; opacity:.6">Or on Instagram: <a href="https://instagram.com/vektor.fm">@vektor.fm</a></p>
+    </section>
+
+    <div class="grid">
+      <a class="card" href="no-008.html"><span class="no">Previous</span><span class="ttl">No. 008</span></a>
+      <a class="card" href="index.html#archive"><span class="no">All</span><span class="ttl">Archive</span></a>
+    </div>
+
+    <footer>
+      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
+      </svg>
+      <span data-wordmark>Prior</span>
+    </footer>
+  </body>
+</html>

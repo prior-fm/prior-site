@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>No. 010 — An image is a point — Prior</title>
+    <meta
+      name="description"
+      content="A photograph is 3,147,776 numbers — and one point in n-dimensional space. The film's grid, counter and detection boxes are all real runs on its own CC0 photo: n = 108, DOG 0.90, TREE 0.30."
+    />
+    <meta property="og:title" content="No. 010 — An image is a point" />
+    <meta property="og:description" content="Read a photo's numbers left to right, row by row: you get one long vector, and the whole image becomes ONE point in n-dimensional space. Then you can start doing geometry with images." />
+    <meta property="og:image" content="https://prior-fm.github.io/prior-site/media/no-010.jpg" />
+    <meta property="og:type" content="article" />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/site.css" />
+    <!-- analytics: GoatCounter. No cookies, no cross-site tracking, no
+         personal data. Declared in privacy.html. -->
+    <script data-goatcounter="https://prior.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="index.html" style="display:flex;align-items:center;gap:16px;text-decoration:none">
+        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" /></svg>
+        <span class="word" data-wordmark>Prior</span>
+      </a>
+      <nav><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
+    </header>
+
+    <section class="field blue">
+      <div class="eyebrow">No. 010 &middot; 52 seconds</div>
+      <div class="huge">3,147,776<br />numbers.<br />One point.</div>
+      <p class="lede">Read a photo&rsquo;s pixels left to right, row by row, and the whole image becomes one point in n-dimensional space</p>
+    </section>
+
+    <section class="field parch">
+      <div class="latest">
+        <video src="media/no-010.mp4" poster="media/no-010.jpg" controls playsinline preload="metadata"></video>
+        <div><p class="prose">A matrix, read row by row, becomes one long list &mdash; a vector with components x&#8321; through x&#8345;. If the image has n pixels, the image <em>is</em> a point in n-dimensional real space. Every number in the film is a real run on the film&rsquo;s own photograph: the 9&times;12 grid it scans has exactly 108 cells, the full photo is a vector with 3,147,776 components, and the DOG 0.90 / TREE 0.30 boxes are a real object-detection model&rsquo;s honest output, not set dressing. Nothing typed by hand.</p></div>
+      </div>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">The thing worth noticing</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">Distance<br />between<br />images is<br />a number.</div>
+      <p class="prose" style="margin-top:26px">Once an image is a point, the question &ldquo;how similar are these two photos?&rdquo; stops being philosophy and becomes geometry: it is the <strong>distance between two points</strong>. That single move &mdash; flatten, then measure &mdash; is the quiet foundation under image search, face unlock, recommendation feeds and every &ldquo;find similar&rdquo; button you have ever pressed. The pack computes one such distance in eight lines of Python, because seeing the number appear is what makes the idea land.</p>
+      <p class="prose" style="margin-top:18px">The film&rsquo;s detection scene runs the argument forward: a model that labels a DOG at 0.90 confidence is doing geometry in exactly this kind of space &mdash; and the honest 0.30 it gives the tree is part of the lesson. Confidence is a position in space, not a promise.</p>
+    </section>
+
+    <section class="field blue">
+      <div class="eyebrow">The pack</div>
+      <div class="huge" style="font-size:clamp(36px,7vw,96px)">Turn your<br />photos into<br />points</div>
+      <p class="lede">Both pipelines from the film: image &rarr; matrix &rarr; vector &rarr; point, and the real detector behind the boxes.</p>
+      <p class="prose" style="margin-top:18px"><code>python vectorize.py your-photo.jpg</code> prints the matrix, flattens it into the vector, names the space (R&#8319; with your photo&rsquo;s real n), and measures one real distance between two images as points. <code>python detect.py your-photo.jpg</code> re-runs the film&rsquo;s object detection on anything you give it &mdash; YOLOv8 on Open Images V7, the 600-class vocabulary that can actually label a tree &mdash; and draws the boxes with their honest confidences.</p>
+      <p style="margin-top:30px">
+        <a class="btnlink" data-goatcounter-click="no-010-download" href="packs/prior-no-010.zip" download>Download &mdash; 2 KB</a>
+      </p>
+    </section>
+
+    <!-- THE VEKTOR POINTER. Founder's call 2026-08-25 — see no-008.html. -->
+    <section class="field parch">
+      <div class="eyebrow">Who makes this</div>
+      <p class="prose" style="margin-top:6px; max-width:56ch">Prior is made by the same person who writes <strong>Vektor</strong> &mdash; the how-I-actually-ship side of the same work: the tools, the pipeline, the things that go wrong on the way to a finished thing. Prior shows you the idea. Vektor shows you the build.</p>
+      <p style="margin-top:26px">
+        <a class="btnlink" data-goatcounter-click="no-010-to-vektor" href="https://vektor-fm.github.io/vektor-site/">Read Vektor &rarr;</a>
+      </p>
+      <p class="small" style="margin-top:16px; opacity:.6">Or on Instagram: <a href="https://instagram.com/vektor.fm">@vektor.fm</a></p>
+    </section>
+
+    <div class="grid">
+      <a class="card" href="no-009.html"><span class="no">Previous</span><span class="ttl">No. 009</span></a>
+      <a class="card" href="index.html#archive"><span class="no">All</span><span class="ttl">Archive</span></a>
+    </div>
+
+    <footer>
+      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
+      </svg>
+      <span data-wordmark>Prior</span>
+    </footer>
+  </body>
+</html>
