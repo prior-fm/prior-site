@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>No. 011 — Chaos theory in 3D — Prior</title>
+    <meta
+      name="description"
+      content="Fifty double pendulums released a tenth of a degree apart. Twenty seconds later their angles span 190°. Nothing in the simulation is random — there is no random number generator in it at all."
+    />
+    <meta property="og:title" content="No. 011 — Chaos theory in 3D" />
+    <meta property="og:description" content="Fifty double pendulums, 0.1° apart at launch, 190° apart twenty seconds later. Deterministic throughout: same input, same output, every run. Chaos is not randomness." />
+    <meta property="og:image" content="https://prior-fm.github.io/prior-site/media/no-011.jpg" />
+    <meta property="og:type" content="article" />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/site.css" />
+    <!-- analytics: GoatCounter. No cookies, no cross-site tracking, no
+         personal data. Declared in privacy.html. -->
+    <script data-goatcounter="https://prior.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="index.html" style="display:flex;align-items:center;gap:16px;text-decoration:none">
+        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" /></svg>
+        <span class="word" data-wordmark>Prior</span>
+      </a>
+      <nav><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
+    </header>
+
+    <section class="field clay">
+      <div class="eyebrow">No. 011 &middot; 20 seconds</div>
+      <div class="huge">0.1&deg; apart.<br />Then 190&deg;.</div>
+      <p class="lede">Fifty double pendulums released a tenth of a degree apart, and twenty seconds of real physics</p>
+    </section>
+
+    <section class="field parch">
+      <div class="latest">
+        <video src="media/no-011.mp4" poster="media/no-011.jpg" controls playsinline preload="metadata"></video>
+        <div><p class="prose">Fifty double pendulums, each swinging in its own vertical plane, the fifty planes fanned evenly around one shared pivot. Their release angles differ by exactly a tenth of a degree &mdash; the code asserts that to machine precision before it integrates anything. For about ten seconds they move as one and the colours read as a smooth spectrum. Then the ordering comes apart, and by the end adjacent hues are nowhere near each other. Nothing is faked: it is a fixed-step RK4 integration that conserves energy to 1.3&times;10&#8315;&#185;&#185; of the energy scale over the full twenty seconds.</p></div>
+      </div>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">The thing worth noticing</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">Chaos is<br />not<br />randomness.</div>
+      <p class="prose" style="margin-top:26px">There is <strong>no random number generator anywhere in this simulation</strong>. Run it twice and you get the same twenty seconds, to the last decimal place. The whole film is decided by one line of code &mdash; the one that sets fifty starting angles a tenth of a degree apart.</p>
+      <p class="prose" style="margin-top:18px">What makes it chaotic is not disorder but <strong>sensitivity</strong>: the system pulls nearby starting points apart exponentially. At this release angle it does so by a factor of e roughly <em>every second</em>. A tenth of a degree survives that for about ten seconds, and then it doesn&rsquo;t. Turn the energy down &mdash; run the pack with <code>--theta0 40</code> &mdash; and the same fifty pendulums stay in step for the entire run. The chaos is not in the equations. It is in how hard you push them.</p>
+      <p class="prose" style="margin-top:18px">This is why a weather forecast dies at about two weeks, why a physics simulation won&rsquo;t reproduce across two machines with different floating-point behaviour, and why &ldquo;we changed the seed and got a different answer&rdquo; is sometimes the system telling you the truth rather than a bug.</p>
+    </section>
+
+    <section class="field clay">
+      <div class="eyebrow">The pack</div>
+      <div class="huge" style="font-size:clamp(36px,7vw,96px)">Run the<br />whole thing<br />yourself</div>
+      <p class="lede">One Python file, standard library only. No numpy, no plotting library, nothing to install.</p>
+      <p class="prose" style="margin-top:18px"><code>python chaos.py</code> re-runs the exact simulation in the film and prints the divergence schedule; <code>--svg out.svg</code> draws the trails. It integrates at a five-times coarser timestep than the film and lands on the same numbers to four significant figures, which is what a converged integration is supposed to do.</p>
+      <p class="prose" style="margin-top:18px">It also ships the check that saved the film. A double pendulum conserves energy exactly &mdash; and a <em>wrong set of equations</em> does not, while still producing a smooth, convincing, entirely fictional animation. That happened here: the first formulation was stable, returned the identical trajectory at three different timesteps, and lost 0.169 joules a second where the correct one loses 2.3&times;10&#8315;&#185;&#179;. The energy gate is the only thing that caught it. The README tells that story properly.</p>
+      <p style="margin-top:30px">
+        <a class="btnlink" data-goatcounter-click="no-011-download" href="packs/prior-no-011.zip" download>Download &mdash; 4 KB</a>
+      </p>
+    </section>
+
+    <!-- THE VEKTOR POINTER. Founder's call 2026-08-25 — see no-008.html. -->
+    <section class="field parch">
+      <div class="eyebrow">Who makes this</div>
+      <p class="prose" style="margin-top:6px; max-width:56ch">Prior is made by the same person who writes <strong>Vektor</strong> &mdash; the how-I-actually-ship side of the same work: the tools, the pipeline, the things that go wrong on the way to a finished thing. Prior shows you the idea. Vektor shows you the build.</p>
+      <p style="margin-top:26px">
+        <a class="btnlink" data-goatcounter-click="no-011-to-vektor" href="https://vektor-fm.github.io/vektor-site/">Read Vektor &rarr;</a>
+      </p>
+      <p class="small" style="margin-top:16px; opacity:.6">Or on Instagram: <a href="https://instagram.com/vektor.fm">@vektor.fm</a></p>
+    </section>
+
+    <div class="grid">
+      <a class="card" href="no-010.html"><span class="no">Previous</span><span class="ttl">No. 010</span></a>
+      <a class="card" href="index.html#archive"><span class="no">All</span><span class="ttl">Archive</span></a>
+    </div>
+
+    <footer>
+      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
+      </svg>
+      <span data-wordmark>Prior</span>
+    </footer>
+  </body>
+</html>
