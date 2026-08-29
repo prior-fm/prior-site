@@ -49,14 +49,23 @@
       <p class="prose" style="margin-top:18px">This is why a weather forecast dies at about two weeks, why a physics simulation won&rsquo;t reproduce across two machines with different floating-point behaviour, and why &ldquo;we changed the seed and got a different answer&rdquo; is sometimes the system telling you the truth rather than a bug.</p>
     </section>
 
+    <section class="field parch">
+      <div class="eyebrow">The number that should change how you plan</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">18,000&times;<br />for ten<br />more seconds.</div>
+      <p class="prose" style="margin-top:26px">Nearby states separate like <code>&delta;(t) = &delta;&#8320;&middot;e^(&lambda;t)</code>, so the time before your initial error swamps the answer is <code>t = (1/&lambda;)&middot;ln(&Delta;/&delta;&#8320;)</code>. Read that carefully: <strong>your prediction horizon grows only with the LOGARITHM of your precision.</strong></p>
+      <p class="prose" style="margin-top:18px">For this film&rsquo;s pendulums &lambda; is 0.98 per second, so the fifty hold together about ten seconds. Want twenty? You need <strong>e&#185;&#8304;&#7527; &asymp; 18,000&times;</strong> more precision. Then another 18,000&times; for the ten after that. Halving your error buys you 0.7 seconds &mdash; always, no matter how small the error already is.</p>
+      <p class="prose" style="margin-top:18px">That is why chaos is not a measurement problem you can spend your way out of, and why the two-week ceiling on weather forecasting is a property of the atmosphere rather than of anyone&rsquo;s compute budget.</p>
+    </section>
+
     <section class="field clay">
-      <div class="eyebrow">The pack</div>
-      <div class="huge" style="font-size:clamp(36px,7vw,96px)">Run the<br />whole thing<br />yourself</div>
-      <p class="lede">One Python file, standard library only. No numpy, no plotting library, nothing to install.</p>
-      <p class="prose" style="margin-top:18px"><code>python chaos.py</code> re-runs the exact simulation in the film and prints the divergence schedule; <code>--svg out.svg</code> draws the trails. It integrates at a five-times coarser timestep than the film and lands on the same numbers to four significant figures, which is what a converged integration is supposed to do.</p>
-      <p class="prose" style="margin-top:18px">It also ships the check that saved the film. A double pendulum conserves energy exactly &mdash; and a <em>wrong set of equations</em> does not, while still producing a smooth, convincing, entirely fictional animation. That happened here: the first formulation was stable, returned the identical trajectory at three different timesteps, and lost 0.169 joules a second where the correct one loses 2.3&times;10&#8315;&#185;&#179;. The energy gate is the only thing that caught it. The README tells that story properly.</p>
+      <div class="eyebrow">The pack &mdash; free, no email</div>
+      <div class="huge" style="font-size:clamp(36px,7vw,96px)">The papers,<br />a primer,<br />and the code</div>
+      <p class="lede">Seven foundational papers in reading order, the long explanation, and the exact simulation from the film.</p>
+      <p class="prose" style="margin-top:18px"><strong>PAPERS.md</strong> &mdash; Lorenz 1963 (the one that started it), Shinbrot et al. 1992 (a real double pendulum on a bench, with the divergence measured), Li &amp; Yorke 1975 (the paper that named chaos), May 1976, Feigenbaum 1978, Wolf et al. 1985 (how you estimate a Lyapunov exponent from data you did not generate), and Zhang et al. 2019 on the two-week limit. Each one gets what it established and why it matters if you build models. Every citation was checked against the publisher&rsquo;s own record, not quoted from memory.</p>
+      <p class="prose" style="margin-top:18px"><strong>PRIMER.md</strong> &mdash; why deterministic and unpredictable are not opposites, the one equation worth carrying, and the four places this shows up in real work: reproducibility across hardware, forecast horizons, seed sensitivity, and measuring &lambda; instead of arguing about it.</p>
+      <p class="prose" style="margin-top:18px"><strong>chaos.py</strong> &mdash; standard library only, no numpy, nothing to install. It integrates at a five-times coarser timestep than the film and lands on the same numbers to four significant figures. It also ships the check that saved this film: a double pendulum conserves energy exactly, and a <em>wrong set of equations</em> does not &mdash; while still producing a smooth, convincing, entirely fictional animation. That happened here. The first formulation was stable, returned the identical trajectory at three different timesteps, and lost 0.169 joules a second where the correct one loses 2.3&times;10&#8315;&#185;&#179;. Nothing but the energy gate would have caught it.</p>
       <p style="margin-top:30px">
-        <a class="btnlink" data-goatcounter-click="no-011-download" href="packs/prior-no-011.zip" download>Download &mdash; 4 KB</a>
+        <a class="btnlink" data-goatcounter-click="no-011-download" href="packs/prior-no-011.zip" download>Download &mdash; 12 KB</a>
       </p>
     </section>
 
