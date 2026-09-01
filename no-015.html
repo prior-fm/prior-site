@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>No. 015 — Seventeen minutes — Prior</title>
+    <meta
+      name="description"
+      content="Four people, one torch, one bridge. The strategy that feels right costs 19 minutes. The optimum is 17 — and out of 85,368 legal schedules, exactly two of them find it."
+    />
+    <meta property="og:title" content="No. 015 — Seventeen minutes" />
+    <meta property="og:description" content="Escorting everyone with the fastest person costs 19 minutes. Sending the two slowest across together, once, costs 17 — proved by exhaustive search over every legal state." />
+    <meta property="og:image" content="https://prior-fm.github.io/prior-site/media/no-015.jpg" />
+    <meta property="og:type" content="article" />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/site.css" />
+    <!-- analytics: GoatCounter. No cookies, no cross-site tracking, no
+         personal data. Declared in privacy.html. -->
+    <script data-goatcounter="https://prior.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="index.html" style="display:flex;align-items:center;gap:16px;text-decoration:none">
+        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" /></svg>
+        <span class="word" data-wordmark>Prior</span>
+      </a>
+      <nav><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
+    </header>
+
+    <section class="field clay">
+      <div class="eyebrow">No. 015 &middot; Algorithms</div>
+      <div class="huge">Not 19.<br />17 minutes.</div>
+      <p class="lede">The optimal answer is not about who moves fastest</p>
+    </section>
+
+    <section class="field parch">
+      <div class="latest">
+        <video src="media/no-015.mp4" poster="media/no-015.jpg" controls playsinline preload="metadata"></video>
+        <div><p class="prose">Four people cross a bridge at night with one torch. Two at a time, at the slower one&rsquo;s pace, and someone has to carry the torch back. Every schedule in the film is replayed move by move against the rules, and both totals on screen come out of that replay rather than being typed in.</p></div>
+      </div>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">The puzzle</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">1, 2, 5<br />and 10.</div>
+      <p class="prose" style="margin-top:26px">Four people, one torch, one bridge. <strong>Two can cross at a time</strong>, and a crossing takes the <strong>slower</strong> person&rsquo;s time. The torch cannot be thrown back, so somebody has to walk it. Their times are 1, 2, 5 and 10 minutes. What is the fastest everyone gets across?</p>
+      <p class="prose" style="margin-top:18px">Almost everyone lands on the same idea: put the fastest person in charge. Send 1 with each of the others in turn and let them run the torch back every time. <code>1+10</code>, <code>1</code> back, <code>1+5</code>, <code>1</code> back, <code>1+2</code>. It is tidy, it is obviously sensible, and it costs <strong>19 minutes</strong>.</p>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">The thing worth noticing</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">Send the<br />two slowest<br />together.</div>
+      <p class="prose" style="margin-top:26px">A crossing costs the <strong>slower</strong> person&rsquo;s time. So a slow person is only expensive <em>when they are the slowest one moving.</em></p>
+      <p class="prose" style="margin-top:18px">Escorting pays the 10 once and the 5 once &mdash; fifteen minutes of slow &mdash; and buys cheap one-minute returns in exchange. Sending 5 and 10 <strong>together</strong> pays the 10 once and the 5 <strong>not at all</strong>, at the cost of one two-minute return instead of a one-minute one. That trade is worth two minutes:</p>
+      <p class="prose" style="margin-top:18px"><code>1+2</code> across (2) &middot; <code>1</code> back (1) &middot; <code>5+10</code> across (10) &middot; <code>2</code> back (2) &middot; <code>1+2</code> across (2). <strong>17 minutes.</strong></p>
+      <p class="prose" style="margin-top:18px">The two fastest are not the workhorses here. They are the <em>shuttle</em>. You give up the neat structure for one move so the bottleneck can be paid for once instead of twice.</p>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">How narrow the optimum is</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">2 out of<br />85,368.</div>
+      <p class="prose" style="margin-top:26px">The pack enumerates every legal schedule for these four people: <strong>85,368</strong> of them, up to a cost of 40 minutes. Exactly <strong>two</strong> cost 17. Twelve cost 19. The distribution peaks around 37.</p>
+      <p class="prose" style="margin-top:18px">So the intuitive answer is not a bad answer &mdash; it is in the best 0.03% of everything you could do. It is just not the best, and the gap is entirely about how many times you pay for the slowest person.</p>
+    </section>
+
+    <section class="field clay">
+      <div class="eyebrow">The pack &mdash; free, no email</div>
+      <div class="huge" style="font-size:clamp(36px,7vw,96px)">The solver,<br />and the<br />proof</div>
+      <p class="lede">It does not assert that 17 is optimal. It searches for it, then checks itself against a second, independent derivation.</p>
+      <p class="prose" style="margin-top:18px"><strong>bridge.py</strong> &mdash; Python 3.8+, standard library only, no installs and no arguments needed. Four things, and they are deliberately separate so no one of them can quietly be the others:</p>
+      <p class="prose" style="margin-top:18px"><strong>1. A replayer that refuses.</strong> Every schedule is walked move by move, and each move is checked before its cost is added: one or two people, always on the torch&rsquo;s side, always the slower one&rsquo;s time, torch ending on the far bank. A schedule that breaks a rule raises rather than scoring.</p>
+      <p class="prose" style="margin-top:18px"><strong>2. Exhaustive search.</strong> Dijkstra over the full state graph &mdash; every subset of people on each bank, times two torch positions. Not a heuristic and not a greedy rule: it searches everything reachable.</p>
+      <p class="prose" style="margin-top:18px"><strong>3. An independent cross-check.</strong> The classic closed form, implemented separately from the search. If the two ever disagree the script exits non-zero. This is the part that matters: a search bug and a formula bug are very unlikely to agree, and a single implementation that is wrong is perfectly happy to look right.</p>
+      <p class="prose" style="margin-top:18px"><strong>4. The full count.</strong> Every legal schedule, with its cost distribution printed as a histogram, so &ldquo;optimal&rdquo; is a claim you can see the shape of.</p>
+      <p class="prose" style="margin-top:18px">Run it on your own numbers &mdash; <code>python bridge.py 1 2 5 10 15 20</code> &mdash; and watch the shuttle strategy take over as the group gets slower.</p>
+      <p style="margin-top:30px">
+        <a class="btnlink" data-goatcounter-click="no-015-solver" href="bridge.html">Solve it in your browser &rarr;</a>
+        <a class="btnlink" data-goatcounter-click="no-015-download" href="packs/prior-no-015.zip" download style="margin-left:14px">Download the pack &mdash; 4 KB</a>
+      </p>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">Where this actually turns up</div>
+      <p class="prose" style="margin-top:6px; max-width:60ch">The puzzle is a toy, and the shape of it is not. Any pipeline where a step costs the slowest item in the batch has this structure: batched inference, CI jobs fanned across runners, a straggler in a distributed reduce, a nightly job whose runtime is the longest partition. The instinct is always to make the fast path faster. The lever is almost always <strong>how often the slow thing gets triggered</strong> &mdash; group the expensive work so it is paid for once, and accept a slightly worse cheap move to get it.</p>
+      <p class="prose" style="margin-top:18px; max-width:60ch">Which is the film&rsquo;s last line: it is not about who moves fastest. It is about minimising how often the slowest constraint gets triggered.</p>
+      <p class="prose" style="margin-top:26px; max-width:60ch"><a href="bridge.html" style="color:inherit;border-bottom:3px solid var(--clay);text-decoration:none">Change the times and watch the optimum move &rarr;</a></p>
+    </section>
+
+    <!-- THE VEKTOR POINTER. Founder's call 2026-08-25 — see no-008.html. -->
+    <section class="field parch">
+      <div class="eyebrow">Who makes this</div>
+      <p class="prose" style="margin-top:6px; max-width:56ch">Prior is made by the same person who writes <strong>Vektor</strong> &mdash; the how-I-actually-ship side of the same work: the tools, the pipeline, the things that go wrong on the way to a finished thing. Prior shows you the idea. Vektor shows you the build.</p>
+      <p style="margin-top:26px">
+        <a class="btnlink" data-goatcounter-click="no-015-to-vektor" href="https://vektor-fm.github.io/vektor-site/">Read Vektor &rarr;</a>
+      </p>
+      <p class="small" style="margin-top:16px; opacity:.6">Or on Instagram: <a href="https://instagram.com/vektor.fm">@vektor.fm</a></p>
+    </section>
+
+    <div class="grid">
+      <a class="card" href="no-011.html"><span class="no">Previous</span><span class="ttl">No. 011</span></a>
+      <a class="card" href="index.html#archive"><span class="no">All</span><span class="ttl">Archive</span></a>
+    </div>
+
+    <footer>
+      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
+      </svg>
+      <span data-wordmark>Prior</span>
+    </footer>
+  </body>
+</html>
