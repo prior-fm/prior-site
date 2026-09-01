@@ -56,8 +56,18 @@
         --muted:  #6d675d;
         --rule:   #cdc6b6;
         --panel:  #e6e0d1;
-        --accent: var(--clay);
-        --cool:   #6f97a6;   /* powder blue, darkened to clear 4.5:1 on parchment */
+        /* THE ACCENT CHANGES TOKEN BETWEEN THE TWO FIELDS, AND THAT IS CANON,
+           NOT A COMPROMISE. Measured: clay on parchment is 2.19:1 — the exact
+           figure CANON-003.md §1 records — against a 3:1 floor for a mark and
+           4.5:1 for text, so clay CANNOT carry the accent on a light field. It
+           is 7.68:1 on black, where it is the right and only choice. --red is
+           the mirror image: 6.41:1 on parchment, 2.62:1 on black. So each field
+           uses the token that works on it, which is what the design system
+           already says. Powder blue is 1.44:1 on parchment and is darkened to
+           #3f6070 (5.71:1) for the light field only; on black it ships as the
+           token, 11.65:1. */
+        --accent: var(--red);
+        --cool:   #3f6070;
 
         --face: "Prior Display", "Archivo Black", system-ui, sans-serif;
         --mono: "Prior Mono", ui-monospace, "SFMono-Regular", monospace;
@@ -72,16 +82,17 @@
           --muted:  #8a8880;
           --rule:   #2a2824;
           --panel:  #141310;
+          --accent: var(--clay);
           --cool:   var(--blue);
         }
       }
       :root[data-theme="dark"] {
         --ground: var(--black); --ink: var(--paper); --muted: #8a8880;
-        --rule: #2a2824; --panel: #141310; --cool: var(--blue);
+        --rule: #2a2824; --panel: #141310; --accent: var(--clay); --cool: var(--blue);
       }
       :root[data-theme="light"] {
         --ground: var(--parch); --ink: #171512; --muted: #6d675d;
-        --rule: #cdc6b6; --panel: #e6e0d1; --cool: #6f97a6;
+        --rule: #cdc6b6; --panel: #e6e0d1; --accent: var(--red); --cool: #3f6070;
       }
 
       * { box-sizing: border-box; }
@@ -506,6 +517,11 @@
       /* ------------------------------------------------------------------
          THE STAGE — the film's own geometry, at its own proportions.
          ------------------------------------------------------------------ */
+      /* Numbers are formatted en-US explicitly. toLocaleString() with no
+         argument follows the BROWSER's locale, so on a German browser 85,368
+         rendered as "85.368" — a different number to an English reader, on a
+         page declared lang="en". Caught on a de-locale machine; it is invisible
+         on an en-US one, which is what makes it easy to ship. */
       const NS = "http://www.w3.org/2000/svg";
       const SVG = document.getElementById("bridge");
       const DECK_Y = 190, X0 = 40, PIER_L = 230, PIER_R = 490, X1 = 680;
@@ -542,9 +558,9 @@
           el("path", { d: "M0 " + (DECK_Y - 44) + " V " + (DECK_Y - 20) }, b);
           el("path", { d: "M0 " + (DECK_Y - 36) + " L -11 " + (DECK_Y - 27) + " M0 " + (DECK_Y - 36) + " L 11 " + (DECK_Y - 27) }, b);
           el("path", { d: "M0 " + (DECK_Y - 20) + " L -8 " + DECK_Y + " M0 " + (DECK_Y - 20) + " L 8 " + DECK_Y }, b);
-          const torch = el("g", { opacity: 0, stroke: "#da9062", "stroke-width": 3, fill: "none" }, fg);
+          const torch = el("g", { opacity: 0, stroke: accentHex(), "stroke-width": 3, fill: "none" }, fg);
           el("path", { d: "M12 " + (DECK_Y - 34) + " V " + (DECK_Y - 22) }, torch);
-          el("circle", { cx: 12, cy: DECK_Y - 40, r: 3.4, fill: "#da9062", stroke: "none" }, torch);
+          el("circle", { cx: 12, cy: DECK_Y - 40, r: 3.4, fill: accentHex(), stroke: "none" }, torch);
           const lbl = el("text", {
             x: 0, y: DECK_Y - 68, "text-anchor": "middle", fill: ink,
             "font-family": "Prior Mono, monospace", "font-size": 17
@@ -578,13 +594,36 @@
       function resetStage() {
         stopAnim();
         figs.forEach((f, i) => { f.side = 0; f.slot = i; f.torch.setAttribute("opacity", 0); f.g.querySelector("g").setAttribute("stroke", ink()); });
-        if (figs[0]) figs[0].torch.setAttribute("opacity", 1);
+        /* The torch goes to the FASTEST person, not to figs[0]. Those are the
+           same figure only while the times are in ascending order; edit the
+           first one up and Reset would have put the torch on someone who is no
+           longer the shuttle, contradicting the rest state solve() sets. */
+        lightTorch();
         layout();
         clockEl.textContent = "0";
         phaseEl.textContent = "Ready";
         document.querySelectorAll("button.act").forEach(b => b.removeAttribute("disabled"));
       }
       const ink = () => getComputedStyle(document.body).getPropertyValue("color").trim();
+      /* Read the accent from the cascade rather than hard-coding clay: the two
+         fields use different tokens, and an SVG attribute does not inherit a CSS
+         custom property. */
+      const accentHex = () =>
+        getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#da9062";
+
+      /* The torch belongs to the FASTEST person at rest — the film opens on it,
+         and it is the shuttle the whole argument turns on. One function, called
+         from both reset paths, so the two can never disagree about who has it. */
+      function lightTorch() {
+        figs.forEach(f => f.torch.setAttribute("opacity", 0));
+        if (!figs.length) return;
+        let fastest = 0;
+        for (let i = 1; i < times.length; i++) if (times[i] < times[fastest]) fastest = i;
+        if (figs[fastest]) {
+          figs[fastest].torch.setAttribute("opacity", 1);
+          figs[fastest].torch.setAttribute("transform", "translate(0,0)");
+        }
+      }
 
       function play(steps, label) {
         stopAnim();
@@ -611,7 +650,7 @@
             if (f) movers.push(f);
           }
           movers.forEach(f => {
-            f.body.setAttribute("stroke", "#da9062");
+            f.body.setAttribute("stroke", accentHex());
             f.torch.setAttribute("transform", goingRight ? "translate(0,0)" : "translate(-24,0)");
           });
           figs.forEach(f => f.torch.setAttribute("opacity", 0));
@@ -663,7 +702,7 @@
           g.setAttribute("x", x); g.setAttribute("y", TOP);
           g.setAttribute("width", Math.max(1, w)); g.setAttribute("height", H);
           g.setAttribute("fill", "none");
-          g.setAttribute("stroke", isSlow ? "#da9062" : "currentColor");
+          g.setAttribute("stroke", isSlow ? accentHex() : "currentColor");
           g.setAttribute("stroke-width", 2.5);
           g.setAttribute("opacity", isSlow ? 1 : .62);
           s.appendChild(g);
@@ -671,7 +710,7 @@
             const t = document.createElementNS(NS, "text");
             t.setAttribute("x", x + w / 2); t.setAttribute("y", TOP - 9);
             t.setAttribute("text-anchor", "middle");
-            t.setAttribute("fill", isSlow ? "#da9062" : "currentColor");
+            t.setAttribute("fill", isSlow ? accentHex() : "currentColor");
             t.setAttribute("opacity", isSlow ? 1 : .62);
             t.setAttribute("font-family", "Prior Mono, monospace");
             t.setAttribute("font-size", 14);
@@ -711,7 +750,7 @@
         const totalN = keys.reduce((a, k) => a + dist.get(k), 0);
         sub.textContent = truncated
           ? "Search truncated — too many schedules to count exhaustively at this size."
-          : totalN.toLocaleString() + " schedules costing " + capCost + " minutes or less, in " + capDepth + " crossings or fewer.";
+          : totalN.toLocaleString("en-US") + " schedules costing " + capCost + " minutes or less, in " + capDepth + " crossings or fewer.";
         if (!keys.length) return;
         const W = 900, H = 220, L = 46, B = 34;
         const maxV = Math.max.apply(null, keys.map(k => dist.get(k)));
@@ -722,7 +761,7 @@
           const r = document.createElementNS(NS, "rect");
           r.setAttribute("x", L + i * bw + 1); r.setAttribute("y", H - B - h);
           r.setAttribute("width", Math.max(1, bw - 2)); r.setAttribute("height", h);
-          r.setAttribute("fill", k === best ? "#da9062" : "currentColor");
+          r.setAttribute("fill", k === best ? accentHex() : "currentColor");
           r.setAttribute("opacity", k === best ? 1 : .28);
           s.appendChild(r);
           if (keys.length <= 30 || i % 2 === 0) {
@@ -739,7 +778,7 @@
         lab.setAttribute("x", 0); lab.setAttribute("y", 14);
         lab.setAttribute("fill", "currentColor"); lab.setAttribute("opacity", .55);
         lab.setAttribute("font-family", "Prior Mono, monospace"); lab.setAttribute("font-size", 11);
-        lab.textContent = maxV.toLocaleString();
+        lab.textContent = maxV.toLocaleString("en-US");
         s.appendChild(lab);
       }
 
@@ -779,6 +818,8 @@
         clockEl.textContent = "0";
         phaseEl.textContent = "Ready";
 
+        lightTorch();
+
         const opt = optimum(times);
         if (!opt) return;
         const rOpt = replay(times, opt.steps);
@@ -797,8 +838,8 @@
         const capDepth = Math.min(14, 2 * times.length + 4);
         const { dist, truncated } = countAll(times, capCost, capDepth);
         let all = 0; dist.forEach(v => { all += v; });
-        document.getElementById("s-all").textContent = truncated ? "≥ " + all.toLocaleString() : all.toLocaleString();
-        document.getElementById("s-hit").textContent = (dist.get(opt.total) || 0).toLocaleString();
+        document.getElementById("s-all").textContent = truncated ? "≥ " + all.toLocaleString("en-US") : all.toLocaleString("en-US");
+        document.getElementById("s-hit").textContent = (dist.get(opt.total) || 0).toLocaleString("en-US");
         drawHist(dist, opt.total, truncated, capCost, capDepth);
 
         const agree = cf === opt.total;
