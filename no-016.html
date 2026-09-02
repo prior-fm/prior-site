@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>No. 016 — A score, not a test — Prior</title>
+    <meta
+      name="description"
+      content="The 'I'm not a robot' checkbox never tests you. It scores how you move before you click — a wandering visitor 0.9, a straight-line bot 0.1, a careful human 0.4 — and the picture puzzle is what a low score looks like."
+    />
+    <meta property="og:title" content="No. 016 — A score, not a test" />
+    <meta property="og:description" content="The checkbox has already decided before you click. Human 0.9, bot 0.1, careful human 0.4 — produced by a stated model on the film's own cursor paths, not typed in." />
+    <meta property="og:image" content="https://prior-fm.github.io/prior-site/media/no-016.jpg" />
+    <meta property="og:type" content="article" />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/site.css" />
+    <!-- analytics: GoatCounter. No cookies, no cross-site tracking, no
+         personal data. Declared in privacy.html. -->
+    <script data-goatcounter="https://prior.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="index.html" style="display:flex;align-items:center;gap:16px;text-decoration:none">
+        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" /></svg>
+        <span class="word" data-wordmark>Prior</span>
+      </a>
+      <nav><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
+    </header>
+
+    <section class="field dark">
+      <div class="eyebrow">No. 016 &middot; Captchas</div>
+      <div class="huge">Not a test.<br />A score.</div>
+      <p class="lede">The checkbox has already decided before you click.</p>
+    </section>
+
+    <section class="field parch">
+      <div class="latest">
+        <video src="media/no-016.mp4" poster="media/no-016.jpg" controls playsinline preload="metadata"></video>
+        <div><p class="prose">Fifteen seconds, one shot, no narration. A checkbox watches a room full of cursors. Most of them wander over, get a score, and click through. One arrives in a dead-straight line and gets the traffic lights. Then a real person gets them too. Every cursor path in the film is a real path, tracked frame by frame, and every score on screen is produced by a stated model run on those paths &mdash; not typed in.</p></div>
+      </div>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">What the box is doing</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">Four signals,<br />one number.</div>
+      <p class="prose" style="margin-top:26px">The &ldquo;I&rsquo;m not a robot&rdquo; checkbox is not a test you take. By the time you reach it, it has read your <strong>cookie</strong>, your <strong>browser</strong>, your <strong>network</strong> and your <strong>movement</strong>, and folded them into a score. Most people pass all four without noticing. The click is a formality.</p>
+      <p class="prose" style="margin-top:18px">The film shows the one signal a mouse makes visible. A wandering cursor &mdash; curved, uneven, pausing &mdash; scores <strong>0.9</strong>. A cursor that travels in a perfectly straight line at constant speed scores <strong>0.1</strong>, and gets the pictures.</p>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">The thing worth noticing</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">A person<br />scores 0.4.</div>
+      <p class="prose" style="margin-top:26px">The last cursor in the film moves like everyone else. Its movement passes. But two of the declared signals fail &mdash; a session with no history, a network the scorer has not seen &mdash; and the mean of four comes out at <strong>0.4</strong>. It gets the traffic lights too.</p>
+      <p class="prose" style="margin-top:18px">That is the whole argument. The puzzle is not the test. It is what a low score <em>looks like</em>, and a low score is not a verdict on whether you are human. It is a verdict on whether your session resembles the sessions the model has seen. Nothing here knows them.</p>
+      <p class="prose" style="margin-top:18px">One honest deviation from the film this one transposes: the reference shows that person at 0.3. Measured, its path is no more careful than anyone else&rsquo;s, so the model gives 0.4, and 0.4 is what ships. The number is the model&rsquo;s, not the storyboard&rsquo;s.</p>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">How the numbers were made</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">23 paths,<br />one gate.</div>
+      <p class="prose" style="margin-top:26px">Nobody can run reCAPTCHA offline, so nothing in the film quotes it. Every cursor path was tracked off the reference frame by frame &mdash; 22 humans and one bot &mdash; and replayed. Movement is one logistic unit over four path features: how far the path wanders from its chord, how uneven its speed is, how much it turns, how often it pauses. The score is the mean of that and the three declared signals, clamped to 0.1&ndash;0.9 the way reCAPTCHA v3 scores land in practice.</p>
+      <p class="prose" style="margin-top:18px">The weights were chosen on three paths and then held against all twenty-three: the bot under 0.2, every human above 0.5 on movement. If that gate had failed, the film would not have been built. It passed with the weakest human at 0.56.</p>
+    </section>
+
+    <section class="field clay">
+      <div class="eyebrow">The pack &mdash; free, no email</div>
+      <div class="huge" style="font-size:clamp(36px,7vw,96px)">The scorer,<br />and your<br />own path</div>
+      <p class="lede">Move your mouse across the page and the same model scores it live. Then fail a declared signal and watch the same hand become a bot.</p>
+      <p class="prose" style="margin-top:18px"><strong>score.py</strong> &mdash; Python 3.8+, standard library only. It ships with the three tracked paths the film scores and prints 0.9, 0.1 and 0.4 from them. Feed it your own recorded path as <code>x,y</code> lines, toggle the declared signals with <code>--cookie 0</code>, and read the verdict.</p>
+      <p class="prose" style="margin-top:18px">Run <code>python score.py --straight</code> with every declared signal passing and a straight line still scores <strong>0.8</strong>. Movement alone cannot fail you. Movement alone cannot save you either.</p>
+      <p style="margin-top:30px">
+        <a class="btnlink" data-goatcounter-click="no-016-scorer" href="robot.html">Score your own mouse &rarr;</a>
+        <a class="btnlink" data-goatcounter-click="no-016-download" href="packs/prior-no-016.zip" download style="margin-left:14px">Download the pack &mdash; 4 KB</a>
+      </p>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">Where this actually turns up</div>
+      <p class="prose" style="margin-top:6px; max-width:60ch">Every risk score works this way: fraud checks, spam filters, rate limiters, the &ldquo;unusual sign-in&rdquo; email. None of them test you. They score how much you look like what they have seen, and the friction you get is the score made visible. The people who get the most friction are not the bots. They are the people the model has never met.</p>
+      <p class="prose" style="margin-top:26px; max-width:60ch"><a href="robot.html" style="color:inherit;border-bottom:3px solid var(--clay);text-decoration:none">Move your mouse and read your score &rarr;</a></p>
+    </section>
+
+    <!-- THE VEKTOR POINTER. Founder's call 2026-08-25 — see no-008.html. -->
+    <section class="field parch">
+      <div class="eyebrow">Who makes this</div>
+      <p class="prose" style="margin-top:6px; max-width:56ch">Prior is made by the same person who writes <strong>Vektor</strong> &mdash; the how-I-actually-ship side of the same work: the tools, the pipelines, the mistakes.</p>
+      <p style="margin-top:26px">
+        <a class="btnlink" data-goatcounter-click="no-016-to-vektor" href="https://vektor-fm.github.io/vektor-site/">Read Vektor &rarr;</a>
+      </p>
+      <p class="small" style="margin-top:16px; opacity:.6">Or on Instagram: <a href="https://instagram.com/vektor.fm">@vektor.fm</a></p>
+    </section>
+
+    <div class="grid">
+      <a class="card" href="no-015.html"><span class="no">Previous</span><span class="ttl">No. 015</span></a>
+      <a class="card" href="index.html#archive"><span class="no">All</span><span class="ttl">Archive</span></a>
+    </div>
+
+    <footer>
+      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
+      </svg>
+      <span data-wordmark>Prior</span>
+    </footer>
+  </body>
+</html>
