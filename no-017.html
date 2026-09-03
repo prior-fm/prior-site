@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>No. 017 — Not a Transformer. A brain. — Prior</title>
+    <meta
+      name="description"
+      content="A Transformer stops learning when training ends. BDH — the Dragon Hatchling — keeps learning while it thinks: 512 neurons, 12,230 synapses, nothing trained, and the synapses change during inference. That alone takes recall from a 4.9% chance baseline to 38%."
+    />
+    <meta property="og:title" content="No. 017 — Not a Transformer. A brain." />
+    <meta property="og:description" content="512 neurons, 12,230 synapses, no training phase at all. The synapses change while the model thinks, and that alone takes recall from 4.9% chance to 38% — produced by a real run, gated five ways, not tweened to look right." />
+    <meta property="og:image" content="https://prior-fm.github.io/prior-site/media/no-017.jpg" />
+    <meta property="og:type" content="article" />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/site.css" />
+    <!-- analytics: GoatCounter. No cookies, no cross-site tracking, no
+         personal data. Declared in privacy.html. -->
+    <script data-goatcounter="https://prior.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="index.html" style="display:flex;align-items:center;gap:16px;text-decoration:none">
+        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" /></svg>
+        <span class="word" data-wordmark>Prior</span>
+      </a>
+      <nav><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
+    </header>
+
+    <section class="field dark">
+      <div class="eyebrow">No. 017 &middot; Architecture</div>
+      <div class="huge">Not a<br />Transformer.<br />A brain.</div>
+      <p class="lede">A Transformer stops learning the moment training ends. This one never stops.</p>
+    </section>
+
+    <section class="field parch">
+      <div class="latest">
+        <video src="media/no-017.mp4" poster="media/no-017.jpg" controls playsinline preload="metadata"></video>
+        <div><p class="prose">Just under two minutes on <strong>BDH</strong> &mdash; the Dragon Hatchling &mdash; an architecture built out of neurons and synapses rather than layers and attention heads. Every number on screen comes from an actual run of the network the film describes: 512 neurons, 12,230 synapses, no training phase at all. Five invariants are checked on every execution, and the film would not have been built if any of them had failed.</p></div>
+      </div>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">What it is</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">Four stages,<br />one loop.</div>
+      <p class="prose" style="margin-top:26px">There is no attention block and no backward pass. There is a sparse, non&#8209;negative graph of <strong>512 neurons</strong> joined by <strong>12,230 synapses</strong> &mdash; 4.67% of the connections that could exist, a mean of 23.9 each &mdash; and every step does four things in order.</p>
+      <p class="prose" style="margin-top:18px"><strong>Propagate.</strong> Belief flows forward along weighted implications. Because no weight is ever negative, belief can only be added, never cancelled &mdash; the network cannot argue itself out of something it already holds. <strong>Strengthen.</strong> Connections that just fired together get stronger. <strong>Compete.</strong> Excitation and inhibition fight, and only strong signals clear the threshold. <strong>Feed back.</strong> The survivors are the next step&rsquo;s input.</p>
+      <p class="prose" style="margin-top:18px">That is the whole machine. <strong>4.41%</strong> of neurons fire on an average step, and that sparsity is not assumed &mdash; it is caused. Run the same network with competition removed and <strong>99.2%</strong> of it lights up at once, carrying nothing.</p>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">The thing worth noticing</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">It learns<br />while it<br />thinks.</div>
+      <p class="prose" style="margin-top:26px">The network in the film is shown twelve pairs of symbols, six times over. Then each cue is shown alone, and the question is whether anything comes back.</p>
+      <p class="prose" style="margin-top:18px">Recall comes out at <strong>38%</strong>, against a chance baseline of <strong>4.9%</strong>. Nothing was trained to do that. The fixed synaptic graph &mdash; the wiring the network started with &mdash; scores <strong>4.0%</strong> on the same readout, which is chance. The association is not in the wiring.</p>
+      <p class="prose" style="margin-top:18px">It is in the synapses, which changed <em>during inference</em>. Their total strength goes from exactly zero at the start of the run to 233.3 by the end, and the run is the only thing that put it there. That is what &ldquo;it keeps learning while it thinks&rdquo; has to mean if it is going to be worth saying: a quantity that was zero, is not zero, and is doing the work.</p>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">How the numbers were made</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">One run,<br />five gates.</div>
+      <p class="prose" style="margin-top:26px">Nothing on screen is a plausible-looking figure. One script builds the graph, runs the sequence, and refuses to print <code>GO</code> unless five invariants hold &mdash; each one chosen because a wrong formulation would fail it.</p>
+      <p class="prose" style="margin-top:18px">The strongest is the equivalence check. The same run is computed twice: once as explicit message passing along every one of the 12,230 edges with a full 512&times;512 matrix of fast weights, and once as two small matrix&#8211;vector products with those fast weights held as a linear&#8209;attention state that is never built at all &mdash; the form the architecture uses to run on a GPU. The two agree to <strong>7.8&times;10<sup>&minus;16</sup></strong>, machine precision. A transpose, an index slip, or a decay applied one step out of order all fail it. They are the same machine, and the sparse brain-shaped picture and the dense GPU-shaped one are two views of it.</p>
+      <p class="prose" style="margin-top:18px">The rest: activity must stay sparse <em>because of</em> inhibition and not by assumption, measured against a control with inhibition removed; every positive-weight edge carrying belief must contribute strictly positively, checked on every edge on every step; the strengthening must happen on exactly the pairs that fired together and nowhere else; and recall must beat chance from the fast weights while sitting at chance from the graph alone.</p>
+      <p class="prose" style="margin-top:18px">One honest limit. This is <strong>512 neurons on an associative-recall task</strong>, not a language model. It demonstrates the mechanism &mdash; the loop, the sparsity, the learning during inference, the equivalence of the two forms &mdash; and it says nothing about how the architecture behaves at scale. That claim belongs to people with a cluster.</p>
+    </section>
+
+    <section class="field clay">
+      <div class="eyebrow">The pack &mdash; free, no email</div>
+      <div class="huge" style="font-size:clamp(36px,7vw,96px)">The whole<br />model,<br />one file</div>
+      <p class="lede">Not a re-implementation of the film. The same script, with its output path moved.</p>
+      <p class="prose" style="margin-top:18px"><strong>bdh.py</strong> &mdash; Python 3.8+ and numpy, nothing else, no network. It is the script that produced every number above, shipped as it ran. Deterministic: fixed seed, no wall clock. Run it and you get 512 neurons, 12,230 synapses, 4.41% active, 38% recall &mdash; to the digit, in about twenty seconds.</p>
+      <p class="prose" style="margin-top:18px">Then break it on purpose. <code>BDH_THETA=0</code> removes inhibition and the network still runs, still propagates, still writes to its synapses &mdash; and stops working, because 99.2% of neurons firing at once carries nothing to recall. <code>BDH_ETA=0</code> removes the learning rule and recall falls from 38% to 8%. <code>BDH_LAM=0.90</code> makes it forget faster and recall drops to 23%. Each of those is a run, not a prediction.</p>
+      <p style="margin-top:30px">
+        <a class="btnlink" data-goatcounter-click="no-017-download" href="packs/prior-no-017.zip" download>Download the pack &mdash; 9 KB</a>
+      </p>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">Where this actually turns up</div>
+      <p class="prose" style="margin-top:6px; max-width:60ch">Every model you use in production is frozen. It knows what it knew when the training run stopped, and everything since arrives as context you have to keep re-feeding it &mdash; which is why the whole industry is building retrieval systems, longer windows and memory layers on the outside of models that cannot remember. An architecture that changes its own weights while it runs is an argument that the memory belongs on the inside.</p>
+      <p class="prose" style="margin-top:26px; max-width:60ch">Whether it holds at scale is an open question. Whether the mechanism works at all is not: <a href="packs/prior-no-017.zip" download style="color:inherit;border-bottom:3px solid var(--clay);text-decoration:none">run the file and watch zero become 233 &rarr;</a></p>
+    </section>
+
+    <!-- THE VEKTOR POINTER. Founder's call 2026-08-25 — see no-008.html. -->
+    <section class="field parch">
+      <div class="eyebrow">Who makes this</div>
+      <p class="prose" style="margin-top:6px; max-width:56ch">Prior is made by the same person who writes <strong>Vektor</strong> &mdash; the how-I-actually-ship side of the same work: the tools, the pipelines, the mistakes.</p>
+      <p style="margin-top:26px">
+        <a class="btnlink" data-goatcounter-click="no-017-to-vektor" href="https://vektor-fm.github.io/vektor-site/">Read Vektor &rarr;</a>
+      </p>
+      <p class="small" style="margin-top:16px; opacity:.6">Or on Instagram: <a href="https://instagram.com/vektor.fm">@vektor.fm</a></p>
+    </section>
+
+    <div class="grid">
+      <a class="card" href="no-016.html"><span class="no">Previous</span><span class="ttl">No. 016</span></a>
+      <a class="card" href="index.html#archive"><span class="no">All</span><span class="ttl">Archive</span></a>
+    </div>
+
+    <footer>
+      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
+      </svg>
+      <span data-wordmark>Prior</span>
+    </footer>
+  </body>
+</html>
