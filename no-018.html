@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>No. 018 — A month of your screen time — Prior</title>
+    <meta
+      name="description"
+      content="Four films, one a day. What a month of your screen time buys if you spend it on machine learning instead: sixteen ideas, a free source for each, in four blocks of hours — 30, 90, 150, 240. Comment ML for the roadmap."
+    />
+    <meta property="og:title" content="No. 018 — A month of your screen time" />
+    <meta property="og:description" content="Sixteen ideas in machine learning, one free source each, in four blocks of hours. Four films, one a day. Free to learn, all of it." />
+    <meta property="og:image" content="https://prior-fm.github.io/prior-site/media/no-018-p1.jpg" />
+    <meta property="og:type" content="article" />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/site.css" />
+    <!-- analytics: GoatCounter. No cookies, no cross-site tracking, no
+         personal data. Declared in privacy.html. -->
+    <script data-goatcounter="https://prior.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+    <style>
+      /* the four parts, side by side: the site's .latest grid, four times */
+      .parts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 2vw, 28px); margin-top: 34px; }
+      .parts video { width: 100%; display: block; background: var(--black); }
+      .parts .no { display: block; font-size: 13px; letter-spacing: .24em; text-transform: uppercase; opacity: .55; margin-top: 12px; }
+      .parts .ttl { display: block; font-size: clamp(17px, 1.8vw, 24px); line-height: 1.05; text-transform: uppercase; letter-spacing: -0.02em; margin-top: 6px; }
+      @media (max-width: 900px) { .parts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="index.html" style="display:flex;align-items:center;gap:16px;text-decoration:none">
+        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" /></svg>
+        <span class="word" data-wordmark>Prior</span>
+      </a>
+      <nav><a href="roadmap.html">The roadmap</a><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
+    </header>
+
+    <section class="field blue">
+      <div class="eyebrow">No. 018 &middot; Machine learning &middot; four parts</div>
+      <div class="huge">A month<br />of your<br />screen time</div>
+      <p class="lede">Spent on machine learning instead. Sixteen ideas, a free source for each, one film a day.</p>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">The four films</div>
+      <p class="prose" style="max-width:60ch">A month of screen time is 240 hours, and the films count it as 240 squares, one an hour. Each part is one block of hours and four ideas: what the idea is, in one line, and the real page where you learn it, shown edge to edge in its own colours. One hour a day gets you the intuition. Eight hours a day gets you to how ChatGPT works, from the inside.</p>
+      <div class="parts">
+        <div>
+          <video src="media/no-018-p1.mp4" poster="media/no-018-p1.jpg" controls playsinline preload="metadata"></video>
+          <span class="no">Part 1 of 4 &middot; 30 hours</span>
+          <span class="ttl">Supervised. Unsupervised. Gradient descent. What training is.</span>
+        </div>
+        <div>
+          <video src="media/no-018-p2.mp4" poster="media/no-018-p2.jpg" controls playsinline preload="metadata"></video>
+          <span class="no">Part 2 of 4 &middot; 90 hours</span>
+          <span class="ttl">Loss. Overfitting. Train-test split. Evaluating a model.</span>
+        </div>
+        <div>
+          <video src="media/no-018-p3.mp4" poster="media/no-018-p3.jpg" controls playsinline preload="metadata"></video>
+          <span class="no">Part 3 of 4 &middot; 150 hours</span>
+          <span class="ttl">Forward pass. Backpropagation. Activations. Recognising a digit.</span>
+        </div>
+        <div>
+          <video src="media/no-018-p4.mp4" poster="media/no-018-p4.jpg" controls playsinline preload="metadata"></video>
+          <span class="no">Part 4 of 4 &middot; 240 hours</span>
+          <span class="ttl">Embeddings. Attention. Transformers. How ChatGPT works.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">What it is</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">Sixteen ideas,<br />in order.</div>
+      <p class="prose" style="margin-top:26px">Machine learning is taught as a syllabus, and most people never get past the first week of one. This is not a syllabus. It is the sixteen ideas you actually need, in the order each one makes the next one obvious, and for every idea the one free place that teaches it well: Kaggle&rsquo;s notebook courses, Google&rsquo;s crash course, 3Blue1Brown, Nielsen&rsquo;s book, Karpathy&rsquo;s lectures, the Illustrated Transformer.</p>
+      <p class="prose" style="margin-top:18px"><strong>30 hours</strong> is supervised and unsupervised learning, gradient descent, and what training actually means. Enough to stop calling it magic. <strong>90 hours</strong> adds loss, overfitting, the train-test split and how you tell whether a model is any good: enough to finish a first project. <strong>150 hours</strong> goes inside a network: the forward pass, backpropagation, activations, and a small network that reads handwritten digits. <strong>240 hours</strong> is embeddings, attention, the Transformer, and a GPT built from scratch in code.</p>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">Why the pages are in the film</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">Real pages,<br />edge to edge.</div>
+      <p class="prose" style="margin-top:26px">Every source in the films is shown as the actual page, captured on 2026-09-04 at phone width and scrolled the way you would scroll it, in the page&rsquo;s own colours rather than Prior&rsquo;s. That is deliberate. A course you have already seen the front of is a course you are more likely to open, and the point of the series is that you open one.</p>
+      <p class="prose" style="margin-top:18px">Every source is free to learn in full. The films say &ldquo;free&rdquo; and never &ldquo;certified&rdquo;: no provider&rsquo;s own page confirmed to us that a certificate costs nothing, and the ones that do offer one either charge for it or were not confirmed. The roadmap says which is which.</p>
+    </section>
+
+    <section class="field clay">
+      <div class="eyebrow">The roadmap &mdash; free, no email</div>
+      <div class="huge" style="font-size:clamp(36px,7vw,96px)">Pick your<br />hours</div>
+      <p class="lede">The sixteen, with a source and an alternate each, and a selector for the hours you have.</p>
+      <p class="prose" style="margin-top:18px">Comment <strong>ML</strong> on any of the four posts and it lands in your DMs, or take it here. Pick 30, 90, 150 or 240 hours and the page shows the parts that fit. Nothing to sign up for.</p>
+      <p style="margin-top:30px">
+        <a class="btnlink" data-goatcounter-click="no-018-roadmap" href="roadmap.html">Open the roadmap &rarr;</a>
+      </p>
+    </section>
+
+    <section class="field parch">
+      <div class="eyebrow">Where this actually turns up</div>
+      <p class="prose" style="margin-top:6px; max-width:60ch">Most people who want to understand machine learning do not lack time; they lack an order. Sixteen ideas in the right sequence, each one making the next obvious, is the difference between a month of tutorials and a month that ends with you reading a Transformer paper and knowing what it says.</p>
+      <p class="prose" style="margin-top:26px; max-width:60ch"><a href="roadmap.html" style="color:inherit;border-bottom:3px solid var(--clay);text-decoration:none">Start with the first four &rarr;</a></p>
+    </section>
+
+    <!-- THE VEKTOR POINTER. Founder's call 2026-08-25 — see no-008.html. -->
+    <section class="field parch">
+      <div class="eyebrow">Who makes this</div>
+      <p class="prose" style="margin-top:6px; max-width:56ch">Prior is made by the same person who writes <strong>Vektor</strong> &mdash; the how-I-actually-ship side of the same work: the tools, the pipelines, the mistakes.</p>
+      <p style="margin-top:26px">
+        <a class="btnlink" data-goatcounter-click="no-018-to-vektor" href="https://vektor-fm.github.io/vektor-site/">Read Vektor &rarr;</a>
+      </p>
+      <p class="small" style="margin-top:16px; opacity:.6">Or on Instagram: <a href="https://instagram.com/vektor.fm">@vektor.fm</a></p>
+    </section>
+
+    <div class="grid">
+      <a class="card" href="no-017.html"><span class="no">Previous</span><span class="ttl">No. 017</span></a>
+      <a class="card" href="index.html#archive"><span class="no">All</span><span class="ttl">Archive</span></a>
+    </div>
+
+    <footer>
+      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
+      </svg>
+      <span data-wordmark>Prior</span>
+    </footer>
+  </body>
+</html>
