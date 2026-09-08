@@ -305,6 +305,15 @@ footer .socials a:hover {
   color: var(--clay);
 }
 @media (max-width: 620px) {
+  header {
+    flex-wrap: wrap;
+  }
+  header nav {
+    width: 100%;
+    margin-left: 0;
+    flex-wrap: wrap;
+    gap: 14px 22px;
+  }
   footer {
     flex-wrap: wrap;
   }
