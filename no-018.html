@@ -6,119 +6,366 @@
     <title>No. 018 — A month of your screen time — Prior</title>
     <meta
       name="description"
-      content="Four films, one a day. What a month of your screen time buys if you spend it on machine learning instead: sixteen ideas, a free source for each, in four blocks of hours — 30, 90, 150, 240. Comment ML for the roadmap."
+      content="Four films and sixteen ideas in machine learning, with a free source for each. Follow the suggested 30, 90, 150 or 240 hour learning budgets at your own pace."
     />
     <meta property="og:title" content="No. 018 — A month of your screen time" />
-    <meta property="og:description" content="Sixteen ideas in machine learning, one free source each, in four blocks of hours. Four films, one a day. Free to learn, all of it." />
-    <meta property="og:image" content="https://prior-fm.github.io/prior-site/media/no-018-p1.jpg" />
+    <meta
+      property="og:description"
+      content="Four films, sixteen ideas and one free source for each. Free to learn, all of it."
+    />
+    <meta
+      property="og:image"
+      content="https://prior-fm.github.io/prior-site/media/no-018-p1.jpg"
+    />
     <meta property="og:type" content="article" />
     <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="assets/site.css" />
-    <!-- analytics: GoatCounter. No cookies, no cross-site tracking, no
-         personal data. Declared in privacy.html. -->
-    <script data-goatcounter="https://prior.goatcounter.com/count"
-            async src="//gc.zgo.at/count.js"></script>
-    <style>
-      /* the four parts, side by side: the site's .latest grid, four times */
-      .parts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 2vw, 28px); margin-top: 34px; }
-      .parts video { width: 100%; display: block; background: var(--black); }
-      .parts .no { display: block; font-size: 13px; letter-spacing: .24em; text-transform: uppercase; opacity: .55; margin-top: 12px; }
-      .parts .ttl { display: block; font-size: clamp(17px, 1.8vw, 24px); line-height: 1.05; text-transform: uppercase; letter-spacing: -0.02em; margin-top: 6px; }
-      @media (max-width: 900px) { .parts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    </style>
+    <link rel="stylesheet" href="assets/learning.css" />
+    <link rel="stylesheet" href="assets/films.css" />
+    <script src="assets/films.js" defer></script>
+    <!-- analytics: GoatCounter. No cookies, no cross-site tracking, no personal data. Declared in privacy.html. -->
+    <script
+      data-goatcounter="https://prior.goatcounter.com/count"
+      async
+      src="//gc.zgo.at/count.js"
+    ></script>
   </head>
-  <body>
-    <header>
-      <a href="index.html" style="display:flex;align-items:center;gap:16px;text-decoration:none">
-        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" /></svg>
+  <body class="learning-page">
+    <a class="skip-link" href="#films-heading">Skip to the films</a>
+    <header class="learning-header">
+      <a class="learning-brand" href="index.html" aria-label="Prior home">
+        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
+        </svg>
         <span class="word" data-wordmark>Prior</span>
       </a>
-      <nav><a href="roadmap.html">The roadmap</a><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
+      <nav class="learning-nav" aria-label="Issue navigation">
+        <a href="no-018.html" aria-current="page">Films</a
+        ><a href="roadmap.html">Roadmap</a
+        ><a href="index.html#archive">Explore topics</a>
+      </nav>
     </header>
 
-    <section class="field blue">
-      <div class="eyebrow">No. 018 &middot; Machine learning &middot; four parts</div>
-      <div class="huge">A month<br />of your<br />screen time</div>
-      <p class="lede">Spent on machine learning instead. Sixteen ideas, a free source for each, one film a day.</p>
-    </section>
+    <main>
+      <section class="reading-hero film-hero" aria-labelledby="film-title">
+        <p class="eyebrow">No. 018 · Machine learning · four films</p>
+        <h1 id="film-title" class="reading-title">
+          A month<br />of your<br />screen time.
+        </h1>
+        <p class="reading-lede">
+          Spent on machine learning instead. Sixteen ideas, a free source for
+          each, and a suggested path through them.
+        </p>
+        <div class="reading-actions">
+          <a class="button-primary" href="#film-basics"
+            >Start with film one <span aria-hidden="true">→</span></a
+          ><a class="button-secondary" href="roadmap.html">Open the roadmap</a>
+        </div>
+        <nav class="learning-journey" aria-label="Learning journey">
+          <a href="#film-basics" aria-current="step">Watch</a>
+          <a href="lesson.html">Try</a>
+          <a href="roadmap.html">Go deeper</a>
+        </nav>
+      </section>
 
-    <section class="field parch">
-      <div class="eyebrow">The four films</div>
-      <p class="prose" style="max-width:60ch">A month of screen time is 240 hours, and the films count it as 240 squares, one an hour. Each part is one block of hours and four ideas: what the idea is, in one line, and the real page where you learn it, shown edge to edge in its own colours. One hour a day gets you the intuition. Eight hours a day gets you to how ChatGPT works, from the inside.</p>
-      <div class="parts">
+      <section
+        class="reading-shell reading-section film-intro"
+        aria-labelledby="films-heading"
+      >
+        <div class="section-kicker"><span>Watch in order</span></div>
         <div>
-          <video src="media/no-018-p1.mp4" poster="media/no-018-p1.jpg" controls playsinline preload="metadata"></video>
-          <span class="no">Part 1 of 4 &middot; 30 hours</span>
-          <span class="ttl">Supervised. Unsupervised. Gradient descent. What training is.</span>
+          <h2 id="films-heading">Four films.<br />Sixteen ideas.</h2>
+          <p class="reading-copy">
+            The films use 240 hours as an illustrative monthly learning budget,
+            then break the learning into suggested cumulative budgets of 30, 90,
+            150 and 240 hours. Your pace can be slower or faster; the order is
+            the useful part.
+          </p>
+        </div>
+      </section>
+
+      <section class="reading-shell film-list" aria-label="The four films">
+        <nav class="film-chapters" aria-label="Choose a film">
+          <span>Choose a film</span><a href="#film-basics">01 · Training</a
+          ><a href="#film-2">02 · Evaluation</a
+          ><a href="#film-deeper">03 · Network</a
+          ><a href="#film-4">04 · Language models</a
+          ><span class="film-previous-label">Previous</span
+          ><a href="#film-basics">← Part 1</a><a href="#film-2">← Part 2</a
+          ><a href="#film-deeper">← Part 3</a>
+        </nav>
+        <article
+          class="film-part"
+          id="film-basics"
+          aria-labelledby="film-1-title"
+        >
+          <div class="film-meta">
+            <span>Part 1 of 4 &middot; 1:33 film</span
+            ><span>Suggested budget · 30 hours</span>
+          </div>
+          <div class="film-layout">
+            <div class="film-media">
+              <video
+                aria-labelledby="film-1-title"
+                src="media/no-018-p1.mp4"
+                poster="media/no-018-p1.jpg"
+                controls
+                playsinline
+                preload="none"
+              >
+                <p>
+                  Your browser cannot play this film.
+                  <a href="media/no-018-p1.mp4">Download part one</a>.
+                </p>
+              </video>
+            </div>
+            <div class="film-copy">
+              <h2 id="film-1-title">What training is.</h2>
+              <p class="film-topics">
+                Supervised learning · unsupervised learning · gradient descent
+              </p>
+              <p class="takeaway">
+                <span>Takeaway</span>A model improves by comparing its output
+                with examples and adjusting its internal parameters. It is a
+                process, not a trick.
+              </p>
+              <div class="film-links">
+                <a class="button-primary" href="lesson.html"
+                  >Try training a model
+                  <span aria-hidden="true">&rarr;</span></a
+                >
+                <a
+                  class="button-secondary"
+                  href="roadmap.html?path=basics#part-1"
+                  >Continue with foundations
+                  <span aria-hidden="true">→</span></a
+                ><a class="film-next" href="#film-2"
+                  >Next · Part 2 <span aria-hidden="true">↓</span></a
+                >
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="film-part" id="film-2" aria-labelledby="film-2-title">
+          <div class="film-meta">
+            <span>Part 2 of 4 &middot; 1:31 film</span
+            ><span>Suggested budget · 90 hours cumulative</span>
+          </div>
+          <div class="film-layout">
+            <div class="film-media">
+              <video
+                aria-labelledby="film-2-title"
+                src="media/no-018-p2.mp4"
+                poster="media/no-018-p2.jpg"
+                controls
+                playsinline
+                preload="none"
+              >
+                <p>
+                  Your browser cannot play this film.
+                  <a href="media/no-018-p2.mp4">Download part two</a>.
+                </p>
+              </video>
+            </div>
+            <div class="film-copy">
+              <h2 id="film-2-title">How to tell if it works.</h2>
+              <p class="film-topics">
+                Loss · overfitting · train-test split · evaluation
+              </p>
+              <p class="takeaway">
+                <span>Takeaway</span>A model can look convincing while learning
+                the wrong thing. Separate data and a clear measure of error show
+                whether it generalises.
+              </p>
+              <div class="film-links">
+                <a class="film-previous" href="#film-basics"
+                  >&larr; Previous film</a
+                >
+                <a class="button-secondary" href="roadmap.html#part-2"
+                  >Continue with evaluation <span aria-hidden="true">→</span></a
+                ><a class="film-next" href="#film-deeper"
+                  >Next · Part 3 <span aria-hidden="true">↓</span></a
+                >
+              </div>
+            </div>
+          </div>
+        </article>
+        <article
+          class="film-part"
+          id="film-deeper"
+          aria-labelledby="film-3-title"
+        >
+          <div class="film-meta">
+            <span>Part 3 of 4 &middot; 1:34 film</span
+            ><span>Suggested budget · 150 hours cumulative</span>
+          </div>
+          <div class="film-layout">
+            <div class="film-media">
+              <video
+                aria-labelledby="film-3-title"
+                src="media/no-018-p3.mp4"
+                poster="media/no-018-p3.jpg"
+                controls
+                playsinline
+                preload="none"
+              >
+                <p>
+                  Your browser cannot play this film.
+                  <a href="media/no-018-p3.mp4">Download part three</a>.
+                </p>
+              </video>
+            </div>
+            <div class="film-copy">
+              <h2 id="film-3-title">Inside the network.</h2>
+              <p class="film-topics">
+                Forward pass · backpropagation · activations · recognising a
+                digit
+              </p>
+              <p class="takeaway">
+                <span>Takeaway</span>A neural network turns inputs into an
+                output through layers of calculations. During training,
+                backpropagation measures how each parameter contributes to the
+                error so it can be adjusted.
+              </p>
+              <div class="film-links">
+                <a class="film-previous" href="#film-2">&larr; Previous film</a>
+                <a
+                  class="button-secondary"
+                  href="roadmap.html?path=deeper#part-3"
+                  >Continue inside the model
+                  <span aria-hidden="true">→</span></a
+                ><a class="film-next" href="#film-4"
+                  >Next · Part 4 <span aria-hidden="true">↓</span></a
+                >
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="film-part" id="film-4" aria-labelledby="film-4-title">
+          <div class="film-meta">
+            <span>Part 4 of 4 &middot; 1:36 film</span
+            ><span>Suggested budget · 240 hours cumulative</span>
+          </div>
+          <div class="film-layout">
+            <div class="film-media">
+              <video
+                aria-labelledby="film-4-title"
+                src="media/no-018-p4.mp4"
+                poster="media/no-018-p4.jpg"
+                controls
+                playsinline
+                preload="none"
+              >
+                <p>
+                  Your browser cannot play this film.
+                  <a href="media/no-018-p4.mp4">Download part four</a>.
+                </p>
+              </video>
+            </div>
+            <div class="film-copy">
+              <h2 id="film-4-title">How the pieces connect.</h2>
+              <p class="film-topics">
+                Embeddings · attention · transformers · language models
+              </p>
+              <p class="takeaway">
+                <span>Takeaway</span>Modern language models combine learned
+                representations with attention across a sequence. The scale
+                changes; the underlying pattern of learned parameters remains.
+              </p>
+              <div class="film-links">
+                <a class="film-previous" href="#film-deeper"
+                  >&larr; Previous film</a
+                >
+                <a
+                  class="button-secondary"
+                  href="roadmap.html?path=deeper#part-4"
+                  >Open the final roadmap block
+                  <span aria-hidden="true">→</span></a
+                ><a class="film-next" href="#film-basics"
+                  >Back to Part 1 <span aria-hidden="true">↑</span></a
+                >
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section
+        class="reading-shell reading-section source-note"
+        aria-labelledby="source-title"
+      >
+        <div class="section-kicker"><span>Why these pages</span></div>
+        <div>
+          <h2 id="source-title">The page is part of the lesson.</h2>
+          <p class="reading-copy">
+            Every source in the films is shown as the actual page, captured on
+            2026-09-04 at phone width and scrolled the way you would scroll it,
+            in the page’s own colours rather than Prior’s. That is deliberate:
+            the point is that you open one.
+          </p>
+          <p class="reading-copy">
+            Every source is free to learn in full. The films say “free” and
+            never “certified”: no provider’s own page confirmed to us that a
+            certificate costs nothing, and the ones that do offer one either
+            charge for it or were not confirmed. The roadmap says which is
+            which.
+          </p>
+        </div>
+      </section>
+      <section
+        class="reading-shell reading-section roadmap-prompt"
+        aria-labelledby="roadmap-title"
+      >
+        <div class="section-kicker"><span>Choose your pace</span></div>
+        <div>
+          <h2 id="roadmap-title">The sixteen,<br />in order.</h2>
+          <p class="reading-copy">
+            Use the roadmap to choose a suggested 30, 90, 150 or 240 hour block.
+            The budgets are a way to plan a month of attention, not a promise of
+            mastery or a fixed timetable.
+          </p>
+          <div class="reading-actions">
+            <a
+              class="button-primary"
+              data-goatcounter-click="no-018-roadmap"
+              href="roadmap.html"
+              >Choose your hours <span aria-hidden="true">→</span></a
+            >
+          </div>
+        </div>
+      </section>
+      <!-- THE VEKTOR POINTER. Founder's call 2026-08-25 — see no-008.html. -->
+      <section
+        class="reading-shell reading-section vektor-note"
+        aria-labelledby="vektor-title"
+      >
+        <div class="section-kicker">
+          <span>The other side of the work</span>
         </div>
         <div>
-          <video src="media/no-018-p2.mp4" poster="media/no-018-p2.jpg" controls playsinline preload="metadata"></video>
-          <span class="no">Part 2 of 4 &middot; 90 hours</span>
-          <span class="ttl">Loss. Overfitting. Train-test split. Evaluating a model.</span>
+          <h2 id="vektor-title">How it actually ships.</h2>
+          <p class="reading-copy">
+            Prior is made by the same person who writes Vektor — the tools,
+            pipelines and mistakes behind the work.
+          </p>
+          <div class="reading-actions">
+            <a
+              class="button-secondary"
+              data-goatcounter-click="no-018-to-vektor"
+              href="https://vektor-fm.github.io/vektor-site/"
+              >Read Vektor <span aria-hidden="true">→</span></a
+            >
+          </div>
+          <p class="small">
+            Or on Instagram:
+            <a href="https://instagram.com/vektor.fm">@vektor.fm</a>
+          </p>
         </div>
-        <div>
-          <video src="media/no-018-p3.mp4" poster="media/no-018-p3.jpg" controls playsinline preload="metadata"></video>
-          <span class="no">Part 3 of 4 &middot; 150 hours</span>
-          <span class="ttl">Forward pass. Backpropagation. Activations. Recognising a digit.</span>
-        </div>
-        <div>
-          <video src="media/no-018-p4.mp4" poster="media/no-018-p4.jpg" controls playsinline preload="metadata"></video>
-          <span class="no">Part 4 of 4 &middot; 240 hours</span>
-          <span class="ttl">Embeddings. Attention. Transformers. How ChatGPT works.</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="field parch">
-      <div class="eyebrow">What it is</div>
-      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">Sixteen ideas,<br />in order.</div>
-      <p class="prose" style="margin-top:26px">Machine learning is taught as a syllabus, and most people never get past the first week of one. This is not a syllabus. It is the sixteen ideas you actually need, in the order each one makes the next one obvious, and for every idea the one free place that teaches it well: Kaggle&rsquo;s notebook courses, Google&rsquo;s crash course, 3Blue1Brown, Nielsen&rsquo;s book, Karpathy&rsquo;s lectures, the Illustrated Transformer.</p>
-      <p class="prose" style="margin-top:18px"><strong>30 hours</strong> is supervised and unsupervised learning, gradient descent, and what training actually means. Enough to stop calling it magic. <strong>90 hours</strong> adds loss, overfitting, the train-test split and how you tell whether a model is any good: enough to finish a first project. <strong>150 hours</strong> goes inside a network: the forward pass, backpropagation, activations, and a small network that reads handwritten digits. <strong>240 hours</strong> is embeddings, attention, the Transformer, and a GPT built from scratch in code.</p>
-    </section>
-
-    <section class="field parch">
-      <div class="eyebrow">Why the pages are in the film</div>
-      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">Real pages,<br />edge to edge.</div>
-      <p class="prose" style="margin-top:26px">Every source in the films is shown as the actual page, captured on 2026-09-04 at phone width and scrolled the way you would scroll it, in the page&rsquo;s own colours rather than Prior&rsquo;s. That is deliberate. A course you have already seen the front of is a course you are more likely to open, and the point of the series is that you open one.</p>
-      <p class="prose" style="margin-top:18px">Every source is free to learn in full. The films say &ldquo;free&rdquo; and never &ldquo;certified&rdquo;: no provider&rsquo;s own page confirmed to us that a certificate costs nothing, and the ones that do offer one either charge for it or were not confirmed. The roadmap says which is which.</p>
-    </section>
-
-    <section class="field clay">
-      <div class="eyebrow">The roadmap &mdash; free, no email</div>
-      <div class="huge" style="font-size:clamp(36px,7vw,96px)">Pick your<br />hours</div>
-      <p class="lede">The sixteen, with a source and an alternate each, and a selector for the hours you have.</p>
-      <p class="prose" style="margin-top:18px">Comment <strong>ML</strong> on any of the four posts and it lands in your DMs, or take it here. Pick 30, 90, 150 or 240 hours and the page shows the parts that fit. Nothing to sign up for.</p>
-      <p style="margin-top:30px">
-        <a class="btnlink" data-goatcounter-click="no-018-roadmap" href="roadmap.html">Open the roadmap &rarr;</a>
-      </p>
-    </section>
-
-    <section class="field parch">
-      <div class="eyebrow">Where this actually turns up</div>
-      <p class="prose" style="margin-top:6px; max-width:60ch">Most people who want to understand machine learning do not lack time; they lack an order. Sixteen ideas in the right sequence, each one making the next obvious, is the difference between a month of tutorials and a month that ends with you reading a Transformer paper and knowing what it says.</p>
-      <p class="prose" style="margin-top:26px; max-width:60ch"><a href="roadmap.html" style="color:inherit;border-bottom:3px solid var(--clay);text-decoration:none">Start with the first four &rarr;</a></p>
-    </section>
-
-    <!-- THE VEKTOR POINTER. Founder's call 2026-08-25 — see no-008.html. -->
-    <section class="field parch">
-      <div class="eyebrow">Who makes this</div>
-      <p class="prose" style="margin-top:6px; max-width:56ch">Prior is made by the same person who writes <strong>Vektor</strong> &mdash; the how-I-actually-ship side of the same work: the tools, the pipelines, the mistakes.</p>
-      <p style="margin-top:26px">
-        <a class="btnlink" data-goatcounter-click="no-018-to-vektor" href="https://vektor-fm.github.io/vektor-site/">Read Vektor &rarr;</a>
-      </p>
-      <p class="small" style="margin-top:16px; opacity:.6">Or on Instagram: <a href="https://instagram.com/vektor.fm">@vektor.fm</a></p>
-    </section>
-
-    <div class="grid">
-      <a class="card" href="no-017.html"><span class="no">Previous</span><span class="ttl">No. 017</span></a>
-      <a class="card" href="index.html#archive"><span class="no">All</span><span class="ttl">Archive</span></a>
-    </div>
-
-    <footer>
-      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
-        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
-      </svg>
-      <span data-wordmark>Prior</span>
+      </section>
+    </main>
+    <footer class="reading-footer">
+      <a href="no-017.html">← Previous · No. 017</a
+      ><a href="index.html#archive">All issues</a
+      ><span data-wordmark>Prior</span>
     </footer>
   </body>
 </html>

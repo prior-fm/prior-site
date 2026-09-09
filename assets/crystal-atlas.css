@@ -1,0 +1,23 @@
+/* Approved A: a single cut-glass vocabulary. Existing brand tokens are inherited. */
+.atlas-mount { display: none; position: absolute; inset: 0; pointer-events: none; }
+.atlas-mount canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.atlas-hero { inset: -20%; }
+body.crystal-atlas .mechanism-mount { position: relative; }
+body.crystal-atlas .atlas-ready .atlas-mount { display: block; }
+body.crystal-atlas .object-carrier.atlas-ready { transform: none; }
+body.crystal-atlas .object-carrier.atlas-ready > :not(.atlas-mount) { visibility: hidden; }
+body.crystal-atlas .mechanism-mount.atlas-ready > .specimen { visibility: hidden; }
+body.crystal-atlas.atlas-active .object-halo,
+body.crystal-atlas.atlas-active .optical-light { display: none; }
+body.crystal-atlas .studio-travelling .atlas-hero { opacity: calc(1 - var(--handoff, 0)); }
+/* Keep reading and film surfaces quiet; only the sculpture needs complex optics. */
+body.crystal-atlas .film-frame {
+  --optical-frame-width: clamp(5px, .65vw, 8px);
+  background: linear-gradient(125deg, rgb(255 255 255 / .7), rgb(176 203 214 / .3), transparent);
+  border-color: color-mix(in srgb, var(--blue) 70%, var(--ink));
+  box-shadow: 0 15px 28px rgb(10 10 10 / .07);
+}
+body.crystal-atlas .studio-points circle { filter: none; }
+body.crystal-atlas .issue-art { box-shadow: 0 10px 24px rgb(10 10 10 / .07); }
+/* Static layouts keep the full narrative readable without an old lens backdrop. */
+html:not(.motion-ready) body.crystal-atlas .scene-copy[data-scene="0"] { background: var(--paper); }

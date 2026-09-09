@@ -19,15 +19,17 @@
     <script data-goatcounter="https://prior.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
   </head>
-  <body>
+  <body class="legacy-page">
+    <a class="skip-link" href="#content">Skip to content</a>
     <header>
       <a href="index.html" style="display:flex;align-items:center;gap:16px;text-decoration:none">
         <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" /></svg>
         <span class="word" data-wordmark>Prior</span>
       </a>
-      <nav><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
+      <nav aria-label="Prior navigation"><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
     </header>
 
+    <main id="content" aria-label="Prior No. 008">
     <section class="field blue">
       <div class="eyebrow">No. 008 &middot; 21 seconds</div>
       <div class="huge">One more disk<br />doubles<br />the moves</div>
@@ -36,7 +38,7 @@
 
     <section class="field parch">
       <div class="latest">
-        <video src="media/no-008.mp4" poster="media/no-008.jpg" controls playsinline preload="metadata"></video>
+        <video src="media/no-008.mp4" poster="media/no-008.jpg" controls playsinline preload="metadata" aria-label="Prior No. 008 film"></video>
         <div><p class="prose">Three rods, five disks, one rule: never a bigger disk on a smaller one. The whole solution is five lines of recursion &mdash; move the four-disk tower out of the way, move the big disk once, move the four-disk tower back on top of it. The film runs all 31 moves at a metronomic tempo while the code panel highlights the recursive call each move belongs to. The big disk moves exactly once, at move 16 &mdash; dead centre, and that symmetry <em>is</em> the recursion.</p></div>
       </div>
     </section>
@@ -82,6 +84,7 @@
       <a class="card" href="index.html#archive"><span class="no">All</span><span class="ttl">Archive</span></a>
     </div>
 
+    </main>
     <footer>
       <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
         <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />

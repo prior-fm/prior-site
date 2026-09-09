@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Teach a tiny model — Prior</title>
+    <meta
+      name="description"
+      content="A small interactive lesson: teach a line to predict examples, then test it on data it has not seen."
+    />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/learning.css" />
+    <link rel="stylesheet" href="assets/lesson.css" />
+    <script src="assets/tiny-model.js" defer></script>
+    <script src="assets/lesson.js" defer></script>
+  </head>
+  <body class="learning-page lesson-page">
+    <a class="skip-link" href="#lesson-main">Skip to the lesson</a>
+    <header class="learning-header">
+      <a class="learning-brand" href="index.html" aria-label="Prior home"
+        ><svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" /></svg
+        ><span class="word" data-wordmark>Prior</span></a
+      >
+      <nav class="learning-nav" aria-label="Issue navigation">
+        <a href="no-018.html">Films</a><a href="roadmap.html">Roadmap</a
+        ><a href="index.html#archive">Explore topics</a>
+      </nav>
+    </header>
+
+    <main id="lesson-main">
+      <section class="lesson-intro reading-shell">
+        <p class="eyebrow">A small model · a clear result</p>
+        <h1 class="reading-title">Teach a tiny model.</h1>
+        <p class="reading-lede">
+          Give it examples. Let it find a pattern. Test whether the pattern
+          holds for an example it has never seen.
+        </p>
+        <div class="reading-actions">
+          <a id="lesson-start" class="button-primary" href="#lesson-fallback"
+            >Start the lesson <span aria-hidden="true">→</span></a
+          ><a class="button-secondary" href="no-018.html#film-basics"
+            >Watch the foundations film</a
+          >
+        </div>
+        <nav class="learning-journey" aria-label="Learning journey">
+          <a href="no-018.html#film-basics">Watch</a>
+          <span aria-current="step">Try</span>
+          <a href="roadmap.html?path=basics#part-1">Go deeper</a>
+        </nav>
+      </section>
+
+      <section
+        id="lesson-fallback"
+        class="reading-shell lesson-fallback"
+        aria-labelledby="fallback-title"
+      >
+        <p class="lesson-kicker">The idea in one page</p>
+        <h2 id="fallback-title">A model can learn a line from examples.</h2>
+        <p>
+          We will use a simple line,
+          <strong>answer = slope × input + offset</strong>. Training changes the
+          slope and offset until the line is close to the examples. Testing uses
+          separate examples to check whether the pattern carries across.
+        </p>
+        <table class="lesson-table">
+          <caption>
+            Illustrative examples
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Input</th>
+              <th scope="col">Answer</th>
+              <th scope="col">Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>2.15</td>
+              <td>Training</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>3.45</td>
+              <td>Training</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>4.75</td>
+              <td>Training</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>6.05</td>
+              <td>Training</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>7.35</td>
+              <td>Training</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>2.80</td>
+              <td>Test</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>4.10</td>
+              <td>Test</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>5.40</td>
+              <td>Test</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>6.70</td>
+              <td>Test</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="lesson-note">
+          These examples are invented for this lesson. The illustrative learned
+          pattern is answer = 0.65 × input + 1.5; it is not a runtime result.
+        </p>
+        <div class="reading-actions">
+          <a class="button-primary" href="roadmap.html?path=basics#part-1"
+            >Continue with foundations <span aria-hidden="true">→</span></a
+          >
+        </div>
+      </section>
+
+      <section
+        id="lesson-app"
+        class="lesson-app reading-shell"
+        hidden
+        aria-labelledby="step-title"
+      >
+        <div class="lesson-stage">
+          <div class="bracket bracket-tl" aria-hidden="true"></div>
+          <div class="bracket bracket-tr" aria-hidden="true"></div>
+          <div class="bracket bracket-bl" aria-hidden="true"></div>
+          <div class="bracket bracket-br" aria-hidden="true"></div>
+          <p class="lesson-note">
+            These numbers are invented for this lesson. The model learns a
+            simple line; this is a small demonstration of training, not a
+            language model.
+          </p>
+          <div class="lesson-stage-head">
+            <p class="lesson-kicker">Teach a tiny model</p>
+            <div class="step-buttons" aria-label="Lesson steps">
+              <button type="button" data-step="teach">Teach</button
+              ><button type="button" data-step="train">Train</button
+              ><button type="button" data-step="test">Test</button>
+            </div>
+          </div>
+          <div class="lesson-step-copy">
+            <h2 id="step-title">Start with examples.</h2>
+            <p id="step-description">
+              The model can only learn from examples you give it. Choose a few
+              inputs and answers, then train on those examples.
+            </p>
+          </div>
+          <div class="lesson-workspace">
+            <div class="plot-card">
+              <svg
+                id="model-plot"
+                viewBox="0 0 640 420"
+                role="img"
+                aria-labelledby="plot-title plot-description"
+              >
+                <title id="plot-title">Model plot</title>
+                <desc id="plot-description">
+                  Training examples, a learned line and separate test examples.
+                </desc>
+                <g id="plot-grid"></g>
+                <g id="plot-errors"></g>
+                <g id="plot-line"></g>
+                <g id="plot-training"></g>
+                <g id="plot-test"></g>
+              </svg>
+              <p id="plot-summary" class="plot-summary">
+                The plot will show your examples and the model’s line.
+              </p>
+            </div>
+            <div class="example-card">
+              <fieldset id="example-controls">
+                <legend>Your examples</legend>
+                <div id="example-fields"></div>
+              </fieldset>
+              <p class="lesson-note lesson-data-note">
+                These values are invented for this lesson. Change them to see
+                how the learned line responds to the data it receives.
+              </p>
+              <div class="lesson-controls">
+                <button type="button" id="train-button" class="button-primary">
+                  Train the model</button
+                ><button
+                  type="button"
+                  id="pause-button"
+                  class="button-secondary"
+                >
+                  Pause</button
+                ><button
+                  type="button"
+                  id="step-button"
+                  class="button-secondary"
+                >
+                  One step</button
+                ><button
+                  type="button"
+                  id="test-button"
+                  class="button-secondary"
+                >
+                  Test it</button
+                ><button
+                  type="button"
+                  id="reset-button"
+                  class="button-secondary"
+                >
+                  Reset
+                </button>
+              </div>
+              <p
+                id="lesson-status"
+                class="lesson-status"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                Ready when you are.
+              </p>
+              <div class="result-metrics">
+                <span
+                  >Training error <strong id="training-error">—</strong></span
+                ><span>Test error <strong id="test-error">—</strong></span
+                ><span>Steps <strong id="step-count">0</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="reading-shell lesson-results"
+        id="test-results"
+        hidden
+        aria-labelledby="results-title"
+      >
+        <p class="lesson-kicker">The test</p>
+        <h2 id="results-title">What happened on unseen examples?</h2>
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th scope="col">Input</th>
+              <th scope="col">Prediction</th>
+              <th scope="col">Expected</th>
+              <th scope="col">Difference</th>
+            </tr>
+          </thead>
+          <tbody id="test-rows"></tbody>
+        </table>
+      </section>
+
+      <section
+        class="reading-shell lesson-details"
+        data-interactive-only
+        hidden
+      >
+        <details id="model-details">
+          <summary>Look inside</summary>
+          <div class="details-grid">
+            <p>
+              The line has two learned values: its slope and its offset. The
+              learning rate controls how far each update moves the values. The
+              error figures average the squared gaps between predictions and
+              answers: smaller is better. They use the displayed answers,
+              squared.
+            </p>
+            <dl>
+              <div>
+                <dt>Slope</dt>
+                <dd id="model-slope">—</dd>
+              </div>
+              <div>
+                <dt>Offset</dt>
+                <dd id="model-offset">—</dd>
+              </div>
+              <div class="equation-value">
+                <dt>Equation</dt>
+                <dd id="model-equation">—</dd>
+              </div>
+            </dl>
+            <label for="learning-rate"
+              >Learning rate
+              <output id="rate-value" for="learning-rate">0.25</output
+              ><input
+                id="learning-rate"
+                type="range"
+                min=".05"
+                max="1.2"
+                step=".05"
+                value=".25"
+            /></label>
+          </div>
+        </details>
+      </section>
+      <section
+        class="reading-shell lesson-experiment"
+        data-interactive-only
+        hidden
+      >
+        <p class="lesson-kicker">A useful trap</p>
+        <h2>What if one example misleads it?</h2>
+        <p>
+          Change the final answer so it contradicts the original pattern, then
+          retrain and compare the result. A model learns the data it receives,
+          including data that does not belong.
+        </p>
+        <div class="reading-actions">
+          <button type="button" id="misleading-button" class="button-secondary">
+            Change an example</button
+          ><button type="button" id="restore-button" class="button-secondary">
+            Restore original examples
+          </button>
+        </div>
+      </section>
+      <section class="reading-shell lesson-next">
+        <p class="lesson-kicker">Keep going</p>
+        <h2>See the foundations in full.</h2>
+        <a class="button-primary" href="roadmap.html?path=basics#part-1"
+          >Open the foundations roadmap <span aria-hidden="true">→</span></a
+        >
+      </section>
+    </main>
+    <footer class="reading-footer">
+      <a href="no-018.html#film-basics">← Foundations film</a
+      ><a href="roadmap.html?path=basics#part-1">Roadmap</a
+      ><span data-wordmark>Prior</span>
+    </footer>
+  </body>
+</html>

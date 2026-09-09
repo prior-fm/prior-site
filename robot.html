@@ -9,6 +9,7 @@
     <meta property="og:description" content="Move toward the checkbox. Read your score. The same four-signal model the film ran, on your own cursor path, in your browser." />
     <meta property="og:type" content="article" />
     <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/brand.css" />
     <!-- analytics: GoatCounter. No cookies, no cross-site tracking, no
          personal data. Declared in privacy.html. -->
     <script data-goatcounter="https://prior.goatcounter.com/count"
@@ -56,12 +57,12 @@
         --clay:  #da9062;
         --black: #0a0a0a;
         --parch: #f1ecdf;
-        --paper: #efece4;
+        --paper: #f1ecdf;
         --red:   #9c2b1f;
 
         /* Neutrals are biased warm, off the parchment, never a pure grey. */
         --ground: var(--parch);
-        --ink:    #171512;
+        --ink:    var(--black);
         --muted:  #6d675d;
         --rule:   #cdc6b6;
         --panel:  #e6e0d1;
@@ -100,7 +101,7 @@
         --rule: #2a2824; --panel: #141310; --accent: var(--clay); --cool: var(--blue);
       }
       :root[data-theme="light"] {
-        --ground: var(--parch); --ink: #171512; --muted: #6d675d;
+        --ground: var(--parch); --ink: var(--black); --muted: #6d675d;
         --rule: #cdc6b6; --panel: #e6e0d1; --accent: var(--red); --cool: #3f6070;
       }
 
@@ -108,7 +109,7 @@
       html { -webkit-text-size-adjust: 100%; }
       body {
         margin: 0; background: var(--ground); color: var(--ink);
-        font-family: var(--face); font-size: var(--step); line-height: 1.5;
+        font-family: var(--font-body); font-size: var(--step); line-height: 1.5;
         text-transform: uppercase; letter-spacing: .02em;
         overflow-x: hidden;
       }
@@ -121,7 +122,7 @@
         border-bottom: 2px solid var(--rule);
       }
       .mark { width: 26px; height: 26px; flex: 0 0 26px; }
-      .mark path { fill: none; stroke: var(--ink); stroke-width: 11; stroke-linecap: square; }
+      .mark path { fill: none; stroke: var(--ink); stroke-width: var(--mark-stroke); stroke-linecap: square; }
       .word { font-size: 18px; letter-spacing: .22em; }
       .bar .no { margin-left: auto; font-family: var(--mono); font-size: 15px;
                  letter-spacing: .18em; color: var(--muted); }
@@ -207,7 +208,7 @@
       .chip.off { border-color: var(--accent); }
       .chip.off .u { color: var(--accent); }
       button.act {
-        font-family: var(--face); text-transform: uppercase; letter-spacing: .16em;
+        font-family: var(--font-body); text-transform: none; letter-spacing: .02em;
         font-size: 13px; padding: 12px 20px; cursor: pointer;
         background: var(--ink); color: var(--ground); border: 2px solid var(--ink);
       }
@@ -222,8 +223,8 @@
       .stat { background: var(--ground); padding: 18px 16px; }
       .stat .v { font-family: var(--mono); font-size: clamp(24px, 3.4vw, 38px); line-height: 1;
                  font-variant-numeric: tabular-nums; }
-      .stat .k { font-size: 11px; letter-spacing: .2em; color: var(--muted); margin-top: 10px; }
-      .stat .d { font-size: 11px; letter-spacing: .04em; color: var(--muted); margin-top: 6px;
+      .stat .k { font-size: 12px; letter-spacing: .08em; color: var(--muted); margin-top: 10px; }
+      .stat .d { font-size: 12px; letter-spacing: .04em; color: var(--muted); margin-top: 6px;
                  text-transform: none; }
       .stat.hit .v { color: var(--accent); }
 
@@ -241,7 +242,7 @@
 
       table.sched { width: 100%; border-collapse: collapse; font-family: var(--mono);
                     font-size: 14px; font-variant-numeric: tabular-nums; min-width: 640px; }
-      table.sched th { text-align: left; font-family: var(--face); font-size: 11px;
+      table.sched th { text-align: left; font-family: var(--font-body); font-size: 12px;
                        letter-spacing: .18em; color: var(--muted); padding: 0 10px 8px 0;
                        font-weight: 400; }
       table.sched td { padding: 6px 10px 6px 0; border-top: 1px solid var(--rule); white-space: nowrap; }
@@ -284,6 +285,21 @@
       @media (prefers-reduced-motion: reduce) {
         * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
       }
+
+      /* Shared Prior shell; the robot instrument keeps its own stage language. */
+      body { font-family: var(--font-body); text-transform: none; letter-spacing: 0; }
+      h1, .cta .kw { font-family: "Prior Display", var(--font-brand), system-ui, sans-serif; }
+      .bar { min-height: 76px; padding-top: 16px; padding-bottom: 16px; gap: 18px; }
+      .bar .mark { width: 28px; height: 28px; flex-basis: 28px; }
+      .bar .word { font-family: var(--font-brand); font-size: 21px; text-transform: uppercase; letter-spacing: var(--brand-tracking); }
+      .mark path { stroke-width: var(--mark-stroke); }
+      .brand-nav { display: flex; align-items: center; gap: clamp(8px, 2vw, 24px); margin-left: auto; }
+      .brand-nav a { min-height: 44px; padding: 10px 4px; font-family: var(--font-body); font-size: 14px; letter-spacing: .02em; text-transform: none; }
+      .bar .no { margin-left: 0; }
+      .bar a:focus-visible, .brand-nav a:focus-visible, button:focus-visible, input:focus-visible, .chip:focus-within { outline: 3px solid var(--cool); outline-offset: 3px; }
+      .prose, .deck { font-family: var(--font-body); text-transform: none; letter-spacing: 0; }
+      button.act { min-height: 44px; font-family: var(--font-body); text-transform: none; letter-spacing: .02em; }
+      @media (max-width: 620px) { .brand-nav { order: 3; width: 100%; justify-content: space-between; border-top: 1px solid var(--rule); padding-top: 8px; } header.bar { flex-wrap: wrap; } }
     </style>
   </head>
   <body>
@@ -293,6 +309,11 @@
         <span class="word">Prior</span>
       </a>
       <span class="no">No. 016</span>
+      <nav class="brand-nav" aria-label="Prior navigation">
+        <a href="no-018.html">Films</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="index.html#archive">Explore topics</a>
+      </nav>
     </header>
 
     <main class="wrap">

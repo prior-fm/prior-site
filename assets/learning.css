@@ -1,0 +1,337 @@
+@import url("brand.css");
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-padding-top: 110px;
+}
+body.learning-page {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+[hidden] {
+  display: none !important;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button,
+a,
+summary {
+  touch-action: manipulation;
+}
+button,
+summary {
+  cursor: pointer;
+}
+a {
+  color: inherit;
+  text-underline-offset: 0.22em;
+}
+a:hover {
+  text-decoration-thickness: 2px;
+}
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+video:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--focus-on-light);
+  outline-offset: 5px;
+}
+button:disabled {
+  cursor: default;
+}
+img,
+video,
+svg {
+  max-width: 100%;
+}
+p {
+  margin: 0 0 1.1em;
+}
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 450;
+}
+.mark {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--mark-stroke);
+  flex-shrink: 0;
+}
+.learning-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px var(--gutter);
+  color: var(--paper);
+  background: var(--ink);
+  border-bottom: 1px solid #ffffff24;
+}
+.learning-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-family: var(--font-brand);
+  font-size: 21px;
+  letter-spacing: var(--brand-tracking);
+  text-transform: uppercase;
+  text-decoration: none;
+  min-height: 44px;
+}
+.learning-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 28px;
+  font-size: 15px;
+}
+.learning-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+.learning-nav a[aria-current="page"] {
+  border-color: var(--clay);
+}
+.learning-nav a:hover {
+  color: var(--clay);
+}
+.learning-header :focus-visible {
+  outline-color: var(--focus-on-dark);
+}
+.skip-link {
+  position: fixed;
+  top: 10px;
+  left: var(--gutter);
+  transform: translateY(-180%);
+  z-index: 100;
+  padding: 12px 20px;
+  background: var(--paper);
+  color: var(--ink);
+}
+.skip-link:focus {
+  transform: none;
+}
+.reading-hero {
+  padding: clamp(48px, 7vw, 110px) var(--gutter);
+  background: var(--ink);
+  color: var(--paper);
+}
+.reading-hero .eyebrow {
+  color: var(--blue);
+}
+.eyebrow {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.015em;
+}
+.reading-title {
+  max-width: 1000px;
+  font-size: clamp(42px, 6.8vw, 100px);
+  line-height: 1.03;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+.reading-lede {
+  max-width: 650px;
+  margin: 26px 0 0;
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.55;
+}
+.reading-hero .reading-lede {
+  color: #d1d1c9;
+}
+.reading-shell {
+  width: 100%;
+  max-width: 1500px;
+  margin: auto;
+  padding: 0 var(--gutter);
+}
+.reading-section {
+  padding: clamp(40px, 6vw, 88px) 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 0;
+}
+.reading-section h2 {
+  font-size: clamp(30px, 3.8vw, 54px);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  margin-bottom: 24px;
+  text-wrap: balance;
+}
+.reading-section h3 {
+  font-size: clamp(23px, 2.5vw, 32px);
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+.reading-section .prose,
+.reading-section > p {
+  max-width: 68ch;
+}
+.reading-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin-top: 28px;
+}
+.button-primary,
+.button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 22px;
+  border: 1px solid var(--ink);
+  text-align: center;
+  text-decoration: none;
+  line-height: 1.4;
+  font-size: 16px;
+  font-weight: 500;
+}
+.button-primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+.button-secondary {
+  background: transparent;
+  color: inherit;
+}
+.button-primary:hover,
+.button-secondary:hover {
+  background: var(--clay);
+  color: var(--ink);
+}
+.reading-hero .button-primary {
+  background: var(--blue);
+  color: var(--ink);
+  border-color: var(--blue);
+}
+.reading-hero .button-secondary {
+  border-color: #f1ecdf80;
+}
+.reading-hero .button-primary:hover {
+  background: var(--clay);
+  border-color: var(--clay);
+}
+.reading-footer {
+  padding: 34px var(--gutter);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: var(--ink);
+  color: var(--paper);
+}
+.reading-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+.reading-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.reading-footer :focus-visible {
+  outline-color: var(--focus-on-dark);
+}
+.field.blue :focus-visible,
+.field.clay :focus-visible,
+.source-note :focus-visible,
+.roadmap-prompt :focus-visible,
+.lesson-details :focus-visible,
+.lesson-experiment :focus-visible {
+  outline-color: var(--ink);
+}
+.field.dark :focus-visible,
+.reading-hero :focus-visible {
+  outline-color: var(--focus-on-dark);
+}
+details > summary {
+  min-height: 48px;
+  padding: 12px 0;
+}
+details > summary:focus-visible {
+  outline-offset: 2px;
+}
+@media (max-width: 650px) {
+  .learning-header {
+    flex-wrap: wrap;
+    gap: 0 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .learning-brand {
+    font-size: 20px;
+  }
+  .learning-nav {
+    gap: 4px 18px;
+    font-size: 14px;
+  }
+  .reading-title {
+    font-size: clamp(39px, 9vw, 60px);
+  }
+  .reading-actions > a {
+    flex-grow: 1;
+  }
+}
+@media (max-width: 430px) {
+  html {
+    scroll-padding-top: 142px;
+  }
+  .learning-header {
+    display: block;
+  }
+  .learning-nav {
+    justify-content: space-between;
+  }
+  .reading-section {
+    scroll-margin-top: 0;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+@media print {
+  .learning-header {
+    position: static;
+  }
+  .reading-hero,
+  .reading-footer {
+    background: white;
+    color: black;
+  }
+  .reading-hero .reading-lede,
+  .reading-hero .eyebrow {
+    color: black;
+  }
+  video {
+    max-height: 260px;
+  }
+}

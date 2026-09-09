@@ -1,0 +1,513 @@
+.lesson-intro {
+  padding-top: clamp(34px, 5vw, 64px);
+  padding-bottom: clamp(34px, 5vw, 64px);
+  background: var(--ink);
+  color: var(--paper);
+}
+.lesson-page .reading-shell {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+.lesson-intro .reading-lede {
+  max-width: 46rem;
+  color: #c9cdca;
+}
+.learning-journey {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin-top: clamp(28px, 4vw, 42px);
+  color: color-mix(in srgb, var(--paper) 62%, transparent);
+  font: 13px/1.4 var(--font-body);
+  letter-spacing: 0.04em;
+}
+.learning-journey a,
+.learning-journey span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: inherit;
+  text-decoration: none;
+}
+.learning-journey a:not(:last-child)::after,
+.learning-journey span:not(:last-child)::after {
+  content: "→";
+  margin: 0 14px;
+  color: color-mix(in srgb, var(--paper) 34%, transparent);
+}
+.learning-journey [aria-current="step"] {
+  color: var(--paper);
+}
+.learning-journey [aria-current="step"]::before {
+  width: 6px;
+  height: 6px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--clay);
+  content: "";
+}
+.learning-journey a:hover,
+.learning-journey a:focus-visible {
+  color: var(--paper);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.lesson-intro .eyebrow {
+  color: var(--blue);
+}
+.lesson-intro .button-primary,
+.lesson-controls .button-primary {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--ink);
+}
+.lesson-intro .button-secondary {
+  border-color: #ffffff55;
+  color: var(--paper);
+}
+.lesson-intro .button-primary:hover,
+.lesson-controls .button-primary:hover,
+.lesson-intro .button-secondary:hover {
+  background: var(--clay);
+  border-color: var(--clay);
+  color: var(--ink);
+}
+.lesson-page button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.lesson-page .plot-tick {
+  font: 24px var(--font-body);
+}
+.lesson-page .plot-axis {
+  font: 24px var(--font-body);
+  fill: #c9cdca;
+  stroke: none;
+}
+.lesson-page .plot-test-point {
+  fill: #101416;
+  stroke: var(--paper);
+  stroke-width: 2;
+}
+.lesson-page .example-field {
+  align-items: center;
+  font-size: 14px;
+  color: #c9cdca;
+}
+.lesson-page .lesson-note {
+  margin-top: 20px;
+}
+.lesson-stage .lesson-note {
+  color: #c9cdca;
+}
+#model-plot[data-phase="teach"] .plot-example {
+  cursor: ns-resize;
+  touch-action: none;
+  stroke-width: 24;
+  stroke: transparent;
+}
+.lesson-page .lesson-status {
+  min-height: 44px;
+}
+.lesson-page input[type="range"] {
+  min-height: 44px;
+}
+@media (max-width: 1100px) {
+  .lesson-page .lesson-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+.lesson-stage {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(28px, 5vw, 70px);
+  background: #161b1d;
+  color: var(--paper);
+  isolation: isolate;
+}
+.lesson-stage :focus-visible {
+  outline-color: var(--focus-on-dark);
+}
+.bracket {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  border-color: var(--blue);
+  opacity: 0.8;
+  pointer-events: none;
+}
+.bracket-tl {
+  top: 20px;
+  left: 20px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+.bracket-tr {
+  top: 20px;
+  right: 20px;
+  border-top: 1px solid;
+  border-right: 1px solid;
+}
+.bracket-bl {
+  bottom: 20px;
+  left: 20px;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+}
+.bracket-br {
+  bottom: 20px;
+  right: 20px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
+.lesson-stage-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  border-bottom: 1px solid #ffffff26;
+  padding-bottom: 18px;
+}
+.lesson-kicker {
+  margin: 0 0 14px;
+  color: var(--clay);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+.lesson-stage-head .lesson-kicker {
+  margin: 0;
+}
+.step-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.step-buttons button {
+  border: 1px solid #ffffff55;
+  background: transparent;
+  color: var(--paper);
+  padding: 10px 16px;
+  min-height: 44px;
+}
+.step-buttons button:hover,
+.step-buttons button[aria-current="step"] {
+  background: var(--blue);
+  color: var(--ink);
+  border-color: var(--blue);
+}
+.lesson-step-copy {
+  max-width: 620px;
+  padding: clamp(34px, 5vw, 66px) 0 28px;
+}
+.lesson-step-copy h2,
+.lesson-fallback h2,
+.lesson-results h2,
+.lesson-experiment h2,
+.lesson-next h2 {
+  font-size: clamp(32px, 4.6vw, 66px);
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+.lesson-step-copy p {
+  max-width: 54ch;
+  color: #c9cdca;
+}
+.lesson-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+  gap: clamp(22px, 4vw, 62px);
+  align-items: start;
+}
+.plot-card,
+.example-card {
+  border: 1px solid #ffffff26;
+  background: #101416;
+}
+.plot-card {
+  padding: 12px;
+}
+.plot-card svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.plot-summary {
+  margin: 8px 8px 2px;
+  color: #c9cdca;
+  font-size: 14px;
+}
+.plot-gridline {
+  stroke: #ffffff1c;
+  stroke-width: 1;
+}
+.plot-tick {
+  fill: #9da8a6;
+  font: 12px var(--font-body);
+}
+.plot-axis {
+  stroke: #c9cdca;
+  stroke-width: 1.5;
+}
+.plot-error {
+  stroke: var(--clay);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+.plot-example {
+  fill: var(--blue);
+  stroke: var(--blue);
+}
+.plot-model {
+  stroke: var(--clay);
+  stroke-width: 4;
+}
+.plot-test-point {
+  fill: var(--paper);
+  stroke: var(--paper);
+  stroke-width: 2;
+}
+.example-card {
+  padding: 22px;
+}
+.example-card fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.example-card legend {
+  padding: 0;
+  margin-bottom: 18px;
+  font-size: 22px;
+}
+.example-card input[type="number"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px solid #ffffff55;
+  background: #20282a;
+  color: var(--paper);
+}
+.example-field {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.example-field label {
+  display: grid;
+  gap: 5px;
+  font-size: 14px;
+  color: #c9cdca;
+}
+.lesson-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+.lesson-controls button {
+  min-height: 46px;
+}
+.lesson-controls .button-primary {
+  border-color: var(--blue);
+}
+.lesson-controls .button-secondary {
+  color: var(--paper);
+  border-color: #ffffff55;
+}
+.lesson-controls .button-secondary:hover {
+  color: var(--ink);
+}
+.lesson-status {
+  min-height: 28px;
+  margin: 18px 0 0;
+  color: var(--blue);
+  font-size: 14px;
+}
+.lesson-fallback,
+.lesson-results,
+.lesson-details,
+.lesson-experiment,
+.lesson-next {
+  padding-top: clamp(46px, 7vw, 96px);
+  padding-bottom: clamp(46px, 7vw, 96px);
+}
+.lesson-fallback {
+  background: var(--paper);
+}
+.lesson-fallback > p,
+.lesson-results > p,
+.lesson-experiment > p {
+  max-width: 62ch;
+}
+.lesson-note {
+  color: var(--muted);
+  font-size: 14px;
+}
+.lesson-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 28px;
+  font-size: 15px;
+}
+.lesson-table caption {
+  text-align: left;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.lesson-table th,
+.lesson-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+.lesson-table th {
+  font-weight: 600;
+}
+.result-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 34px;
+  margin-top: 24px;
+  font-size: 14px;
+}
+.result-metrics strong {
+  margin-left: 5px;
+  font-size: 20px;
+}
+.lesson-details {
+  background: var(--blue);
+}
+.lesson-details details {
+  max-width: 900px;
+  margin: auto;
+}
+.lesson-details summary {
+  font-size: clamp(26px, 3.5vw, 48px);
+  letter-spacing: -0.035em;
+}
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 70px;
+  padding: 26px 0 0;
+}
+.details-grid dl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 0;
+}
+.details-grid dt {
+  font-size: 14px;
+  color: var(--muted);
+}
+.details-grid dd {
+  margin: 4px 0 0;
+  font-size: 20px;
+}
+.details-grid .equation-value {
+  grid-column: 1 / -1;
+}
+.details-grid label {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 8px;
+  max-width: 420px;
+  font-size: 14px;
+}
+.details-grid input {
+  width: 100%;
+  accent-color: var(--clay);
+}
+.lesson-experiment {
+  background: var(--clay);
+}
+.lesson-next {
+  background: var(--paper);
+}
+.lesson-next .button-primary {
+  display: inline-flex;
+  margin-top: 18px;
+}
+@media (max-width: 820px) {
+  .lesson-workspace {
+    grid-template-columns: 1fr;
+  }
+  .plot-card {
+    max-width: 720px;
+  }
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+  .details-grid dl {
+    max-width: 520px;
+  }
+}
+@media (max-width: 560px) {
+  .lesson-stage {
+    padding: 24px 18px;
+  }
+  .lesson-stage-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .step-buttons {
+    width: 100%;
+  }
+  .step-buttons button {
+    flex: 1;
+  }
+  .example-card {
+    padding: 18px;
+  }
+  .lesson-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .lesson-table th,
+  .lesson-table td {
+    min-width: 100px;
+  }
+  .bracket {
+    width: 26px;
+    height: 26px;
+  }
+  .bracket-tl,
+  .bracket-tr {
+    top: 10px;
+  }
+  .bracket-bl,
+  .bracket-br {
+    bottom: 10px;
+  }
+  .bracket-tl,
+  .bracket-bl {
+    left: 10px;
+  }
+  .bracket-tr,
+  .bracket-br {
+    right: 10px;
+  }
+  .details-grid dl {
+    grid-template-columns: 1fr 1fr;
+  }
+  .details-grid .equation-value {
+    grid-column: 1 / -1;
+  }
+  .learning-journey {
+    margin-top: 22px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

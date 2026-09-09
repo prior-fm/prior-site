@@ -1,0 +1,62 @@
+/* A shared connection, a statement, then the films: each entrance has one job.
+   All content is visible by default; JS opts only supported views into motion. */
+:root {
+  --home-title-leading: 1.06;
+  --home-title-tracking: -.04em;
+  --home-section-inset: clamp(64px, 8vw, 128px);
+  --home-frame-line: 1px;
+  --home-reveal-ease: cubic-bezier(.2, .7, .2, 1);
+}
+.learning-heading h2, .learning-option h3, .editorial h2, .archive-head h2 {
+  line-height: var(--home-title-leading);
+  letter-spacing: var(--home-title-tracking);
+  text-wrap: balance;
+}
+.editorial, .archive { padding-block: var(--home-section-inset); }
+.editorial-body { margin-top: clamp(40px, 6vw, 88px); }
+.archive-head { margin-bottom: var(--space-6); }
+.editorial-top { border-top-color: var(--line); }
+.learning-option { border-top-color: var(--hair); }
+.learning-option h3 { margin-block: var(--space-4); }
+.learning-option > p { color: var(--muted-dark); }
+.path-preview { border-color: var(--hair); margin-block: var(--space-5); }
+.issue-art { border: var(--home-frame-line) solid var(--line); }
+.issue-number, .issue-summary { color: var(--muted); }
+.learning-route-spread { position: relative; }
+.learning-fork { display: block; width: 100%; height: 80px; overflow: visible; color: var(--blue); }
+.learning-fork path { fill: none; stroke: currentColor; stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: 0; }
+.editorial-line, .editorial-line > span { display: block; }
+.editorial-line { overflow: clip; padding-block: .06em; margin-block: -.06em; }
+
+/* Waiting states affect only the drawing, second headline line and artwork. */
+[data-home-reveal="paths"][data-reveal-state="waiting"] .learning-fork path { stroke-dashoffset: 1; }
+[data-home-reveal="paths"][data-reveal-state="entering"] .fork-stem { animation: home-draw 260ms ease-out both; }
+[data-home-reveal="paths"][data-reveal-state="entering"] .fork-branches { animation: home-draw 620ms var(--home-reveal-ease) 100ms both; }
+[data-home-reveal="statement"][data-reveal-state="waiting"] { clip-path: inset(0 0 100%); }
+[data-home-reveal="statement"][data-reveal-state="entering"] { animation: home-statement 420ms var(--home-reveal-ease) both; }
+[data-home-reveal="art"][data-reveal-state="waiting"] { clip-path: inset(0 0 100%); }
+[data-home-reveal="art"][data-reveal-state="entering"] { animation: home-art 560ms var(--home-reveal-ease) both; }
+[data-home-reveal="art"][data-reveal-weight="quiet"][data-reveal-state="waiting"] { clip-path: inset(0 0 24%); }
+[data-home-reveal="art"][data-reveal-weight="quiet"][data-reveal-state="entering"] { animation-name: home-art-quiet; animation-duration: 340ms; }
+@keyframes home-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes home-statement { from { clip-path: inset(0 0 100%); transform: translateY(10px); } to { clip-path: inset(0); transform: none; } }
+@keyframes home-art { from { clip-path: inset(0 0 100%); } to { clip-path: inset(0); } }
+@keyframes home-art-quiet { from { clip-path: inset(0 0 24%); } to { clip-path: inset(0); } }
+@media (max-width: 560px) {
+  .learning-route-spread { padding-left: var(--space-4); }
+  .learning-fork { height: 40px; width: 1px; margin-left: calc(-1 * var(--space-4)); }
+  .learning-fork .fork-branches { display: none; }
+  .learning-route-spread::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; border-left: 1px solid var(--hair); transform-origin: top; }
+  .learning-route-spread .learning-option { position: relative; }
+  .learning-route-spread .learning-option::before { content: ""; position: absolute; top: 34px; left: calc(-1 * var(--space-4)); width: var(--space-3); border-top: 1px solid var(--blue); transform-origin: left; }
+  .learning-route-spread[data-reveal-state="waiting"]::before,
+  .learning-route-spread[data-reveal-state="waiting"] .learning-option::before { transform: scaleY(0); }
+  .learning-route-spread[data-reveal-state="entering"]::before { animation: home-spine 620ms var(--home-reveal-ease) both; }
+  .learning-route-spread[data-reveal-state="entering"] .learning-option::before { animation: home-branch 420ms var(--home-reveal-ease) 100ms both; }
+  .archive-head { margin-bottom: var(--space-5); }
+}
+@keyframes home-spine { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes home-branch { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) {
+  [data-home-reveal], .learning-fork path, .learning-route-spread::before, .learning-route-spread .learning-option::before { animation: none !important; clip-path: none !important; transform: none !important; stroke-dashoffset: 0 !important; }
+}
