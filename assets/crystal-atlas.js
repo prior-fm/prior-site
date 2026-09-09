@@ -10,6 +10,7 @@ const compact = matchMedia('(max-height: 520px)');
 const steps = ['examples', 'relationships', 'prediction'];
 let scene = null, canvas = null, active = null, frame = 0;
 let lastProgress = -1, lastSelection = -2;
+let needsResize = true;
 let geometry = { top: 0, travel: 1, learningTop: 0, learningHeight: 1, viewport: innerHeight };
 const clamp = value => Math.max(0, Math.min(1, value));
 
@@ -19,14 +20,16 @@ function paint() {
   const y = scrollY;
   const inLearning = geometry.learningTop < y + geometry.viewport && geometry.learningTop + geometry.learningHeight > y;
   const inHero = !compact.matches && !reduced.matches && y < geometry.top + geometry.travel + geometry.viewport;
+  scene.setActive(inLearning || inHero);
   if (!inLearning && !inHero) return;
   const target = inLearning ? learning : hero;
   if (target !== active) {
     target.appendChild(canvas);
     active = target;
-    scene.resize(target);
+    needsResize = true;
     lastProgress = -1;
   }
+  if (needsResize) { scene.resize(target); needsResize = false; }
   const p = reduced.matches ? .45 : inLearning
     ? clamp((y + geometry.viewport * .8 - geometry.learningTop) / Math.max(1, geometry.learningHeight + geometry.viewport * .25))
     : clamp((y - geometry.top) / geometry.travel);
@@ -36,7 +39,10 @@ function paint() {
   if (p !== lastProgress) { scene.setProgress(p); lastProgress = p; }
   if (selection !== lastSelection) { scene.setSelection(selection); lastSelection = selection; }
 }
-function schedule() { if (!frame && !document.hidden) frame = requestAnimationFrame(paint); }
+function schedule() {
+  if (document.hidden) { if (scene) scene.setActive(false); return; }
+  if (!frame) frame = requestAnimationFrame(paint);
+}
 function measure() {
   geometry = {
     top: journey.getBoundingClientRect().top + scrollY,
@@ -45,7 +51,7 @@ function measure() {
     learningHeight: learning.parentElement.offsetHeight,
     viewport: innerHeight,
   };
-  if (scene && active) scene.resize(active);
+  needsResize = true;
   schedule();
 }
 function fallback() {
@@ -56,11 +62,13 @@ function fallback() {
   hero.parentElement.classList.remove('atlas-ready');
   learning.parentElement.classList.remove('atlas-ready');
   document.body.classList.remove('atlas-active');
+  const lens = hero.parentElement.querySelector('.optical-lens');
+  if (lens && !lens.getAttribute('src')) lens.src = lens.dataset.fallbackSrc;
   const instruction = explorer.querySelector('.mechanism-instruction');
   if (instruction) instruction.textContent = 'Choose a stage below to explore the explanation.';
 }
 try {
-  const { createCrystalScene } = await import('./design-crystals.js');
+  const { createCrystalScene } = await import('./design-crystals.js?v=mobile-20260909');
   scene = createCrystalScene(hero, { atlasOnly: true });
   canvas = hero.querySelector('canvas');
   active = hero;

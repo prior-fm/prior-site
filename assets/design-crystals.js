@@ -11,6 +11,16 @@ const PALETTE = {
 };
 const DIRECTIONS = new Set(['a', 'b', 'c']);
 
+// Keep the approved geometry/material; spend fewer pixels on touch devices.
+export function crystalRenderBudget({ coarsePointer = false, hardwareConcurrency = 8, saveData = false } = {}) {
+  const limited = saveData || hardwareConcurrency > 0 && hardwareConcurrency <= 4;
+  return {
+    pixelRatio: limited ? 1 : coarsePointer ? 1.25 : 1.5,
+    shadowSize: limited || coarsePointer ? 512 : 1024,
+    powerPreference: limited || coarsePointer ? 'default' : 'high-performance',
+  };
+}
+
 function makeGlass() {
   return new THREE.MeshPhysicalMaterial({
     color: new THREE.Color(PALETTE.glass).lerp(new THREE.Color(0xffffff), .72),
@@ -168,8 +178,13 @@ function studioEnvironment(renderer) {
 
 export function createCrystalScene(mount, { atlasOnly = false } = {}) {
   if (!mount || typeof mount.appendChild !== 'function') throw new TypeError('mount must be an HTMLElement');
+  const budget = crystalRenderBudget({
+    coarsePointer: window.matchMedia('(pointer: coarse)').matches,
+    hardwareConcurrency: window.navigator?.hardwareConcurrency,
+    saveData: window.navigator?.connection?.saveData,
+  });
   let renderer;
-  try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' }); }
+  try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: budget.powerPreference }); }
   catch (error) { throw new Error('Crystal scene requires WebGL', { cause: error }); }
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(PALETTE.paper);
@@ -182,7 +197,7 @@ export function createCrystalScene(mount, { atlasOnly = false } = {}) {
   const rim = new THREE.PointLight(0xc98368, 2.2, 9); rim.position.set(-2, -2, 2); scene.add(rim);
   const floor = new THREE.Mesh(new THREE.PlaneGeometry(20, 20), new THREE.ShadowMaterial({ color: PALETTE.ink, opacity: .12 }));
   floor.rotation.x = -Math.PI / 2; floor.position.y = -1.3; floor.receiveShadow = true; scene.add(floor);
-  key.shadow.mapSize.set(1024, 1024);
+  key.shadow.mapSize.set(budget.shadowSize, budget.shadowSize);
   key.shadow.normalBias = .02;
   const material = makeGlass();
   const detailMaterial = new THREE.MeshStandardMaterial({ color: PALETTE.clay, roughness: 0.46, metalness: 0.05 });
@@ -193,9 +208,17 @@ export function createCrystalScene(mount, { atlasOnly = false } = {}) {
   canvas.setAttribute('aria-hidden', 'true'); canvas.style.display = 'block'; mount.appendChild(canvas);
   renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap; renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
   let direction = 'a'; let progress = 0; let selection = -1; let destroyed = false; let framePending = 0;
+  let active = true;
+  let size = { width: 0, height: 0, ratio: 0 };
   const smooth = value => { value = THREE.MathUtils.clamp(value, 0, 1); return value * value * (3 - 2 * value); };
-  function render() { framePending = 0; if (!destroyed) renderer.render(scene, camera); }
-  function scheduleRender() { if (destroyed || framePending) return; framePending = window.requestAnimationFrame(render); }
+  function render() { framePending = 0; if (!destroyed && active && !document.hidden) renderer.render(scene, camera); }
+  function scheduleRender() { if (destroyed || !active || framePending || document.hidden) return; framePending = window.requestAnimationFrame(render); }
+  function setActive(next) {
+    const changed = active !== Boolean(next);
+    active = Boolean(next);
+    if (!active && framePending) { window.cancelAnimationFrame(framePending); framePending = 0; }
+    if (changed && active) scheduleRender();
+  }
   function apply() {
     const group = groups[direction];
     Object.values(groups).forEach((candidate) => { candidate.visible = candidate === group; });
@@ -230,15 +253,18 @@ export function createCrystalScene(mount, { atlasOnly = false } = {}) {
   function resize(nextMount = mount) {
     mount = nextMount;
     const width = Math.max(1, mount.clientWidth); const height = Math.max(1, mount.clientHeight);
+    const ratio = Math.min(window.devicePixelRatio || 1, budget.pixelRatio);
+    if (size.width === width && size.height === height && size.ratio === ratio) return;
+    size = { width, height, ratio };
     camera.aspect = width / height;
     // Full animated width is about 3.4 world units; fit it on narrow 300px mounts.
     camera.position.z = Math.max(6.2, 3.8 / (2 * Math.tan(THREE.MathUtils.degToRad(14)) * camera.aspect));
-    camera.updateProjectionMatrix(); renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5)); renderer.setSize(width, height, false); scheduleRender();
+    camera.updateProjectionMatrix(); renderer.setDrawingBufferSize(width, height, ratio); scheduleRender();
   }
   function setDirection(next) { if (!DIRECTIONS.has(next) || !groups[next]) throw new RangeError('direction is not available in this scene'); direction = next; apply(); }
   function setProgress(next) { if (typeof next !== 'number' || !Number.isFinite(next)) throw new TypeError('progress must be finite'); progress = THREE.MathUtils.clamp(next, 0, 1); apply(); }
   function setSelection(next) { if (next !== null && next !== -1 && (!Number.isInteger(next) || next < 0)) throw new RangeError('selection must be a non-negative integer or -1'); selection = next === null ? -1 : next; apply(); }
   function destroy() { if (destroyed) return; destroyed = true; if (framePending) window.cancelAnimationFrame(framePending); canvas.remove(); Object.values(groups).forEach((group) => group.traverse((object) => { if (object.geometry) object.geometry.dispose(); })); material.dispose(); detailMaterial.dispose(); floor.geometry.dispose(); floor.material.dispose(); scene.environment.dispose(); renderer.dispose(); }
   resize();
-  return { setDirection, setProgress, setSelection, resize, destroy };
+  return { setDirection, setProgress, setSelection, setActive, resize, destroy };
 }

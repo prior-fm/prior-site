@@ -21,3 +21,18 @@ body.crystal-atlas .studio-points circle { filter: none; }
 body.crystal-atlas .issue-art { box-shadow: 0 10px 24px rgb(10 10 10 / .07); }
 /* Static layouts keep the full narrative readable without an old lens backdrop. */
 html:not(.motion-ready) body.crystal-atlas .scene-copy[data-scene="0"] { background: var(--paper); }
+
+/* Keep the two primary actions within narrow headers; topics remain below. */
+@media (max-width: 600px) {
+  body.crystal-atlas .main-nav .nav-explore { display: none; }
+  body.crystal-atlas .main-nav { gap: 16px; }
+}
+/* Short phones need reading space more than a second, oversized wordmark. */
+@media (max-width: 600px) and (max-height: 700px) {
+  body.crystal-atlas .hero-wordmark { display: none; }
+  .motion-ready body.crystal-atlas .scene-copy,
+  .motion-ready body.crystal-atlas .scene-copy[data-scene="0"] { top: 42svh; }
+  .motion-ready body.crystal-atlas .scene-copy h2 { font-size: clamp(30px, 7.8vw, 36px); }
+  .motion-ready body.crystal-atlas .scene-description { margin-top: 12px; }
+  .motion-ready body.crystal-atlas .scene-link { margin-top: 16px; }
+}
