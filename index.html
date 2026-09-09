@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,207 +6,767 @@
     <title>Prior — what you believed before the evidence</title>
     <meta
       name="description"
-      content="Short explainers on AI engineering and data science. What actually happens, not what the documentation claims."
+      content="A closer look at AI engineering and data science. Short films, first-principles explainers, and the tools to understand what actually happens."
     />
-    <meta property="og:title" content="Prior" />
-    <meta property="og:description" content="What actually happens. Not what the documentation claims." />
-    <meta property="og:image" content="https://prior-fm.github.io/prior-site/media/no-019.jpg" />
+    <meta property="og:title" content="Prior — a closer look" />
+    <meta
+      property="og:description"
+      content="AI engineering and data science, from the inside. What actually happens, drawn from first principles."
+    />
+    <meta
+      property="og:image"
+      content="https://prior-fm.github.io/prior-site/media/cinematic/hall.webp"
+    />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#f1ecdf" />
     <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="assets/site.css?v=no-019" />
-    <!-- analytics: GoatCounter. No cookies, no cross-site tracking, no
-         personal data. Declared in privacy.html. -->
-    <script data-goatcounter="https://prior.goatcounter.com/count"
-            async src="//gc.zgo.at/count.js"></script>
+    <link
+      rel="preload"
+      as="font"
+      href="assets/fonts/ieVn2YZDLWuGJpnzaiwFXS9tYtpd59A.woff2"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="assets/fonts/printvetica-subset.woff2"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="assets/cinematic.css" />
+    <link rel="stylesheet" href="assets/learning-journey.css" />
+    <link rel="stylesheet" href="assets/studio.css" />
+    <link rel="stylesheet" href="assets/connected-motion.css" />
+    <link rel="stylesheet" href="assets/homepage-reveals.css" />
+    <link rel="stylesheet" href="assets/optical-hero.css" />
+    <link rel="stylesheet" href="assets/optical-sections.css" />
+    <link rel="stylesheet" href="assets/crystal-atlas.css" />
+    <script type="module" src="assets/crystal-atlas.js"></script>
+    <script src="assets/cinematic.js" defer></script>
+    <script src="assets/archive.js" defer></script>
+    <script src="assets/tiny-model.js" defer></script>
+    <script src="assets/studio.js" defer></script>
+    <script src="assets/connected-motion.js" defer></script>
+    <script src="assets/mechanism-explorer.js" defer></script>
+    <script src="assets/homepage-reveals.js" defer></script>
+    <!-- Cookie-free analytics; described in privacy.html. -->
+    <script
+      data-goatcounter="https://prior.goatcounter.com/count"
+      async
+      src="//gc.zgo.at/count.js"
+    ></script>
   </head>
-  <body>
-    <header>
-      <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
-        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
-      </svg>
-      <span class="word" data-wordmark>Prior</span>
-      <nav>
-        <a href="#latest">Latest</a>
-        <a href="#archive">Archive</a>
-        <a href="#subscribe">Subscribe</a>
-      </nav>
-    </header>
-
-    <!-- ============ hero ============ -->
-    <section class="field dark">
-      <svg class="slabs" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
-        <defs><clipPath id="h1"><path d="M900 -60 L1560 -60 L1560 520 L820 620 Z" /></clipPath></defs>
-        <path d="M900 -60 L1560 -60 L1560 520 L820 620 Z" fill="#da9062" />
-        <path d="M1080 300 L1560 240 L1560 980 L1000 980 Z" fill="#b0cbd6" />
-        <g clip-path="url(#h1)"><path d="M1080 300 L1560 240 L1560 980 L1000 980 Z" fill="#0a0a0a" /></g>
-      </svg>
-      <div class="eyebrow">Prior &middot; AI engineering &amp; data science</div>
-      <h1 class="huge">What<br />actually<br />happens</h1>
-      <p class="lede">Not what the documentation claims. One idea per issue, drawn from first principles.</p>
-    </section>
-
-    <!-- ============ latest ============ -->
-    <h2 class="section" id="latest">Latest issue</h2>
-    <section class="field parch">
-      <div class="latest">
-        <video src="media/no-019.mp4?v=vo-v11" poster="media/no-019.jpg" controls playsinline preload="metadata"></video>
-        <div>
-          <div class="eyebrow">No. 019 &middot; lunar tides</div>
-          <div class="huge" style="font-size: clamp(36px, 6.5vw, 88px)">One Moon.<br />Two<br />bulges.</div>
-          <p class="lede">A visual model of the Moon&rsquo;s uneven pull on Earth&rsquo;s water, with its limits left in view.</p>
-          <p class="small" style="margin-top: 26px">
-            <a href="no-019.html" style="text-decoration: none; border-bottom: 3px solid currentColor">Read the issue &rarr;</a>
+  <body class="optical-studio crystal-atlas">
+    <a class="skip-link" href="#experiment">Skip to the experiment</a>
+    <main>
+      <section
+        class="journey"
+        id="journey"
+        aria-label="A closer look at the machine, the mechanism and the idea"
+      >
+        <div class="stage">
+          <header class="site-header">
+            <a class="brand" href="index.html" aria-label="Prior home"
+              ><svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+                <path d="M34 6H6V94H34M66 6H94V94H66" /></svg
+              ><span data-wordmark>Prior</span></a
+            >
+            <nav class="main-nav" aria-label="Main navigation">
+              <a class="nav-journey" href="no-018.html">Films</a
+              ><a class="nav-explore" href="#archive">Explore topics</a
+              ><a class="nav-watch" href="#experiment">Try an idea</a>
+            </nav>
+          </header>
+          <div class="optical-light" aria-hidden="true"></div>
+          <div class="aperture" aria-hidden="true"></div>
+          <div class="stage-shade" aria-hidden="true"></div>
+          <div class="journey-object" aria-hidden="true">
+            <div class="object-halo"></div>
+            <div class="object-carrier">
+              <div class="atlas-mount atlas-hero" aria-hidden="true"></div>
+              <img class="optical-lens" src="media/optical/clear-lens.png" width="1024" height="1024" alt="" fetchpriority="high" decoding="async" />
+              <div class="chip-pins pins-horizontal"></div>
+              <div class="chip-pins pins-vertical"></div>
+              <div class="chip-base"><span>PRIOR / COMPUTE</span></div>
+              <div class="chip-core">
+                <svg class="chip-relationships" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M32 40L100 65L168 40M32 100L100 65L168 100M32 160L100 65L168 160M32 40L100 135L168 40M32 100L100 135L168 100M32 160L100 135L168 160"/></g><g fill="currentColor"><circle cx="32" cy="40" r="5"/><circle cx="32" cy="100" r="5"/><circle cx="32" cy="160" r="5"/><circle cx="100" cy="65" r="7"/><circle cx="100" cy="135" r="7"/><circle cx="168" cy="40" r="5"/><circle cx="168" cy="100" r="5"/><circle cx="168" cy="160" r="5"/></g></svg>
+              </div>
+              <div class="image-tile">
+                <span class="tile-registration">INPUT / IMAGE</span>
+                <svg class="handwritten" viewBox="0 0 160 160" fill="none">
+                  <path
+                    d="M40 42C61 38 87 37 121 39C108 60 94 82 84 106L76 126"
+                    stroke="currentColor"
+                    stroke-width="12"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <div class="pixel-grid">PIXELS</div>
+                <span class="tile-corner corner-one"></span
+                ><span class="tile-corner corner-two"></span>
+              </div>
+              <div class="prediction-tile">
+                <span>Possible answers</span>
+                <svg class="prediction-readout" viewBox="0 0 200 120" aria-hidden="true"><g fill="none" stroke="currentColor"><path class="prediction-tracks" d="M24 22H176M24 60H176M24 98H176" stroke-width="2" opacity=".25"/><path class="prediction-alternatives" d="M24 22H70M24 98H54" stroke-width="5"/><path class="prediction-choice" d="M24 60H154" stroke-width="8"/></g><circle cx="154" cy="60" r="6" fill="currentColor"/></svg>
+                <small>A prediction to test.</small>
+              </div>
+            </div>
+            <div class="object-caption">
+              <span class="object-dot"></span>Illustrated example
+            </div>
+          </div>
+          <div class="scene-copy" data-scene="0">
+            <p class="scene-label">AI engineering &amp; data science</p>
+            <h1>A closer look at<br />what actually happens.</h1>
+            <p class="scene-description opening-description">
+              Understand AI through short films and free learning guides.
+            </p>
+            <a class="scene-link opening-film" href="no-018.html#film-basics">Watch the introduction</a>
+          </div>
+          <div class="scene-copy" data-scene="1">
+            <p class="scene-label">I &nbsp; The input</p>
+            <h2>An image.<br />Then numbers.</h2>
+            <p class="scene-description">
+              A computer receives an image as numbers describing the brightness
+              of its pixels. These are the inputs to the calculation.
+            </p>
+            <a class="scene-link" href="roadmap.html?path=basics#part-1"
+              >Start with the basics
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" /></svg
+            ></a>
+          </div>
+          <div class="scene-copy" data-scene="2">
+            <p class="scene-label">II &nbsp; The mechanism</p>
+            <h2>Patterns.<br />Not magic.</h2>
+            <p class="scene-description">
+              A trained model combines those numbers using patterns learned from
+              examples. Those connections carry information through the calculation.
+            </p>
+            <a class="scene-link" href="roadmap.html?path=deeper#part-3"
+              >See how a network learns
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" /></svg
+            ></a>
+          </div>
+          <div class="scene-copy" data-scene="3">
+            <p class="scene-label">III &nbsp; The prediction</p>
+            <h2>An answer.<br />Not certainty.</h2>
+            <p class="scene-description">
+              A model weighs possible answers. Its prediction can still be wrong.
+              New examples help us test whether it learned a useful pattern.
+            </p>
+            <a class="scene-link" href="#learn"
+              >Find your starting point
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" /></svg
+            ></a>
+          </div>
+          <div class="hero-wordmark" aria-hidden="true">PRIOR</div>
+          <nav class="journey-nav" aria-label="Journey chapters">
+            <a
+              href="#journey"
+              data-progress="0"
+              aria-label="Opening"
+              aria-current="step"
+              ><span>Prior</span></a
+            ><a
+              href="#machine"
+              data-progress=".255"
+              aria-label="Chapter I: the input"
+              ><span>The input</span></a
+            ><a
+              href="#mechanism"
+              data-progress=".53"
+              aria-label="Chapter II: the mechanism"
+              ><span>The mechanism</span></a
+            ><a
+              href="#idea"
+              data-progress=".88"
+              aria-label="Chapter III: the prediction"
+              ><span>The prediction</span></a
+            >
+          </nav>
+          <div class="hero-foot">
+            <div class="scroll-cue">
+              <span aria-hidden="true"></span>Scroll to look closer
+            </div>
+            <a class="start-learning" href="#experiment"
+              >Try an idea <span aria-hidden="true">&rarr;</span></a
+            >
+          </div>
+        </div>
+        <span class="chapter-anchor" id="machine" aria-hidden="true"></span
+        ><span class="chapter-anchor" id="mechanism" aria-hidden="true"></span
+        ><span class="chapter-anchor" id="idea" aria-hidden="true"></span>
+      </section>
+      <section class="studio" id="experiment" aria-labelledby="experiment-title">
+        <div class="studio-intro">
+          <div>
+            <p class="studio-eyebrow">From watching to understanding</p>
+            <h2 id="experiment-title">Now change<br />the evidence.</h2>
+          </div>
+          <p>A model learns from examples. Change one, and you change what it learns. Try it here.</p>
+        </div>
+        <div class="studio-bench">
+          <div class="studio-plot" id="studio-dock">
+            <div class="motion-mount experiment-mount" data-motion-scene="experiment" aria-hidden="true"></div>
+            <svg viewBox="0 0 420 310" role="img" aria-labelledby="studio-chart-title studio-chart-desc">
+              <title id="studio-chart-title">A model learning a line from examples</title>
+              <desc id="studio-chart-desc">The starting prediction slopes downward. The example points rise. Training adjusts the prediction toward the points.</desc>
+              <g class="studio-grid" aria-hidden="true"><path d="M48 30V266H392 M48 89H392 M48 148H392 M48 207H392" /></g>
+              <text class="studio-axis" x="48" y="18">Expected output</text>
+              <text class="studio-axis" x="392" y="296" text-anchor="end">Example input</text>
+              <path class="studio-baseline" d="M48 77.2L392 159.8" aria-hidden="true" />
+              <path class="studio-model" id="studio-line" d="M48 77.2L392 159.8" />
+              <g class="studio-points" id="studio-points"><circle cx="82.4" cy="215.26" r="6"/><circle cx="151.2" cy="184.58" r="6"/><circle cx="220" cy="153.9" r="6"/><circle cx="288.8" cy="123.22" r="6"/><circle cx="357.6" cy="92.54" r="8" class="studio-changed"/></g>
+            </svg>
+            <div class="studio-key"><span><i class="key-point"></i>Examples</span><span><i class="key-line"></i>Model prediction</span></div>
+          </div>
+          <div class="studio-controls">
+            <h3>Give the model<br />something to learn.</h3>
+            <p>First, let it find a pattern. Then move the last example and train it again.</p>
+            <div id="studio-interactive" hidden>
+              <label class="studio-range-label" for="studio-example">Move the last example <output id="studio-example-value" for="studio-example">74</output></label>
+              <input id="studio-example" type="range" min="15" max="95" value="74" step="1" aria-describedby="studio-example-help" />
+              <p class="studio-help" id="studio-example-help">Changes its expected output on a scale from 0 to 100.</p>
+              <div class="studio-buttons"><button type="button" id="studio-train">Let it learn</button><button type="button" id="studio-reset">Start again</button></div>
+              <p class="studio-result" id="studio-status" role="status" aria-live="polite" aria-atomic="true">The line has not learned from these examples yet.</p>
+              <p class="studio-help">Overall error gives larger misses more weight. It measures these examples, not new ones the model has never seen.</p>
+            </div>
+            <p id="studio-fallback">A model adjusts its prediction to reduce the difference from its examples. <a href="lesson.html">Explore the full explanation</a>.</p>
+          </div>
+        </div>
+        <div class="studio-after">
+          <p>Real calculations, made-up examples. This model fits a line; the digit in the opening is an illustration.</p>
+          <div><a class="studio-primary-link" href="no-018.html#film-basics">Watch why this works <span aria-hidden="true">↗</span></a><a href="lesson.html">Explore the full experiment</a></div>
+        </div>
+      </section>
+      <section class="learning-paths" id="learn" aria-labelledby="learn-title">
+        <div class="learning-heading">
+          <p class="issue-kicker">Keep following the idea</p>
+          <h2 id="learn-title">An idea clicks.<br />Where next?</h2>
+          <p>
+            A short film to find your bearings. A free roadmap to keep going.
           </p>
         </div>
+        <div class="mechanism-spread" id="mechanism-explorer">
+          <div class="mechanism-copy">
+            <h3>Follow what<br />the evidence changes.</h3>
+            <p>Examples shape the connections. Those connections shape the answer.</p>
+            <p class="mechanism-note">An illustration of the stages in a digit recogniser. The experiment above uses a simpler model that fits a line.</p>
+          </div>
+          <div class="mechanism-figure">
+            <div class="motion-mount mechanism-mount" data-motion-scene="mechanism" aria-hidden="true"><div class="atlas-mount atlas-learning"></div></div>
+            <p class="mechanism-instruction" hidden>Tap a layer or choose a stage below.</p>
+            <div class="mechanism-controls" role="group" aria-label="Explore how a digit recogniser learns" hidden>
+              <button type="button" data-mechanism-step="examples" aria-pressed="true" aria-controls="mechanism-explanation">Examples</button>
+              <button type="button" data-mechanism-step="relationships" aria-pressed="false" aria-controls="mechanism-explanation">Relationships</button>
+              <button type="button" data-mechanism-step="prediction" aria-pressed="false" aria-controls="mechanism-explanation">Prediction</button>
+            </div>
+            <div class="mechanism-explanation" id="mechanism-explanation" aria-live="polite" aria-atomic="true">
+              <div data-mechanism-detail="examples">
+                <h4>Start with examples.</h4>
+                <p>During training, the model sees digit images paired with the correct answers. Each image becomes a grid of numbers describing its pixels.</p>
+              </div>
+              <div data-mechanism-detail="relationships">
+                <h4>Learn from mistakes.</h4>
+                <p>The network combines those numbers through weighted connections. Training adjusts the connection strengths to reduce mistakes on the examples.</p>
+              </div>
+              <div data-mechanism-detail="prediction">
+                <h4>Try an unseen image.</h4>
+                <p>The trained network uses those connections to predict the digit in a new image. Its answer can be wrong; unseen examples help us test how well it learned.</p>
+              </div>
+            </div>
+            <a class="mechanism-try" href="#experiment">Try learning with real calculations <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="learning-route-spread" data-home-reveal="paths">
+          <svg class="learning-fork" viewBox="0 0 1000 90" preserveAspectRatio="none" aria-hidden="true">
+            <path class="fork-stem" pathLength="1" d="M500 0V26" />
+            <path class="fork-branches" pathLength="1" d="M500 26C500 46 250 34 250 64V90" />
+            <path class="fork-branches" pathLength="1" d="M500 26C500 46 750 34 750 64V90" />
+          </svg>
+          <div class="learning-options">
+          <article class="learning-option" aria-labelledby="basics-title">
+            <span class="path-index">New to machine learning</span>
+            <h3 id="basics-title">Start with<br />the basics.</h3>
+            <p>
+              Build an intuition for models, examples and training. No prior
+              machine-learning knowledge needed.
+            </p>
+            <div class="path-preview" aria-hidden="true">
+              <span>Examples</span><i>&rarr;</i><span>Learning</span
+              ><i>&rarr;</i><span>Prediction</span>
+            </div>
+            <a class="path-film" href="no-018.html#film-basics"
+              ><span>Watch the introduction</span
+              ><span aria-hidden="true">&nearr;</span></a
+            >
+            <a class="text-link" href="roadmap.html?path=basics#part-1"
+              >Start the free foundations roadmap &rarr;</a
+            >
+          </article>
+          <article
+            class="learning-option deeper-option"
+            aria-labelledby="deeper-title"
+          >
+            <span class="path-index">Comfortable with the basics</span>
+            <h3 id="deeper-title">Go<br />deeper.</h3>
+            <p>
+              Understand models and training already? Follow a network through
+              its calculations and corrections, then move into transformers.
+            </p>
+            <div class="path-preview" aria-hidden="true">
+              <span>Forward pass</span><i>&rarr;</i><span>Error</span
+              ><i>&rarr;</i><span>Update</span>
+            </div>
+            <a class="path-film" href="no-018.html#film-deeper"
+              ><span>Watch inside the network</span
+              ><span aria-hidden="true">&nearr;</span></a
+            >
+            <a class="text-link" href="roadmap.html?path=deeper#part-3"
+              >Open the deeper learning roadmap &rarr;</a
+            >
+          </article>
+        </div>
+        </div>
+        <p class="path-freedom">
+          No sign-up. No fixed track. Switch paths or
+          <a href="roadmap.html">explore the whole roadmap</a> whenever you
+          like.
+        </p>
+      </section>
+      <section class="latest" id="latest" aria-labelledby="latest-title">
+        <div class="section-heading">
+          <h2 id="latest-title">The latest issue</h2>
+          <span>No. 019</span>
+        </div>
+        <div class="latest-layout">
+          <div class="film-frame">
+            <div class="motion-mount film-mount" data-motion-scene="film" aria-hidden="true"></div>
+            <video
+              controls
+              playsinline
+              preload="none"
+              poster="media/no-019.jpg"
+              aria-label="Watch One Moon. Two bulges."
+            >
+              <source src="media/no-019.mp4?v=vo-v11" type="video/mp4" />
+              <p>
+                Your browser cannot play this film.
+                <a href="media/no-019.mp4?v=vo-v11">Download the film</a>.
+              </p>
+            </video>
+          </div>
+          <div class="latest-copy">
+            <p class="issue-kicker">Lunar tides, made visible</p>
+            <h3>One Moon.<br />Two<br />bulges.</h3>
+            <p>
+              A visual model of the Moon&rsquo;s uneven pull on Earth&rsquo;s
+              water, with its limits left in view.
+            </p>
+            <div class="issue-actions">
+              <a class="button-dark" href="no-019.html"
+                >Explore the film
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path
+                    d="M3 10h13m-5-5 5 5-5 5"
+                    stroke="currentColor"
+                  /></svg></a
+              ><a class="text-link" href="packs/prior-no-019.zip">Get the scene files</a>
+            </div>
+            <div class="film-credit">
+              An illustrative model, with the sources and scene files to look closer.
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="editorial" id="about" aria-labelledby="about-title">
+        <div class="editorial-top">
+          <span>A different starting point</span
+          ><svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M34 6H6V94H34M66 6H94V94H66" />
+          </svg>
+        </div>
+        <div class="editorial-body">
+          <h2 id="about-title">What you believed.<span class="editorial-line"><span data-home-reveal="statement">Before the evidence.</span></span></h2>
+          <div class="editorial-note">
+            <p>
+              Prior explores AI engineering and data science from the inside.
+              Short films, clear explanations, and the details that make an idea
+              click.
+            </p>
+            <a class="text-link" href="#archive"
+              >Find your next idea
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" /></svg
+            ></a>
+          </div>
+        </div>
+      </section>
+      <section class="archive" id="archive" aria-labelledby="archive-title">
+        <div class="archive-head">
+          <h2 id="archive-title">Follow your<br />curiosity.</h2>
+          <p>Every issue begins with something worth understanding.</p>
+        </div>
+        <div
+          class="archive-filters"
+          role="group"
+          aria-label="Browse issues by topic"
+          hidden
+        >
+          <button type="button" data-topic-filter="all" aria-pressed="true">
+            All ideas
+          </button>
+          <button type="button" data-topic-filter="ai" aria-pressed="false">
+            AI &amp; data
+          </button>
+          <button
+            type="button"
+            data-topic-filter="systems"
+            aria-pressed="false"
+          >
+            Algorithms &amp; systems
+          </button>
+          <button
+            type="button"
+            data-topic-filter="intuition"
+            aria-pressed="false"
+          >
+            Math &amp; intuition
+          </button>
+        </div>
+        <p
+          class="archive-status"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          hidden
+        ></p>
+        <div class="issue-grid">
+          <a class="issue-card" data-topic="intuition" href="no-019.html">
+            <div class="issue-art"><img src="media/no-019.jpg" alt="" loading="lazy" width="720" height="1280" /></div>
+            <span class="issue-number">No. 019</span>
+            <h3>One Moon. Two bulges.</h3>
+            <span class="issue-summary">A closer look at lunar tides.</span>
+          </a>
+          <a class="issue-card" data-topic="ai" href="no-018.html"
+            ><div class="issue-art">
+              <img
+                src="media/no-018-p1.jpg"
+                alt=""
+                loading="lazy"
+                width="720"
+                height="1280"
+              />
+            </div>
+            <span class="issue-number">No. 018</span>
+            <h3>A month of your screen time</h3>
+            <span class="issue-summary">A way into machine learning.</span></a
+          >
+          <a class="issue-card" data-topic="ai" href="no-017.html"
+            ><div class="issue-art">
+              <img
+                src="media/no-017.jpg"
+                alt=""
+                loading="lazy"
+                width="720"
+                height="1280"
+              />
+            </div>
+            <span class="issue-number">No. 017</span>
+            <h3>Not a Transformer. A brain.</h3>
+            <span class="issue-summary">Learning while it thinks.</span></a
+          >
+          <a class="issue-card" data-topic="ai" href="no-016.html"
+            ><div class="issue-art">
+              <img
+                src="media/no-016.jpg"
+                alt=""
+                loading="lazy"
+                width="720"
+                height="1280"
+              />
+            </div>
+            <span class="issue-number">No. 016</span>
+            <h3>A score, not a test</h3>
+            <span class="issue-summary"
+              >What a bot detector actually sees.</span
+            ></a
+          >
+          <a class="issue-card" data-topic="systems" href="no-015.html"
+            ><div class="issue-art">
+              <img
+                src="media/no-015.jpg"
+                alt=""
+                loading="lazy"
+                width="720"
+                height="1280"
+              />
+            </div>
+            <span class="issue-number">No. 015</span>
+            <h3>Seventeen minutes</h3>
+            <span class="issue-summary"
+              >Finding the schedule that works.</span
+            ></a
+          >
+          <a class="issue-card" data-topic="intuition" href="no-011.html"
+            ><div class="issue-art">
+              <img
+                src="media/no-011.jpg"
+                alt=""
+                loading="lazy"
+                width="720"
+                height="1280"
+              />
+            </div>
+            <span class="issue-number">No. 011</span>
+            <h3>Chaos theory in 3D</h3>
+            <span class="issue-summary"
+              >Small differences. Different futures.</span
+            ></a
+          >
+          <a class="issue-card" data-topic="ai" href="no-010.html"
+            ><div class="issue-art">
+              <img
+                src="media/no-010.jpg"
+                alt=""
+                loading="lazy"
+                width="720"
+                height="1280"
+              />
+            </div>
+            <span class="issue-number">No. 010</span>
+            <h3>An image is a point</h3>
+            <span class="issue-summary"
+              >A different way to see an image.</span
+            ></a
+          >
+        </div>
+        <details class="archive-more">
+          <summary>Explore the earlier issues</summary>
+          <div class="issue-grid">
+            <a class="issue-card" data-topic="systems" href="no-009.html"
+              ><div class="issue-art">
+                <img
+                  src="media/no-009.jpg"
+                  alt=""
+                  loading="lazy"
+                  width="720"
+                  height="1280"
+                />
+              </div>
+              <span class="issue-number">No. 009</span>
+              <h3>Pathfinding</h3>
+              <span class="issue-summary"
+                >The route, and how you find it.</span
+              ></a
+            >
+            <a class="issue-card" data-topic="systems" href="no-008.html"
+              ><div class="issue-art">
+                <img
+                  src="media/no-008.jpg"
+                  alt=""
+                  loading="lazy"
+                  width="720"
+                  height="1280"
+                />
+              </div>
+              <span class="issue-number">No. 008</span>
+              <h3>Tower of Hanoi</h3>
+              <span class="issue-summary"
+                >The pattern inside the puzzle.</span
+              ></a
+            >
+            <a class="issue-card" data-topic="intuition" href="no-007.html"
+              ><div class="issue-art">
+                <img
+                  src="media/no-007.jpg"
+                  alt=""
+                  loading="lazy"
+                  width="720"
+                  height="1280"
+                />
+              </div>
+              <span class="issue-number">No. 007</span>
+              <h3>Why time speeds up</h3>
+              <span class="issue-summary"
+                >The changing scale of a lifetime.</span
+              ></a
+            >
+            <a class="issue-card" data-topic="systems" href="no-006.html"
+              ><div class="issue-art">
+                <img
+                  src="media/no-006.jpg"
+                  alt=""
+                  loading="lazy"
+                  width="720"
+                  height="1280"
+                />
+              </div>
+              <span class="issue-number">No. 006</span>
+              <h3>Valid parentheses</h3>
+              <span class="issue-summary"
+                >A small problem with a deeper structure.</span
+              ></a
+            >
+            <a class="issue-card" data-topic="systems" href="no-005.html"
+              ><div class="issue-art">
+                <img
+                  src="media/no-005.jpg"
+                  alt=""
+                  loading="lazy"
+                  width="720"
+                  height="1280"
+                />
+              </div>
+              <span class="issue-number">No. 005</span>
+              <h3>Load balancing</h3>
+              <span class="issue-summary"
+                >What moves when work is shared.</span
+              ></a
+            >
+            <a class="issue-card" data-topic="systems" href="no-004.html"
+              ><div class="issue-art">
+                <img
+                  src="media/no-004.jpg"
+                  alt=""
+                  loading="lazy"
+                  width="720"
+                  height="1280"
+                />
+              </div>
+              <span class="issue-number">No. 004</span>
+              <h3>Bubble sort</h3>
+              <span class="issue-summary"
+                >Comparisons are cheap. Writes are not.</span
+              ></a
+            >
+            <a class="issue-card" data-topic="ai" href="no-003.html"
+              ><div class="issue-art">
+                <img
+                  src="media/no-003.jpg"
+                  alt=""
+                  loading="lazy"
+                  width="720"
+                  height="1280"
+                />
+              </div>
+              <span class="issue-number">No. 003</span>
+              <h3>The watermark is in the choosing</h3>
+              <span class="issue-summary"
+                >Nothing is added to the text.</span
+              ></a
+            >
+            <a class="issue-card" data-topic="systems" href="no-002.html"
+              ><div class="issue-art">
+                <img
+                  src="media/no-002.jpg"
+                  alt=""
+                  loading="lazy"
+                  width="720"
+                  height="1280"
+                />
+              </div>
+              <span class="issue-number">No. 002</span>
+              <h3>MCP and APIs</h3>
+              <span class="issue-summary">Why a second protocol.</span></a
+            >
+            <a class="issue-card" data-topic="ai" href="no-001.html"
+              ><div class="issue-art">
+                <img
+                  src="media/no-001.jpg"
+                  alt=""
+                  loading="lazy"
+                  width="720"
+                  height="1280"
+                />
+              </div>
+              <span class="issue-number">No. 001</span>
+              <h3>Data science &amp; ML</h3>
+              <span class="issue-summary"
+                >Charts that make the system visible.</span
+              ></a
+            >
+          </div>
+        </details>
+        <div class="resources-row">
+          <h3>Watch it.<br />Take it apart.</h3>
+          <div>
+            <p>
+              Watch an issue, then comment the keyword on Instagram for its
+              resources. Or open the issue page and get them directly. No need
+              to wait.
+            </p>
+            <a class="text-link" href="packs/prior-no-001.zip" download
+              >Download the first issue's pack</a
+            >
+          </div>
+        </div>
+      </section>
+      <section class="follow" id="subscribe" aria-labelledby="follow-title">
+        <div class="follow-slab" aria-hidden="true"></div>
+        <div class="follow-inner">
+          <h2 id="follow-title">Stay<br />curious.</h2>
+          <div>
+            <p>
+              The next idea is already taking shape. Follow Prior for new films,
+              and find each issue's resources on its page.
+            </p>
+            <a class="button-dark" href="https://instagram.com/prior.fm"
+              >Follow Prior on Instagram
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" /></svg
+            ></a>
+            <p class="follow-small">The weekly newsletter is coming soon.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <template id="motion-specimen">
+      <div class="specimen">
+        <div class="specimen-shadow"></div>
+        <div class="specimen-turntable">
+          <div class="specimen-plate specimen-back">
+            <svg class="specimen-output" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M30 42H170M30 100H170M30 158H170" opacity=".25"/><path class="output-choice" d="M30 100H148" stroke-width="8"/><path d="M30 42H72M30 158H58" stroke-width="5"/></g><circle cx="148" cy="100" r="7" fill="currentColor"/></svg>
+          </div>
+          <div class="specimen-plate specimen-middle">
+            <svg viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M32 40L100 65L168 40M32 100L100 65L168 100M32 160L100 65L168 160M32 40L100 135L168 40M32 100L100 135L168 100M32 160L100 135L168 160"/></g><g fill="currentColor"><circle cx="32" cy="40" r="5"/><circle cx="32" cy="100" r="5"/><circle cx="32" cy="160" r="5"/><circle cx="100" cy="65" r="7"/><circle cx="100" cy="135" r="7"/><circle cx="168" cy="40" r="5"/><circle cx="168" cy="100" r="5"/><circle cx="168" cy="160" r="5"/></g></svg>
+          </div>
+          <div class="specimen-plate specimen-front">
+            <svg class="specimen-samples" viewBox="0 0 200 200" aria-hidden="true"><g fill="currentColor"><path opacity=".2" d="M32 32H68V68H32ZM82 32H118V68H82ZM132 82H168V118H132ZM32 132H68V168H32Z"/><path opacity=".5" d="M132 32H168V68H132ZM32 82H68V118H32ZM82 132H118V168H82Z"/><path d="M82 82H118V118H82ZM132 132H168V168H132Z"/></g></svg>
+            <span class="specimen-corner corner-a"></span><span class="specimen-corner corner-b"></span>
+          </div>
+        </div>
+        <div class="specimen-workbench"><span class="workbench-leaf leaf-left"></span><span class="workbench-leaf leaf-right"></span><span class="workbench-edge"></span></div>
+        <div class="specimen-door"><img src="media/no-019.jpg" width="720" height="1280" loading="lazy" alt="" /><span class="specimen-door-edge"></span></div>
       </div>
-    </section>
-
-    <!-- ============ ritual ============ -->
-    <section class="field clay">
-      <svg class="slabs" viewBox="0 0 1440 700" preserveAspectRatio="none" aria-hidden="true">
-        <defs><clipPath id="h2c"><path d="M-60 420 L620 340 L700 760 L-60 760 Z" /></clipPath></defs>
-        <path d="M-60 420 L620 340 L700 760 L-60 760 Z" fill="#0a0a0a" opacity=".14" />
-        <path d="M420 260 L1120 180 L1180 640 L400 740 Z" fill="#b0cbd6" opacity=".5" />
-        <g clip-path="url(#h2c)"><path d="M420 260 L1120 180 L1180 640 L400 740 Z" fill="#da9062" /></g>
-      </svg>
-      <div class="eyebrow">How it works</div>
-      <div class="huge" style="font-size: clamp(40px, 8vw, 120px)">Watch.<br />Comment.<br />Get the pack.</div>
-      <ol class="steps">
-        <li>Watch the issue on Instagram</li>
-        <li>Comment the keyword named in the caption</li>
-        <li>The pack lands in your DMs &mdash; or <a href="packs/prior-no-001.zip" download style="border-bottom:3px solid currentColor">take it here</a></li>
-      </ol>
-    </section>
-
-    <!-- ============ subscribe ============ -->
-    <section class="field dark" id="subscribe">
-      <div class="eyebrow">The weekly</div>
-      <div class="huge" style="font-size: clamp(44px, 9vw, 140px)">Every<br />Friday</div>
-      <p class="lede">One long-form teardown a week. Coming soon.</p>
-      <!-- subscribe: swap this block back to the buttondown form once the handle exists
-      <form class="sub" method="post" action="https://buttondown.com/api/emails/embed-subscribe/prior" target="popupwindow">
-        <input type="email" name="email" placeholder="you@work.com" required /><button type="submit">Subscribe &rarr;</button>
-      </form> -->
-      <p style="margin-top: 34px">
-        <a class="btnlink" href="https://instagram.com/prior.fm">Follow on Instagram &rarr;</a>
-      </p>
-      <p class="small" style="margin-top: 20px; opacity: 0.5">The weekly opens soon. Issues land on Instagram first.</p>
-    </section>
-
-    <!-- ============ archive ============ -->
-    <h2 class="section" id="archive">Archive</h2>
-    <div class="grid">
-      <a class="card" href="no-001.html">
-        <img src="media/no-001.jpg" alt="" loading="lazy" />
-        <span class="no">No. 001</span>
-        <span class="ttl">Data science &amp; ML</span>
-        <span class="small" style="opacity: 0.55">Thirteen charts, one system</span>
-      </a>
-      <a class="card" href="no-002.html">
-        <img src="media/no-002.jpg" alt="" loading="lazy" />
-        <span class="no">No. 002</span>
-        <span class="ttl">MCP and APIs</span>
-        <span class="small" style="opacity: 0.55">Why a second protocol</span>
-      </a>
-      <a class="card" href="no-003.html">
-        <img src="media/no-003.jpg" alt="" loading="lazy" />
-        <span class="no">No. 003</span>
-        <span class="ttl">The watermark is in the choosing</span>
-        <span class="small" style="opacity: 0.55">Nothing is added to the text</span>
-      </a>
-      <a class="card" href="no-004.html">
-        <img src="media/no-004.jpg" alt="" loading="lazy" />
-        <span class="no">No. 004</span>
-        <span class="ttl">Bubble sort</span>
-        <span class="small" style="opacity: 0.55">Comparisons are cheap; writes are not</span>
-      </a>
-      <a class="card" href="no-005.html">
-        <img src="media/no-005.jpg" alt="" loading="lazy" />
-        <span class="no">No. 005</span>
-        <span class="ttl">Load balancing</span>
-        <span class="small" style="opacity: 0.55">You did not speed anything up</span>
-      </a>
-      <a class="card" href="no-006.html">
-        <img src="media/no-006.jpg" alt="" loading="lazy" />
-        <span class="no">No. 006</span>
-        <span class="ttl">Valid parentheses</span>
-        <span class="small" style="opacity: 0.55">A counter never wrongly rejects</span>
-      </a>
-      <a class="card" href="no-007.html">
-        <img src="media/no-007.jpg" alt="" loading="lazy" />
-        <span class="no">No. 007</span>
-        <span class="ttl">Why time speeds up</span>
-        <span class="small" style="opacity: 0.55">The middle of your life is 18</span>
-      </a>
-      <a class="card" href="no-008.html">
-        <img src="media/no-008.jpg" alt="" loading="lazy" />
-        <span class="no">No. 008</span>
-        <span class="ttl">Tower of Hanoi</span>
-        <span class="small" style="opacity: 0.55">One more disk doubles the moves</span>
-      </a>
-      <a class="card" href="no-009.html">
-        <img src="media/no-009.jpg" alt="" loading="lazy" />
-        <span class="no">No. 009</span>
-        <span class="ttl">Pathfinding</span>
-        <span class="small" style="opacity: 0.55">Same route, 92% less searching</span>
-      </a>
-      <a class="card" href="no-010.html">
-        <img src="media/no-010.jpg" alt="" loading="lazy" />
-        <span class="no">No. 010</span>
-        <span class="ttl">An image is a point</span>
-        <span class="small" style="opacity: 0.55">3,147,776 numbers, one point</span>
-      </a>
-      <a class="card" href="no-011.html">
-        <img src="media/no-011.jpg" alt="" loading="lazy" />
-        <span class="no">No. 011</span>
-        <span class="ttl">Chaos theory in 3D</span>
-        <span class="small" style="opacity: 0.55">0.1&deg; apart, then 190&deg;</span>
-      </a>
-      <a class="card" href="no-015.html">
-        <img src="media/no-015.jpg" alt="" loading="lazy" />
-        <span class="no">No. 015</span>
-        <span class="ttl">Seventeen minutes</span>
-        <span class="small" style="opacity: 0.55">2 optimal schedules out of 85,368</span>
-      </a>
-      <a class="card" href="no-016.html">
-        <img src="media/no-016.jpg" alt="" loading="lazy" />
-        <span class="no">No. 016</span>
-        <span class="ttl">A score, not a test</span>
-        <span class="small" style="opacity: 0.55">human 0.9 &middot; bot 0.1 &middot; careful human 0.4</span>
-      </a>
-      <a class="card" href="no-017.html">
-        <img src="media/no-017.jpg" alt="" loading="lazy" />
-        <span class="no">No. 017</span>
-        <span class="ttl">Not a Transformer. A brain.</span>
-        <span class="small" style="opacity: 0.55">38% recall &middot; 4.9% chance &middot; nothing trained</span>
-      </a>
-      <a class="card" href="no-018.html">
-        <img src="media/no-018-p1.jpg" alt="" loading="lazy" />
-        <span class="no">No. 018</span>
-        <span class="ttl">A month of your screen time</span>
-        <span class="small" style="opacity: 0.55">four parts &middot; sixteen ideas &middot; 30 to 240 hours</span>
-      </a>
-      <a class="card" href="no-019.html">
-        <img src="media/no-019.jpg" alt="" loading="lazy" />
-        <span class="no">No. 019</span>
-        <span class="ttl">One Moon. Two bulges.</span>
-        <span class="small" style="opacity: 0.55">two bulges &middot; one lunar day</span>
-      </a>
-    </div>
-
-    <footer>
-      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
-        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
-      </svg>
-      <span data-wordmark>Prior</span>
-      <nav class="socials" aria-label="Social links">
-        <a href="https://instagram.com/prior.fm">Instagram</a>
-        <a href="https://tiktok.com/@prior.fm">TikTok</a>
-        <a href="https://youtube.com/@priorfm">YouTube</a>
-        <a href="privacy.html">Privacy</a>
-      </nav>
-      <span class="sp">&copy; 2026</span>
+    </template>
+    <footer class="footer">
+      <div class="footer-top">
+        <a
+          class="brand"
+          href="#journey"
+          aria-label="Prior, back to the beginning"
+          ><svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M34 6H6V94H34M66 6H94V94H66" /></svg
+          ><span data-wordmark>Prior</span></a
+        >
+        <nav class="footer-nav" aria-label="Social and legal links">
+          <a href="https://instagram.com/prior.fm">Instagram</a
+          ><a href="https://tiktok.com/@prior.fm">TikTok</a
+          ><a href="https://youtube.com/@priorfm">YouTube</a
+          ><a href="privacy.html">Privacy</a>
+        </nav>
+      </div>
+      <div class="footer-wordmark" aria-hidden="true">PRIOR</div>
+      <div class="footer-bottom">
+        <span>What you believed before the evidence.</span
+        ><span>&copy; 2026 Prior</span>
+      </div>
     </footer>
   </body>
 </html>

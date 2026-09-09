@@ -1,1 +1,21 @@
 .DS_Store
+
+# Local reference footage extracts and downloaded source snapshots.
+docs/reference-analysis/frames/
+docs/reference-analysis/dense/
+docs/reference-analysis/live-index.html
+docs/united-carriers-analysis/homepage-source.html
+docs/united-carriers-analysis/response-headers.txt
+docs/united-carriers-analysis/source/
+docs/united-carriers-analysis/visual/
+
+# Full-resolution authoring copies; the optimised WebP assets ship.
+media/cinematic/*.png
+
+# Local tools, secrets and verification output.
+node_modules/
+.env
+.env.*
+!.env.example
+test-results/
+playwright-report/

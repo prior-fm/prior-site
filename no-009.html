@@ -19,15 +19,17 @@
     <script data-goatcounter="https://prior.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
   </head>
-  <body>
+  <body class="legacy-page">
+    <a class="skip-link" href="#content">Skip to content</a>
     <header>
       <a href="index.html" style="display:flex;align-items:center;gap:16px;text-decoration:none">
         <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" /></svg>
         <span class="word" data-wordmark>Prior</span>
       </a>
-      <nav><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
+      <nav aria-label="Prior navigation"><a href="index.html#archive">Archive</a><a href="index.html#subscribe">Subscribe</a></nav>
     </header>
 
+    <main id="content" aria-label="Prior No. 009">
     <section class="field blue">
       <div class="eyebrow">No. 009 &middot; 38 seconds</div>
       <div class="huge">Same route.<br />92% less<br />searching</div>
@@ -36,7 +38,7 @@
 
     <section class="field parch">
       <div class="latest">
-        <video src="media/no-009.mp4" poster="media/no-009.jpg" controls playsinline preload="metadata"></video>
+        <video src="media/no-009.mp4" poster="media/no-009.jpg" controls playsinline preload="metadata" aria-label="Prior No. 009 film"></video>
         <div><p class="prose">Five algorithms, one real map, one query. Every search in the film is a real instrumented run on the real Madrid street network &mdash; 72,234 corners of it, downloaded from OpenStreetMap &mdash; and every Nodes/Time caption is that run&rsquo;s own measurement. Dijkstra floods half the city. Greedy best-first sprints straight at the goal and touches 622 corners. A* and its bidirectional variant get the best of both: the optimal route, a fraction of the work. Nothing is animated by hand.</p></div>
       </div>
     </section>
@@ -80,6 +82,7 @@
       <a class="card" href="index.html#archive"><span class="no">All</span><span class="ttl">Archive</span></a>
     </div>
 
+    </main>
     <footer>
       <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
         <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />

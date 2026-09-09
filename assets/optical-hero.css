@@ -1,0 +1,150 @@
+/* Approved warm optical studio. The existing brand and type rules are inherited.
+   A rendered optical rim supplies material detail; HTML/SVG carries the content. */
+body.optical-studio {
+  background: var(--paper);
+  color: var(--ink);
+}
+body.optical-studio .journey,
+body.optical-studio .stage { background: var(--paper); color: var(--ink); }
+body.optical-studio .footer { color: var(--paper); }
+body.optical-studio .stage { --optical-progress: 0; }
+.motion-ready body.optical-studio .journey { height: 420svh; }
+body.optical-studio .optical-light {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 77% 42%, rgb(176 203 214 / .34), transparent 42%),
+    radial-gradient(ellipse at 70% 67%, rgb(218 144 98 / .1), transparent 40%),
+    linear-gradient(120deg, rgb(255 255 255 / .36), transparent 55%);
+  transform: translateY(calc(var(--optical-progress) * 8%));
+}
+body.optical-studio .optical-light::after {
+  content: "";
+  position: absolute;
+  width: 52%;
+  height: 14%;
+  right: 4%;
+  top: 58%;
+  border-radius: 50%;
+  border-top: 2px solid rgb(255 255 255 / .7);
+  box-shadow: 0 -8px 24px rgb(176 203 214 / .18);
+  transform: rotate(-18deg) translateY(calc(var(--optical-progress) * 40%));
+  opacity: .7;
+}
+body.optical-studio .stage-shade {
+  background: linear-gradient(0deg, var(--paper), transparent 18%);
+}
+body.optical-studio .aperture { display: none; }
+body.optical-studio .scene-description,
+body.optical-studio .object-caption { color: var(--muted); }
+body.optical-studio .scene-link { border-color: var(--line); }
+body.optical-studio .scene-link:hover,
+body.optical-studio .main-nav a:hover { color: var(--focus-on-light); }
+body.optical-studio .journey :focus-visible { outline-color: var(--focus-on-light); }
+body.optical-studio .hero-foot .start-learning {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+body.optical-studio .hero-foot .start-learning:hover { background: var(--blue); color: var(--ink); }
+body.optical-studio .scroll-cue span { background: var(--line); }
+body.optical-studio .scroll-cue span::after { background: var(--ink); }
+body.optical-studio .journey-nav a { color: var(--muted); }
+body.optical-studio .journey-nav a::after { background: var(--line); }
+body.optical-studio .journey-nav a[aria-current="step"] { color: var(--ink); }
+body.optical-studio .journey-nav a[aria-current="step"]::after { background: var(--ink); }
+
+/* One optical instrument reveals input, connections, then an uncertain result.
+   No replacement logo, decorative numeral, or text baked into the image. */
+body.optical-studio .object-halo {
+  inset: 72% -14% -12%;
+  background: radial-gradient(ellipse, rgb(10 10 10 / .13), rgb(176 203 214 / .16) 38%, transparent 70%);
+  transform: rotate(-12deg);
+}
+body.optical-studio .optical-lens {
+  position: absolute;
+  inset: -18%;
+  width: 136%;
+  height: 136%;
+  max-width: none;
+  object-fit: contain;
+  pointer-events: none;
+  transform: translateZ(-8px);
+}
+body.optical-studio .chip-pins,
+body.optical-studio .chip-base { display: none; }
+body.optical-studio .journey-object .image-tile {
+  inset: 18%;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--ink);
+}
+body.optical-studio .tile-registration,
+body.optical-studio .tile-corner { display: none; }
+body.optical-studio .pixel-grid {
+  background-color: var(--ink);
+  background-image: linear-gradient(var(--paper) 2px, transparent 2px), linear-gradient(90deg, var(--paper) 2px, transparent 2px);
+}
+body.optical-studio .chip-core {
+  inset: 20%;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  opacity: calc(var(--compute) * (1 - var(--prediction)));
+}
+body.optical-studio .journey-object .chip-relationships { color: var(--ink); }
+body.optical-studio .journey-object .prediction-tile {
+  inset: 18%;
+  padding: 12% 3%;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  box-shadow: none;
+  transform: translateZ(calc(22px + var(--prediction) * 22px));
+}
+body.optical-studio .prediction-tile > span { color: var(--muted); }
+body.optical-studio .journey-object .prediction-readout { color: var(--ink); }
+body.optical-studio .journey-object .prediction-readout .prediction-choice { stroke: var(--focus-on-light); }
+body.optical-studio .journey-object .prediction-readout circle { fill: var(--focus-on-light); }
+body.optical-studio .studio-travelling .optical-lens { opacity: calc(1 - var(--handoff, 0)); }
+
+/* Use the existing wordmark scale and letterforms; reserve separate space
+   for copy and instrument at portrait widths instead of shrinking the type. */
+@media (max-width: 900px) {
+  .motion-ready body.optical-studio .journey { height: 380svh; }
+  .motion-ready body.optical-studio .journey-object:not(.studio-travelling) {
+    width: min(44vw, 24svh, 280px);
+    top: 17svh;
+    right: 20%;
+  }
+  .motion-ready body.optical-studio .scene-copy,
+  .motion-ready body.optical-studio .scene-copy[data-scene="0"] {
+    top: 48svh;
+    bottom: auto;
+    right: var(--gutter);
+    max-width: min(83%, 620px);
+  }
+  body.optical-studio .object-caption { top: 112%; }
+  body.optical-studio .optical-light::after { top: 39%; }
+}
+@media (max-width: 900px) and (max-height: 700px) {
+  .motion-ready body.optical-studio .journey-object:not(.studio-travelling) { top: 18svh; width: min(38vw, 22svh); }
+  .motion-ready body.optical-studio .scene-copy,
+  .motion-ready body.optical-studio .scene-copy[data-scene="0"] { top: 45svh; }
+}
+/* Every chapter and link stays in document flow without animation. */
+html:not(.motion-ready) body.optical-studio .scene-copy {
+  color: var(--ink);
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+html:not(.motion-ready) body.optical-studio .scene-copy[data-scene="0"] {
+  background: linear-gradient(110deg, var(--paper) 45%, rgb(241 236 223 / .82)), url("../media/optical/clear-lens.png") right center / min(65vw, 600px) auto no-repeat;
+}
+@media (prefers-reduced-motion: reduce) {
+  body.optical-studio .optical-light,
+  body.optical-studio .optical-light::after { transform: none; }
+}

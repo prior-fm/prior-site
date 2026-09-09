@@ -1,0 +1,87 @@
+/* Matching materials carry the tile through three reserved visual stages.
+   Native text, experiment results and playback never become animation layers. */
+.motion-mount { display: none; pointer-events: none; isolation: isolate; }
+.connected-motion-ready .motion-mount { display: block; }
+.studio-plot { position: relative; }
+.experiment-mount { position: absolute; inset: 0 0 46px; overflow: clip; z-index: 2; }
+.mechanism-spread { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: center; gap: clamp(20px, 5vw, 72px); padding: 20px 0 60px; }
+.mechanism-copy h3 { font-size: clamp(30px, 3.6vw, 54px); font-weight: 400; letter-spacing: -.035em; line-height: 1.08; }
+.mechanism-copy p { max-width: 32ch; margin-top: 20px; font-size: 16px; line-height: 1.65; color: var(--muted-dark); }
+.mechanism-copy .mechanism-note { font-size: 14px; }
+.mechanism-figure { min-width: 0; }
+.mechanism-mount { height: clamp(280px, 29vw, 400px); overflow: clip; }
+.mechanism-instruction { margin: 8px 0 14px; color: var(--muted-dark); font-size: 14px; line-height: 1.5; }
+.mechanism-controls { display: flex; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--hair); padding-top: 16px; }
+.mechanism-controls button { flex: 1 1 7rem; min-height: 48px; padding: 12px 10px; border: 1px solid var(--hair); border-radius: 2px; background: transparent; color: var(--paper); font: inherit; font-size: 14px; line-height: 1.4; cursor: pointer; touch-action: manipulation; }
+.mechanism-controls button[aria-pressed="true"] { background: var(--paper); border-color: var(--paper); color: var(--ink); }
+.mechanism-controls button:focus-visible, .mechanism-try:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+.mechanism-controls[hidden], .mechanism-instruction[hidden], .mechanism-explanation [hidden] { display: none; }
+.mechanism-explanation { padding-top: 24px; }
+[data-explorer-ready="true"] .mechanism-explanation { min-height: 11rem; }
+.mechanism-explanation h4 { margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -.02em; line-height: 1.25; color: var(--paper); }
+.mechanism-explanation p { max-width: 52ch; margin: 12px 0 0; color: var(--muted-dark); font-size: 16px; line-height: 1.65; }
+.mechanism-explanation > div + div { margin-top: 24px; }
+[data-explorer-ready="true"] .mechanism-explanation > div { margin-top: 0; }
+.mechanism-try { display: inline-block; margin-top: 20px; padding: 12px 0; color: var(--blue); text-decoration: underline; text-underline-offset: 5px; font-size: 15px; line-height: 1.5; }
+/* The visible buttons remain the keyboard and screen-reader controls. */
+[data-explorer-ready="true"] .mechanism-mount .specimen-plate { pointer-events: auto; cursor: pointer; }
+.mechanism-mount[data-mechanism-engaged="true"] .specimen { --open: 1 !important; --rotate: .6 !important; }
+.mechanism-mount[data-mechanism-engaged="true"] .specimen-plate,
+.mechanism-mount[data-mechanism-engaged="true"] .specimen-turntable { transition: transform 320ms ease-out, box-shadow 220ms ease-out; }
+[data-mechanism-selected="examples"] .mechanism-mount[data-mechanism-engaged="true"] .specimen-front,
+[data-mechanism-selected="relationships"] .mechanism-mount[data-mechanism-engaged="true"] .specimen-middle,
+[data-mechanism-selected="prediction"] .mechanism-mount[data-mechanism-engaged="true"] .specimen-back { outline: 2px solid var(--paper); outline-offset: 3px; box-shadow: 0 2px 0 #758782, 0 5px 0 #121c1d, 0 20px 38px #0007; }
+[data-mechanism-selected="examples"] .mechanism-mount[data-mechanism-engaged="true"] .specimen-front { transform: translate3d(-70%, -18%, 88px); }
+[data-mechanism-selected="relationships"] .mechanism-mount[data-mechanism-engaged="true"] .specimen-middle { transform: translate3d(0, -4%, 32px); }
+[data-mechanism-selected="prediction"] .mechanism-mount[data-mechanism-engaged="true"] .specimen-back { transform: translate3d(70%, 10%, 0); }
+.film-mount { position: absolute; inset: 0; overflow: clip; z-index: 2; background: var(--ink); opacity: var(--scene-opacity, 1); }
+.specimen { --open: 0; --rotate: 0; --reveal: 0; --close: 0; --door: 0; --scene-opacity: 1; position: relative; width: 100%; height: 100%; perspective: 1100px; }
+.specimen-turntable { position: absolute; width: 46%; aspect-ratio: 1; left: 27%; top: 50%; transform-style: preserve-3d; transform: translateY(-50%) rotateX(calc(14deg + var(--open) * 12deg)) rotateY(calc(-23deg + var(--rotate) * 23deg)) rotateZ(calc(-7deg + var(--rotate) * 7deg)); opacity: calc(1 - var(--door)); }
+.specimen-plate { position: absolute; inset: 0; transform-style: preserve-3d; border: 1px solid #b0cbd699; box-shadow: 0 2px 0 #758782, 0 5px 0 #121c1d, 0 15px 35px #0004; backface-visibility: hidden; }
+.specimen-front { background: var(--paper); color: var(--ink); transform: translate3d(calc(var(--open) * -70%), calc(var(--open) * -14%), calc(44px + var(--open) * 36px)) rotateY(calc(var(--reveal) * -85deg)); transform-origin: left center; opacity: calc(1 - var(--reveal)); }
+.specimen-samples { width: 100%; height: 100%; }
+.specimen-middle { background: var(--blue); transform: translate3d(0, 0, 20px); opacity: calc(1 - var(--reveal)); }
+.specimen-middle svg { width: 100%; height: 100%; color: var(--ink); }
+.specimen-middle path { stroke-dasharray: 900; stroke-dashoffset: calc(900 * (1 - var(--open))); }
+.specimen-back { background: #182526; color: var(--blue); transform: translate3d(calc(var(--open) * 70%), calc(var(--open) * 14%), calc(var(--open) * -24px)); opacity: calc(1 - var(--reveal)); }
+.specimen-back svg { width: 100%; height: 100%; }
+.specimen-output .output-choice { stroke-dasharray: 118; stroke-dashoffset: calc(118 * (1 - var(--open))); }
+.specimen-corner { position: absolute; top: 8%; bottom: 8%; width: 8%; border-top: 1px solid #0a0a0a55; border-bottom: 1px solid #0a0a0a55; }
+.corner-a { left: 8%; border-left: 1px solid #0a0a0a55; }
+.corner-b { right: 8%; border-right: 1px solid #0a0a0a55; }
+.specimen-shadow { position: absolute; width: 54%; height: 12%; left: 23%; top: 75%; border-radius: 50%; background: radial-gradient(ellipse, #0005, transparent 70%); transform: scaleX(calc(1 + var(--open) * .5)); opacity: calc(1 - var(--reveal)); }
+.specimen-door, .specimen-workbench { display: none; }
+/* Open a working surface onto the real chart; never introduce another digit. */
+.experiment-mount .specimen-turntable, .experiment-mount .specimen-shadow { display: none; }
+.experiment-mount .specimen-workbench { display: block; position: absolute; inset: 0; overflow: clip; }
+.workbench-leaf { position: absolute; top: 0; bottom: 0; width: 50%; background-color: var(--paper); background-image: linear-gradient(#0a0a0a0a 1px, transparent 1px), linear-gradient(90deg, #0a0a0a0a 1px, transparent 1px); background-size: 32px 32px; }
+.leaf-left { left: 0; border-right: 1px solid #0a0a0a30; transform: translateX(calc(var(--reveal) * -101%)); }
+.leaf-right { right: 0; border-left: 1px solid #0a0a0a30; transform: translateX(calc(var(--reveal) * 101%)); }
+.workbench-edge { position: absolute; inset: 5%; border: 1px solid #0a0a0a50; transform: scale(calc(.65 + var(--open) * .35)); opacity: calc(1 - var(--reveal)); }
+.mechanism-mount .specimen-turntable { width: 35%; left: 32.5%; }
+.mechanism-mount .specimen-front { background: var(--clay); }
+.film-mount .specimen-turntable, .film-mount .specimen-shadow { display: none; }
+/* The next face is the actual film. The same edge settles into its player. */
+.film-mount .specimen-door { display: block; position: absolute; inset: 0; transform: translateY(calc((1 - var(--door)) * 12%)) rotateY(calc((1 - var(--door)) * -28deg)) scale(calc(.64 + var(--door) * .36)); transform-origin: center; opacity: 1; box-shadow: 10px 15px 32px #0008; }
+.specimen-door img { display: block; width: 100%; height: 100%; object-fit: contain; background: var(--ink); }
+.specimen-door-edge { position: absolute; inset: 0; border: 1px solid rgb(176 203 214 / calc(1 - var(--door))); background: linear-gradient(110deg, rgb(241 236 223 / calc((1 - var(--door)) * .3)), transparent 48%); }
+/* Static mechanism still communicates the layers when motion is reduced. */
+.connected-motion-still .mechanism-mount .specimen { --open: 1; --rotate: .6; }
+.connected-motion-still .experiment-mount, .connected-motion-still .film-mount { display: none; }
+[data-motion-retired] { display: none !important; }
+@media (max-width: 800px) {
+  .mechanism-spread { grid-template-columns: minmax(0, 1fr); gap: 20px; padding-bottom: 42px; }
+  .mechanism-copy p { max-width: 44ch; }
+  .mechanism-figure { width: 100%; max-width: 560px; justify-self: center; }
+  .mechanism-mount { height: clamp(250px, 65vw, 360px); }
+  .specimen-turntable { transform: translateY(-50%) rotateX(calc(10deg + var(--open) * 10deg)) rotateY(calc(-18deg + var(--rotate) * 18deg)) rotateZ(calc(-5deg + var(--rotate) * 5deg)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .experiment-mount, .film-mount { display: none !important; }
+  .mechanism-mount .specimen { --open: 1 !important; --rotate: .6 !important; }
+  .mechanism-mount[data-mechanism-engaged="true"] .specimen-plate,
+  .mechanism-mount[data-mechanism-engaged="true"] .specimen-turntable { transition: none; }
+}
+@media (max-width: 400px) {
+  [data-explorer-ready="true"] .mechanism-explanation { min-height: 14rem; }
+}

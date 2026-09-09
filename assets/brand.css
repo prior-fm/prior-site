@@ -1,0 +1,60 @@
+/* Prior's shared identity: intelligent calm, with evidence in motion. */
+@font-face {
+  font-family: Hanken;
+  src: url("fonts/ieVn2YZDLWuGJpnzaiwFXS9tYtpd59A.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Archivo;
+  src: url("fonts/HTxqL289NzCGg4MzN6KJ7eW6CYyF_g.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Printvetica;
+  src: url("fonts/printvetica-subset.woff2") format("woff2");
+  font-weight: 400;
+  font-display: block;
+}
+
+:root {
+  --ink: #0a0a0a;
+  --paper: #f1ecdf;
+  --blue: #b0cbd6;
+  --clay: #da9062;
+  --muted: #555c58;
+  --muted-dark: #b6b6ae;
+  --line: rgb(10 10 10 / 19%);
+  --hair: rgb(241 236 223 / 25%);
+  --surface-dark: #161b1d;
+  --focus-on-light: #9a4e28;
+  --focus-on-dark: var(--blue);
+
+  --font-body: Hanken, Arial, sans-serif;
+  --font-brand: Printvetica, Archivo, Arial, sans-serif;
+  --brand-tracking: 0.22em;
+  --display-tracking: -0.03em;
+  --mark-stroke: 11;
+
+  --gutter: clamp(24px, 4.3vw, 88px);
+  --content-max: 1500px;
+  --measure: 68ch;
+  --target: 44px;
+
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 72px;
+  --space-8: 96px;
+
+  /* Compatibility names used by published issue templates. */
+  --black: var(--ink);
+  --parch: var(--paper);
+  --face: var(--font-body);
+}
