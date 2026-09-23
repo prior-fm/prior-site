@@ -98,12 +98,17 @@ body > main {
 .field.clay,
 .field.parch,
 .field.dark {
-  background: transparent !important;
+  background-color: transparent !important;
   color: var(--b-ink) !important;
   padding: 28px 16px !important;
   overflow: visible;
 }
-.field + .field { border-top: 1.6px solid rgb(30 19 27 / 14%); }
+.field + .field {
+  background-image: linear-gradient(rgb(30 19 27 / 14%), rgb(30 19 27 / 14%)) !important;
+  background-size: calc(100% - 32px) 1.6px !important;
+  background-position: 16px 0 !important;
+  background-repeat: no-repeat !important;
+}
 .slabs { display: none !important; }
 .eyebrow {
   font-size: 13px;
@@ -170,19 +175,30 @@ img { max-width: 100%; height: auto; }
 
 ol.steps li { font-size: 17px; text-transform: none; letter-spacing: 0; border-top: 1.6px solid rgb(30 19 27 / 25%); }
 
-/* ---------- footer (kept, restyled) ---------- */
-body > footer,
-body footer {
-  max-width: 680px;
-  margin: 0 auto;
-  padding: 28px 16px 48px;
+/* ---------- footer: one Butter footer on every page ---------- */
+.butter-footer,
+body > footer.butter-footer {
+  display: block;
+  width: calc(100% - 32px);
+  max-width: 648px;
+  margin: 24px auto 0;
+  padding: 24px 0 48px;
   color: var(--b-brown);
   background: transparent;
-  font-size: 14px;
+  font: 14px/1.6 var(--b-font);
   border-top: 1.6px solid rgb(30 19 27 / 14%);
 }
-footer a, footer .socials a { color: var(--b-brown); }
-footer .mark { display: none; }
+.butter-footer a { color: var(--b-brown); }
+.butter-footer .bf-note { display: block; margin-top: 8px; }
+.butter-footer-nav {
+  display: flex; flex-wrap: wrap; gap: 8px 20px;
+  width: calc(100% - 32px); max-width: 648px; margin: 32px auto 0;
+  font: 500 15px/1.5 var(--b-font);
+}
+.butter-footer-nav a { color: var(--b-blue); }
+
+/* big headings: no narrow max-width */
+.huge, h1, h2 { max-width: none; }
 
 /* ---------- forms (restyle only; actions untouched) ---------- */
 input[type="email"], input[type="text"] {
@@ -219,16 +235,14 @@ form button, button.btn, form.sub button {
   border: 1.6px solid var(--b-ink); border-radius: 10px;
   background: var(--b-ink); color: var(--b-paper); font-weight: 600;
 }
-.butter-bar + main footer { color: var(--b-brown); padding-left: 0; padding-right: 0; }
 
 /* learning pages (no-018, roadmap, lesson): light-surface kickers + footer. */
 .lesson-kicker { color: var(--b-blue); }
 .lesson-stage-head .lesson-kicker { color: var(--b-gold); }
-body > footer.reading-footer { max-width: none; background: var(--b-ink); color: var(--b-paper); border: 0; }
-body > footer.reading-footer a { color: var(--b-paper); }
 .learning-journey a { color: rgb(244 238 224 / 75%); }
 .field.reading-hero { background: var(--b-ink) !important; color: var(--b-paper) !important; padding: 40px 16px !important; }
 .field.reading-hero .eyebrow { color: var(--b-gold); }
 .field.reading-hero .lede { color: var(--b-paper); }
 /* old dark-field copy with a hard-coded light grey (no-007) */
 .field .prose[style*="color"] { color: var(--b-ink) !important; }
+.butter-bar + main .butter-footer { width: 100%; }

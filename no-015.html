@@ -34,7 +34,7 @@
     <main id="content" aria-label="Prior No. 015">
     <section class="field clay">
       <div class="eyebrow">No. 015 &middot; Algorithms</div>
-      <div class="huge">Not 19.<br />17 minutes.</div>
+      <div class="huge">Not 19. 17 minutes.</div>
       <p class="lede">The optimal answer is not about who moves fastest</p>
     </section>
 
@@ -47,14 +47,14 @@
 
     <section class="field parch">
       <div class="eyebrow">The puzzle</div>
-      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">1, 2, 5<br />and 10.</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">1, 2, 5 and 10.</div>
       <p class="prose" style="margin-top:26px">Four people, one torch, one bridge. <strong>Two can cross at a time</strong>, and a crossing takes the <strong>slower</strong> person&rsquo;s time. The torch cannot be thrown back, so somebody has to walk it. Their times are 1, 2, 5 and 10 minutes. What is the fastest everyone gets across?</p>
       <p class="prose" style="margin-top:18px">Almost everyone lands on the same idea: put the fastest person in charge. Send 1 with each of the others in turn and let them run the torch back every time. <code>1+10</code>, <code>1</code> back, <code>1+5</code>, <code>1</code> back, <code>1+2</code>. It is tidy, it is obviously sensible, and it costs <strong>19 minutes</strong>.</p>
     </section>
 
     <section class="field parch">
       <div class="eyebrow">The thing worth noticing</div>
-      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">Send the<br />two slowest<br />together.</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">Send the two slowest together.</div>
       <p class="prose" style="margin-top:26px">A crossing costs the <strong>slower</strong> person&rsquo;s time. So a slow person is only expensive <em>when they are the slowest one moving.</em></p>
       <p class="prose" style="margin-top:18px">Escorting pays the 10 once and the 5 once &mdash; fifteen minutes of slow &mdash; and buys cheap one-minute returns in exchange. Sending 5 and 10 <strong>together</strong> pays the 10 once and the 5 <strong>not at all</strong>, at the cost of one two-minute return instead of a one-minute one. That trade is worth two minutes:</p>
       <p class="prose" style="margin-top:18px"><code>1+2</code> across (2) &middot; <code>1</code> back (1) &middot; <code>5+10</code> across (10) &middot; <code>2</code> back (2) &middot; <code>1+2</code> across (2). <strong>17 minutes.</strong></p>
@@ -63,14 +63,14 @@
 
     <section class="field parch">
       <div class="eyebrow">How narrow the optimum is</div>
-      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">2 out of<br />85,368.</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">2 out of 85,368.</div>
       <p class="prose" style="margin-top:26px">The pack enumerates every legal schedule for these four people: <strong>85,368</strong> of them, up to a cost of 40 minutes. Exactly <strong>two</strong> cost 17. Twelve cost 19. The distribution peaks around 37.</p>
       <p class="prose" style="margin-top:18px">So the intuitive answer is not a bad answer &mdash; it is in the best 0.03% of everything you could do. It is just not the best, and the gap is entirely about how many times you pay for the slowest person.</p>
     </section>
 
     <section class="field clay">
       <div class="eyebrow">The pack &mdash; free, no email</div>
-      <div class="huge" style="font-size:clamp(36px,7vw,96px)">The solver,<br />and the<br />proof</div>
+      <div class="huge" style="font-size:clamp(36px,7vw,96px)">The solver, and the proof</div>
       <p class="lede">It does not assert that 17 is optimal. It searches for it, then checks itself against a second, independent derivation.</p>
       <p class="prose" style="margin-top:18px"><strong>bridge.py</strong> &mdash; Python 3.8+, standard library only, no installs and no arguments needed. Four things, and they are deliberately separate so no one of them can quietly be the others:</p>
       <p class="prose" style="margin-top:18px"><strong>1. A replayer that refuses.</strong> Every schedule is walked move by move, and each move is checked before its cost is added: one or two people, always on the torch&rsquo;s side, always the slower one&rsquo;s time, torch ending on the far bank. A schedule that breaks a rule raises rather than scoring.</p>
@@ -91,14 +91,10 @@
       <p class="prose" style="margin-top:26px; max-width:60ch"><a href="bridge.html" style="color:inherit;border-bottom:3px solid var(--clay);text-decoration:none">Change the times and watch the optimum move &rarr;</a></p>
     </section>
 
-    <!-- THE VEKTOR POINTER. Founder's call 2026-08-25 — see no-008.html. -->
-    <section class="field parch">
+<section class="field parch butter-about">
       <div class="eyebrow">Who makes this</div>
-      <p class="prose" style="margin-top:6px; max-width:56ch">Prior is made by the same person who writes <strong>Vektor</strong> &mdash; the how-I-actually-ship side of the same work: the tools, the pipeline, the things that go wrong on the way to a finished thing. Prior shows you the idea. Vektor shows you the build.</p>
-      <p style="margin-top:26px">
-        <a class="btnlink" data-goatcounter-click="no-015-to-vektor" href="https://vektor-fm.github.io/vektor-site/">Read Vektor &rarr;</a>
-      </p>
-      <p class="small" style="margin-top:16px; opacity:.6">Or on Instagram: <a href="https://instagram.com/vektor.fm">@vektor.fm</a></p>
+      <p class="prose">Butter explains one AI-engineering concept per hand-drawn loop. An AI agent draws every frame.</p>
+      <p style="margin-top:20px"><a class="btnlink" href="https://instagram.com/butter.explains">Follow @butter.explains</a></p>
     </section>
 
     <div class="grid">
@@ -107,11 +103,6 @@
     </div>
 
     </main>
-    <footer>
-      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
-        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
-      </svg>
-      <span data-wordmark>Prior</span>
-    </footer>
+    <footer class="butter-footer"><a href="index.html">Butter</a> &middot; <a href="https://instagram.com/butter.explains">@butter.explains</a> &middot; <a href="privacy.html">Privacy</a></footer>
   </body>
 </html>

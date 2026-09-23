@@ -34,7 +34,7 @@
     <main id="content" aria-label="Prior No. 008">
     <section class="field blue">
       <div class="eyebrow">No. 008 &middot; 21 seconds</div>
-      <div class="huge">One more disk<br />doubles<br />the moves</div>
+      <div class="huge">One more disk doubles the moves</div>
       <p class="lede">Five disks take 31. A sixth does not take 32 &mdash; it takes 63</p>
     </section>
 
@@ -47,21 +47,21 @@
 
     <section class="field parch">
       <div class="eyebrow">The thing worth noticing</div>
-      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">31 is not<br />a choice.<br />It is the<br />minimum.</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">31 is not a choice. It is the minimum.</div>
       <p class="prose" style="margin-top:26px">Showing that <em>your</em> solution takes <code>2&#8319; &minus; 1</code> moves proves an upper bound and nothing else. &ldquo;Optimal&rdquo; is a claim about <strong>all</strong> solutions &mdash; including strategies nobody has thought of. The pack refuses to recite the formula: a breadth-first search walks every legal position (3&#8319; states &mdash; 243 for five disks), with no recursion and no opinion about how the puzzle should be played, and reports the true shortest path from all-on-A to all-on-C.</p>
       <p class="prose" style="margin-top:18px">The two columns agree at every size checked, 1 through 7 disks. The elegant recursion and the exhaustively-verified optimum are the same object &mdash; the five lines are not just correct, they are unbeatable. The search takes milliseconds, which is the point: when checking is this cheap, there is no excuse for taking a formula on authority.</p>
     </section>
 
     <section class="field parch">
       <div class="eyebrow">And the part the film has no room for</div>
-      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">What an<br />exponent<br />feels like</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">What an exponent feels like</div>
       <p class="prose" style="margin-top:26px">To move <code>n</code> disks you must move <code>n&minus;1</code> disks <strong>twice</strong> &mdash; off the big disk, then back on top of it &mdash; plus one move for the big disk itself. <code>moves(n) = 2&middot;moves(n&minus;1) + 1</code>. That innocent-looking 2 is the whole story: at one move per second, five disks is half a minute, thirty disks is 34 years, and the 64-disk tower of the legend runs 585 billion years &mdash; the exponent outlives the sun.</p>
       <p class="prose" style="margin-top:18px">The pack also ships the recursion with the call stack made visible: the same algorithm as a loop over an explicit stack, and a check that the two move lists come out <strong>identical</strong> rather than a comment saying they do. The transform matters beyond the puzzle &mdash; it is how any tree recursion survives when the input goes deeper than Python&rsquo;s ~1000-frame limit, and the emit-marker trick that preserves the in-order work is the part almost everyone gets wrong first.</p>
     </section>
 
     <section class="field blue">
       <div class="eyebrow">The pack</div>
-      <div class="huge" style="font-size:clamp(36px,7vw,96px)">Run it<br />and check<br />the claim</div>
+      <div class="huge" style="font-size:clamp(36px,7vw,96px)">Run it and check the claim</div>
       <p class="lede">The film&rsquo;s five lines, the exhaustive minimality search, and the doubling table. Python, no dependencies.</p>
       <p class="prose" style="margin-top:18px"><code>python run.py</code> and nothing else. Four acts, a few seconds: the 31 moves printed from the film&rsquo;s own code; the breadth-first search agreeing with <code>2&#8319; &minus; 1</code> at every size from 1 to 7 disks; the doubling table out to the 64-disk legend; and the recursive and explicit-stack solvers checked move-for-move against each other. Nothing random anywhere &mdash; every act is exhaustive and fixed except one wall-clock timing.</p>
       <p style="margin-top:30px">
@@ -69,16 +69,10 @@
       </p>
     </section>
 
-    <!-- THE VEKTOR POINTER. Founder's call 2026-08-25: Prior stays faceless in
-         the films and is signed everywhere else, pointing hard at Vektor, where
-         the person and the services are. Recorded in DECISIONS.md. -->
-    <section class="field parch">
+<section class="field parch butter-about">
       <div class="eyebrow">Who makes this</div>
-      <p class="prose" style="margin-top:6px; max-width:56ch">Prior is made by the same person who writes <strong>Vektor</strong> &mdash; the how-I-actually-ship side of the same work: the tools, the pipeline, the things that go wrong on the way to a finished thing. Prior shows you the idea. Vektor shows you the build.</p>
-      <p style="margin-top:26px">
-        <a class="btnlink" data-goatcounter-click="no-008-to-vektor" href="https://vektor-fm.github.io/vektor-site/">Read Vektor &rarr;</a>
-      </p>
-      <p class="small" style="margin-top:16px; opacity:.6">Or on Instagram: <a href="https://instagram.com/vektor.fm">@vektor.fm</a></p>
+      <p class="prose">Butter explains one AI-engineering concept per hand-drawn loop. An AI agent draws every frame.</p>
+      <p style="margin-top:20px"><a class="btnlink" href="https://instagram.com/butter.explains">Follow @butter.explains</a></p>
     </section>
 
     <div class="grid">
@@ -87,11 +81,6 @@
     </div>
 
     </main>
-    <footer>
-      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
-        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
-      </svg>
-      <span data-wordmark>Prior</span>
-    </footer>
+    <footer class="butter-footer"><a href="index.html">Butter</a> &middot; <a href="https://instagram.com/butter.explains">@butter.explains</a> &middot; <a href="privacy.html">Privacy</a></footer>
   </body>
 </html>

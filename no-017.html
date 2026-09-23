@@ -34,7 +34,7 @@
     <main id="content" aria-label="Prior No. 017">
     <section class="field dark">
       <div class="eyebrow">No. 017 &middot; Architecture</div>
-      <div class="huge">Not a<br />Transformer.<br />A brain.</div>
+      <div class="huge">Not a Transformer. A brain.</div>
       <p class="lede">A Transformer stops learning the moment training ends. This one never stops.</p>
     </section>
 
@@ -47,7 +47,7 @@
 
     <section class="field parch">
       <div class="eyebrow">What it is</div>
-      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">Four stages,<br />one loop.</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">Four stages, one loop.</div>
       <p class="prose" style="margin-top:26px">There is no attention block and no backward pass. There is a sparse, non&#8209;negative graph of <strong>512 neurons</strong> joined by <strong>12,230 synapses</strong> &mdash; 4.67% of the connections that could exist, a mean of 23.9 each &mdash; and every step does four things in order.</p>
       <p class="prose" style="margin-top:18px"><strong>Propagate.</strong> Belief flows forward along weighted implications. Because no weight is ever negative, belief can only be added, never cancelled &mdash; the network cannot argue itself out of something it already holds. <strong>Strengthen.</strong> Connections that just fired together get stronger. <strong>Compete.</strong> Excitation and inhibition fight, and only strong signals clear the threshold. <strong>Feed back.</strong> The survivors are the next step&rsquo;s input.</p>
       <p class="prose" style="margin-top:18px">That is the whole machine. <strong>4.41%</strong> of neurons fire on an average step, and that sparsity is not assumed &mdash; it is caused. Run the same network with competition removed and <strong>99.2%</strong> of it lights up at once, carrying nothing.</p>
@@ -55,7 +55,7 @@
 
     <section class="field parch">
       <div class="eyebrow">The thing worth noticing</div>
-      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">It learns<br />while it<br />thinks.</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">It learns while it thinks.</div>
       <p class="prose" style="margin-top:26px">The network in the film is shown twelve pairs of symbols, six times over. Then each cue is shown alone, and the question is whether anything comes back.</p>
       <p class="prose" style="margin-top:18px">Recall comes out at <strong>38%</strong>, against a chance baseline of <strong>4.9%</strong>. Nothing was trained to do that. The fixed synaptic graph &mdash; the wiring the network started with &mdash; scores <strong>4.0%</strong> on the same readout, which is chance. The association is not in the wiring.</p>
       <p class="prose" style="margin-top:18px">It is in the synapses, which changed <em>during inference</em>. Their total strength goes from exactly zero at the start of the run to 233.3 by the end, and the run is the only thing that put it there. That is what &ldquo;it keeps learning while it thinks&rdquo; has to mean if it is going to be worth saying: a quantity that was zero, is not zero, and is doing the work.</p>
@@ -63,7 +63,7 @@
 
     <section class="field parch">
       <div class="eyebrow">How the numbers were made</div>
-      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">One run,<br />five gates.</div>
+      <div class="huge" style="font-size:clamp(30px,5.5vw,68px)">One run, five gates.</div>
       <p class="prose" style="margin-top:26px">Nothing on screen is a plausible-looking figure. One script builds the graph, runs the sequence, and refuses to print <code>GO</code> unless five invariants hold &mdash; each one chosen because a wrong formulation would fail it.</p>
       <p class="prose" style="margin-top:18px">The strongest is the equivalence check. The same run is computed twice: once as explicit message passing along every one of the 12,230 edges with a full 512&times;512 matrix of fast weights, and once as two small matrix&#8211;vector products with those fast weights held as a linear&#8209;attention state that is never built at all &mdash; the form the architecture uses to run on a GPU. The two agree to <strong>7.8&times;10<sup>&minus;16</sup></strong>, machine precision. A transpose, an index slip, or a decay applied one step out of order all fail it. They are the same machine, and the sparse brain-shaped picture and the dense GPU-shaped one are two views of it.</p>
       <p class="prose" style="margin-top:18px">The rest: activity must stay sparse <em>because of</em> inhibition and not by assumption, measured against a control with inhibition removed; every positive-weight edge carrying belief must contribute strictly positively, checked on every edge on every step; the strengthening must happen on exactly the pairs that fired together and nowhere else; and recall must beat chance from the fast weights while sitting at chance from the graph alone.</p>
@@ -72,7 +72,7 @@
 
     <section class="field clay">
       <div class="eyebrow">The pack &mdash; free, no email</div>
-      <div class="huge" style="font-size:clamp(36px,7vw,96px)">The whole<br />model,<br />one file</div>
+      <div class="huge" style="font-size:clamp(36px,7vw,96px)">The whole model, one file</div>
       <p class="lede">Not a re-implementation of the film. The same script, with its output path moved.</p>
       <p class="prose" style="margin-top:18px"><strong>bdh.py</strong> &mdash; Python 3.8+ and numpy, nothing else, no network. It is the script that produced every number above, shipped as it ran. Deterministic: fixed seed, no wall clock. Run it and you get 512 neurons, 12,230 synapses, 4.41% active, 38% recall &mdash; to the digit, in about twenty seconds.</p>
       <p class="prose" style="margin-top:18px">Then break it on purpose. <code>BDH_THETA=0</code> removes inhibition and the network still runs, still propagates, still writes to its synapses &mdash; and stops working, because 99.2% of neurons firing at once carries nothing to recall. <code>BDH_ETA=0</code> removes the learning rule and recall falls from 38% to 8%. <code>BDH_LAM=0.90</code> makes it forget faster and recall drops to 23%. Each of those is a run, not a prediction.</p>
@@ -87,14 +87,10 @@
       <p class="prose" style="margin-top:26px; max-width:60ch">Whether it holds at scale is an open question. Whether the mechanism works at all is not: <a href="packs/prior-no-017.zip" download style="color:inherit;border-bottom:3px solid var(--clay);text-decoration:none">run the file and watch zero become 233 &rarr;</a></p>
     </section>
 
-    <!-- THE VEKTOR POINTER. Founder's call 2026-08-25 — see no-008.html. -->
-    <section class="field parch">
+<section class="field parch butter-about">
       <div class="eyebrow">Who makes this</div>
-      <p class="prose" style="margin-top:6px; max-width:56ch">Prior is made by the same person who writes <strong>Vektor</strong> &mdash; the how-I-actually-ship side of the same work: the tools, the pipelines, the mistakes.</p>
-      <p style="margin-top:26px">
-        <a class="btnlink" data-goatcounter-click="no-017-to-vektor" href="https://vektor-fm.github.io/vektor-site/">Read Vektor &rarr;</a>
-      </p>
-      <p class="small" style="margin-top:16px; opacity:.6">Or on Instagram: <a href="https://instagram.com/vektor.fm">@vektor.fm</a></p>
+      <p class="prose">Butter explains one AI-engineering concept per hand-drawn loop. An AI agent draws every frame.</p>
+      <p style="margin-top:20px"><a class="btnlink" href="https://instagram.com/butter.explains">Follow @butter.explains</a></p>
     </section>
 
     <div class="grid">
@@ -103,11 +99,6 @@
     </div>
 
     </main>
-    <footer>
-      <svg class="mark" style="width: 22px; height: 22px; flex: 0 0 22px" viewBox="0 0 100 100" aria-hidden="true">
-        <path d="M34 6 H6 V94 H34 M66 6 H94 V94 H66" />
-      </svg>
-      <span data-wordmark>Prior</span>
-    </footer>
+    <footer class="butter-footer"><a href="index.html">Butter</a> &middot; <a href="https://instagram.com/butter.explains">@butter.explains</a> &middot; <a href="privacy.html">Privacy</a></footer>
   </body>
 </html>
