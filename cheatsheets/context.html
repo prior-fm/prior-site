@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Context rot: the cheat sheet · Butter</title>
+<meta name="description" content="Why your AI agent forgets, and three fixes: compact, re-pin, retrieve.">
+<meta property="og:image" content="../assets/ep01-poster.jpg">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="mast">
+  <div class="wrap">
+    <a class="logo" href="../index.html"><img src="../assets/logo-ink.png" alt="Butter" width="816" height="141"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="../index.html#episodes">Episodes</a>
+      <a href="index.html">Cheat sheets</a>
+      <a href="../index.html#archive">Archive</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <header class="read art-head">
+    <p class="kicker">Episode 01 · Cheat sheet</p>
+    <h1>Why your AI agent forgets</h1>
+    <p class="lede">Your agent didn’t get dumber. Its context window got full.</p>
+    <div class="byline"><span class="tag">Context window</span><span class="meta">3 min read</span></div>
+  </header>
+  <figure class="art-hero" style="margin-bottom:0">
+    <div class="frame">
+      <video data-loop muted loop playsinline preload="metadata" poster="../assets/ep01-poster.jpg" width="480" height="480"
+        aria-label="Episode 01 loop: a golden instruction sinks into a growing pile inside the context window, then is compacted and re-pinned on top">
+        <source src="../assets/ep01-loop.mp4" type="video/mp4">
+      </video>
+    </div>
+    <figcaption>Episode 01, “Why your AI agent forgets.” Muted loop.</figcaption>
+  </figure>
+
+  <article class="read article">
+    <div class="strip four">
+      <img src="../assets/ep01-4.6.jpg" alt="The context window drawn as a blue circle" width="480" height="480" loading="lazy">
+      <img src="../assets/ep01-14.4.jpg" alt="The golden instruction lost in the middle" width="480" height="480" loading="lazy">
+      <img src="../assets/ep01-19.5.jpg" alt="Compacting the pile into one seed" width="480" height="480" loading="lazy">
+      <img src="../assets/ep01-22.9.jpg" alt="Re-pinning the instruction on top" width="480" height="480" loading="lazy">
+    </div>
+
+    <h2>What’s happening</h2>
+    <p><b>Every message adds tokens.</b> The model can only “see” what fits in its context window: your instructions, the conversation, tool results, files. It all competes for the same space.</p>
+    <p><b>Your first instruction sinks.</b> As a session grows, what you said at the start ends up buried in the middle of a long context.</p>
+    <p><b>The middle gets the least attention.</b> Language models use information at the start and end of a long input more reliably than information in the middle. This is the “lost in the middle” effect. So long before the window is technically full, the thing you care about can stop being followed.</p>
+
+    <h2>The three fixes</h2>
+    <ol class="fixes">
+      <li><span class="n">1</span><div><b>Compact.</b>Summarise long sessions into one compact state (decisions made, open tasks, constraints) and continue from that instead of the full transcript. Many coding agents have a built-in compact command. Use it before things get hazy, not after.</div></li>
+      <li><span class="n">2</span><div><b>Re-pin.</b>Keep the rules that must never be broken at the <i>edges</i> of the context: in the system prompt or a pinned instructions file, and restate them next to the task. Example: put <code>never touch prod</code> in the project’s instructions file, not in message 3 of a 200-message chat.</div></li>
+      <li><span class="n">3</span><div><b>Retrieve.</b>Don’t paste everything “just in case”. Fetch only what this task needs (the 3 relevant files, the one doc section) at the moment it’s needed. Less, but relevant, beats more.</div></li>
+    </ol>
+
+    <h2>Quick checklist</h2>
+    <ul class="check">
+      <li>Long session? Compact it.</li>
+      <li>Critical rule? Put it in the system prompt / instructions file.</li>
+      <li>Big paste? Replace it with targeted retrieval.</li>
+      <li>Agent “forgot”? Check where the instruction sits, not just whether it’s there.</li>
+    </ul>
+
+
+    <section class="lab" id="try" aria-labelledby="lab-title">
+      <div class="lab-head"><h2 id="lab-title">Try it: fill the window</h2><span class="badge">▶ interactive</span></div>
+      <p class="lab-intro">Your rule <b>never touch prod</b> is message 1. Add messages and watch where it ends up. Faded seeds are what the model tends to pay less attention to.</p>
+      <div class="panel">
+        <span class="panel-label">Context window</span>
+        <div class="sys" id="sys">system prompt · 6 tokens</div>
+        <div class="tokens" id="tokens" aria-hidden="true"></div>
+        <div class="meter"><div class="bar" aria-hidden="true"><i id="bar"></i></div><span id="count">6 / 24 tokens</span></div>
+        <div class="legend" aria-hidden="true">
+          <span><i class="seed"></i>chat message</span>
+          <span><i class="seed paste"></i>big paste</span>
+          <span><i class="seed summary"></i>summary</span>
+          <span><i class="seed fetched"></i>fetched snippet</span>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="btn btn-ink" type="button" id="add">+ Add message</button>
+        <button class="btn btn-quiet" type="button" id="reset">Reset</button>
+      </div>
+      <p class="controls-label">Now try a fix</p>
+      <div class="controls fix-btns" style="margin-top:10px">
+        <button class="btn" type="button" id="compact">Compact</button>
+        <button class="btn" type="button" id="repin" aria-pressed="false">Re-pin</button>
+        <button class="btn" type="button" id="retrieve">Retrieve</button>
+      </div>
+      <p class="status" id="status" aria-live="polite">Press <strong>Add message</strong> a few times.</p>
+      <p class="toy">A toy model: the fading is a simplified picture of the “lost in the middle” effect, not a measurement.</p>
+    </section>
+
+    <p class="src">Source for the middle effect: Liu et al., <a href="https://arxiv.org/abs/2307.03172">“Lost in the Middle: How Language Models Use Long Contexts”</a> (2023).</p>
+
+    <div class="next">
+      <div data-release="2099-01-01"><p class="meta" style="margin:0">Next · Episode 02</p><h3 style="margin-top:4px"><a href="prod.html" style="color:var(--ink)">The agent that cleaned up prod</a></h3></div>
+      <a class="btn btn-ink" href="https://instagram.com/butter.explains">More episodes on @butter.explains</a>
+    </div>
+  </article>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <span>Butter · <a href="https://instagram.com/butter.explains">@butter.explains</a></span>
+    <a href="../privacy.html">Privacy</a>
+  </div>
+</footer>
+<script src="../release.js"></script>
+<script src="../loops.js" defer></script>
+<script>
+(function () {
+  var CAP = 24, SYS = 6; // the system prompt takes the first 6 tokens
+  var tokensEl = document.getElementById('tokens'), sysEl = document.getElementById('sys');
+  var bar = document.getElementById('bar'), count = document.getElementById('count'), status = document.getElementById('status');
+  var btnRepin = document.getElementById('repin');
+  var msgs, pinned, n, ruleGone;
+
+  // A message: {kind:'chat'|'paste'|'rule'|'summary'|'fetched', size:tokens, hasRule:bool}
+  function reset() {
+    msgs = [{ kind: 'rule', size: 1, hasRule: true }];
+    pinned = false; n = 1; ruleGone = false;
+    btnRepin.setAttribute('aria-pressed', 'false');
+    render(true);
+    say('Reset. Your rule is message 1. Press <strong>Add message</strong>.');
+  }
+  function used() { return SYS + msgs.reduce(function (s, m) { return s + m.size; }, 0); }
+
+  // attention by position: edges clear, middle fades more as the window fills
+  function attention(t, fill) {
+    var depth = Math.max(0, Math.min(1, (fill - 0.3) / 0.55)) * 0.85;
+    return 1 - depth * Math.pow(Math.sin(Math.PI * t), 1.4);
+  }
+  function ruleIndexInfo() {
+    var total = used(), pos = SYS;
+    for (var i = 0; i < msgs.length; i++) {
+      if (msgs[i].hasRule) return { t: (pos + msgs[i].size / 2) / total, m: msgs[i] };
+      pos += msgs[i].size;
+    }
+    return null;
+  }
+  function ruleState() {
+    if (pinned) return 'pinned';
+    var r = ruleIndexInfo();
+    if (!r) return 'gone';
+    var a = attention(r.t, used() / CAP);
+    return a > 0.65 ? 'clear' : a > 0.42 ? 'fading' : 'lost';
+  }
+  function describeRule() {
+    return {
+      pinned: 'Your rule is <strong>pinned in the system prompt</strong>, at the edge: it stays clear however long the chat gets.',
+      clear: 'Your rule is <strong>clearly visible</strong>.',
+      fading: 'Your rule is <strong>fading</strong>: it is drifting into the middle.',
+      lost: 'Your rule is <strong>lost in the middle</strong>. It is still in the window, but the model is likely to overlook it.',
+      gone: 'Your rule <strong>fell out of the window</strong>. The agent can no longer see it at all.'
+    }[ruleState()];
+  }
+
+  function render(noAnim) {
+    var total = used(), fill = total / CAP, pos = SYS;
+    tokensEl.innerHTML = '';
+    msgs.forEach(function (m, i) {
+      for (var k = 0; k < m.size; k++) {
+        var s = document.createElement('i');
+        s.className = 'seed' + (m.kind === 'chat' ? '' : ' ' + m.kind) + (m.fresh && !noAnim ? ' new' : '');
+        if (m.hasRule && !pinned && k === 0) { s.className = 'seed rule'; s.textContent = m.kind === 'summary' ? 'summary · never touch prod' : 'never touch prod'; }
+        var t = (pos + 0.5) / total;
+        s.style.opacity = attention(t, fill).toFixed(2);
+        tokensEl.appendChild(s);
+        pos++;
+      }
+      m.fresh = false;
+    });
+    requestAnimationFrame(function () { tokensEl.querySelectorAll('.new').forEach(function (s) { s.classList.remove('new'); }); });
+    sysEl.innerHTML = 'system prompt · ' + SYS + ' tokens' + (pinned ? ' <i class="seed rule">never touch prod</i>' : '');
+    bar.style.width = Math.min(100, fill * 100) + '%';
+    bar.className = total >= CAP ? 'full' : '';
+    count.textContent = total + ' / ' + CAP + ' tokens';
+  }
+  function say(html) { status.innerHTML = html; }
+
+  function trim() {
+    var dropped = 0;
+    while (used() > CAP) {
+      var m = msgs.shift(); dropped++;
+      if (m.hasRule && !pinned) ruleGone = true;
+    }
+    return dropped;
+  }
+
+  document.getElementById('add').addEventListener('click', function () {
+    n++;
+    var paste = n % 3 === 0;
+    msgs.push({ kind: paste ? 'paste' : 'chat', size: paste ? 4 : 1, fresh: true });
+    var dropped = trim();
+    render();
+    say('Added message ' + n + (paste ? ' (a big paste, 4 tokens)' : '') + '. ' +
+        (dropped ? 'Window full: the oldest ' + (dropped > 1 ? dropped + ' messages' : 'message') + ' dropped out. ' : '') + describeRule());
+  });
+
+  document.getElementById('compact').addEventListener('click', function () {
+    if (msgs.length < 3) { say('Not much to compact yet. Add a few more messages first.'); return; }
+    var keep = msgs.slice(-1), old = msgs.slice(0, -1);
+    var carried = old.some(function (m) { return m.hasRule; });
+    var before = used();
+    msgs = [{ kind: 'summary', size: 2, hasRule: carried && !pinned, fresh: true }].concat(keep);
+    render();
+    say('Compacted ' + old.length + ' messages into one summary: ' + before + ' → ' + used() + ' tokens. ' +
+        (carried || pinned ? describeRule() : 'But the rule had <strong>already dropped out</strong>, so the summary could not keep it. Compact before things get hazy, not after.'));
+  });
+
+  btnRepin.addEventListener('click', function () {
+    var on = !pinned;
+    if (on) {
+      // move the rule out of the chat and into the system prompt
+      msgs.forEach(function (m) { if (m.hasRule) { m.hasRule = false; if (m.kind === 'rule') m.kind = 'chat'; } });
+      pinned = true; ruleGone = false;
+    } else {
+      pinned = false;
+      msgs.push({ kind: 'rule', size: 1, hasRule: true, fresh: true });
+      trim();
+    }
+    btnRepin.setAttribute('aria-pressed', String(pinned));
+    render();
+    say(pinned ? 'Re-pinned. ' + describeRule() : 'Unpinned: the rule is back in the chat as the newest message. ' + describeRule());
+  });
+
+  document.getElementById('retrieve').addEventListener('click', function () {
+    var pastes = msgs.filter(function (m) { return m.kind === 'paste'; }).length;
+    if (!pastes) { say('No big pastes in the window right now. Retrieval helps once you have pasted whole files “just in case”.'); return; }
+    var before = used();
+    msgs = msgs.filter(function (m) { return m.kind !== 'paste'; });
+    msgs.push({ kind: 'fetched', size: 1, fresh: true });
+    render();
+    say('Swapped ' + pastes + ' big paste' + (pastes > 1 ? 's' : '') + ' for one fetched snippet: ' + before + ' → ' + used() + ' tokens. ' + describeRule());
+  });
+
+  document.getElementById('reset').addEventListener('click', reset);
+  reset();
+  say('Press <strong>Add message</strong> a few times.');
+})();
+</script>
+</body>
+</html>

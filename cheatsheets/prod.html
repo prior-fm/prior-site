@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The agent that cleaned up prod: the cheat sheet · Butter</title>
+<meta name="description" content="Your agent deleted prod. It did exactly what you asked. Three fixes: read-only by default, sandbox it, confirm before destroying.">
+<meta property="og:image" content="../assets/ep02-poster.jpg">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="mast">
+  <div class="wrap">
+    <a class="logo" href="../index.html"><img src="../assets/logo-ink.png" alt="Butter" width="816" height="141"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="../index.html#episodes">Episodes</a>
+      <a href="index.html">Cheat sheets</a>
+      <a href="../index.html#archive">Archive</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <header class="read art-head">
+    <p class="kicker">Episode 02 · Cheat sheet</p>
+    <h1>Your agent deleted prod. It did exactly what you asked.</h1>
+    <p class="lede">You said “clean up the unused files”. It found a database nobody had touched in 3 years.</p>
+    <div class="byline"><span class="tag">Agent permissions</span><span class="tag">Safety</span><span class="meta">3 min read</span></div>
+  </header>
+  <figure class="art-hero" style="margin-bottom:0">
+    <div class="frame">
+      <video data-loop muted loop playsinline preload="metadata" poster="../assets/ep02-poster.jpg" width="480" height="480"
+        aria-label="Episode 02 loop: an ant agent sweeps tmp files off a table while a developer watches from a laptop">
+        <source src="../assets/ep02-loop.mp4" type="video/mp4">
+      </video>
+    </div>
+    <figcaption>Episode 02, “The agent that cleaned up prod.” Muted loop.</figcaption>
+  </figure>
+
+  <article class="read article">
+    <div class="strip three">
+      <img src="../assets/ep02-4.6.jpg" alt="The golden prod database, last modified 3 years ago" width="480" height="480" loading="lazy">
+      <img src="../assets/ep02-10.5.jpg" alt="The fix: a sandbox fence and a padlock on prod" width="480" height="480" loading="lazy">
+    </div>
+
+    <h2>What happened</h2>
+    <p><b>Agents take instructions literally.</b> “Unused” to an agent means “nothing touched it recently”, not “safe to delete”. It had the permission, so it did it.</p>
+    <p><b>The problem isn’t the model, it’s the access.</b> An agent with write access to production can do anything a careless human with the same credentials could, only faster.</p>
+
+    <h2>The three fixes</h2>
+    <ol class="fixes">
+      <li><span class="n">1</span><div><b>Read-only by default.</b>Give the agent read access and grant write access per task, scoped to the folders it needs (<code>tmp/</code>, not <code>/</code>).</div></li>
+      <li><span class="n">2</span><div><b>Sandbox it.</b>Run agents in a separate environment with test data. Never hand them production credentials or a shell with prod access.</div></li>
+      <li><span class="n">3</span><div><b>Confirm before destroying.</b>Require a human “yes” for anything irreversible: delete, drop, truncate, force-push, rm -rf. Most agent tools support approval rules or deny-lists; turn them on.</div></li>
+    </ol>
+
+    <h2>Quick checklist</h2>
+    <ul class="check">
+      <li>Does the agent have prod credentials? Remove them.</li>
+      <li>Are destructive commands on an approval list?</li>
+      <li>Is its write access scoped to a folder?</li>
+      <li>Are there backups you have actually restored from?</li>
+    </ul>
+
+
+    <section class="lab" id="try" aria-labelledby="lab-title">
+      <div class="lab-head"><h2 id="lab-title">Try it: set the permissions</h2><span class="badge">▶ interactive</span></div>
+      <p class="lab-intro">Tick any safeguards, then give the agent the same instruction. See what survives.</p>
+      <fieldset class="chk-group">
+        <legend class="sr">Agent permissions</legend>
+        <label class="chk"><input type="checkbox" id="ro"><span><b>Read-only</b><small>write only inside tmp/</small></span></label>
+        <label class="chk"><input type="checkbox" id="sb"><span><b>Sandbox</b><small>runs on a copy, no prod credentials</small></span></label>
+        <label class="chk"><input type="checkbox" id="cf"><span><b>Confirm before delete</b><small>a human says yes first</small></span></label>
+      </fieldset>
+      <div class="controls">
+        <button class="btn btn-ink" type="button" id="run">Clean up unused files</button>
+        <button class="btn btn-quiet" type="button" id="reset">Reset</button>
+      </div>
+      <div class="panel term">
+        <span class="panel-label">Project</span>
+        <div class="agent-line" aria-hidden="true"><span class="who">you ›</span> clean up the unused files<br><span class="who">agent ›</span> <span id="term-out">waiting…</span></div>
+        <ul class="files" id="files" aria-label="Project files"></ul>
+      </div>
+      <div class="confirm" id="confirm" hidden>
+        <p id="confirm-text"></p>
+        <div class="controls" style="margin-top:10px">
+          <button class="btn btn-ink" type="button" id="allow">Allow all</button>
+          <button class="btn" type="button" id="deny">Deny</button>
+        </div>
+      </div>
+      <p class="status" id="status" aria-live="polite">Nothing ticked? Go ahead, press <strong>Clean up unused files</strong>.</p>
+      <p class="toy">A toy simulation: the agent treats anything untouched for 30+ days as “unused”.</p>
+    </section>
+
+    <div class="next">
+      <div><p class="meta" style="margin:0">Previous · Episode 01</p><h3 style="margin-top:4px"><a href="context.html" style="color:var(--ink)">Why your AI agent forgets</a></h3></div>
+      <a class="btn btn-ink" href="https://instagram.com/butter.explains">More episodes on @butter.explains</a>
+    </div>
+  </article>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <span>Butter · <a href="https://instagram.com/butter.explains">@butter.explains</a></span>
+    <a href="../privacy.html">Privacy</a>
+  </div>
+</footer>
+<script src="../loops.js" defer></script>
+<script>
+(function () {
+  var FILES = [
+    { name: 'tmp/render-cache/', age: 'last touched 41 days ago', days: 41 },
+    { name: 'tmp/old-logs.txt', age: 'last touched 90 days ago', days: 90 },
+    { name: 'src/app.js', age: 'edited today', days: 0 },
+    { name: 'scratch/draft-v1.md', age: 'last touched 7 months ago', days: 210 },
+    { name: 'prod/customers.db', age: 'last modified 3 years ago · production', days: 1100, prod: true }
+  ];
+  var $ = function (id) { return document.getElementById(id); };
+  var list = $('files'), status = $('status'), term = $('term-out'), confirmBox = $('confirm');
+  var ro = $('ro'), sb = $('sb'), cf = $('cf'), runBtn = $('run');
+  var outcome = {}, pending = null;
+
+  function draw() {
+    list.innerHTML = '';
+    FILES.forEach(function (f) {
+      var o = outcome[f.name] || { cls: 'keep', label: f.days > 30 ? 'untouched' : 'in use' };
+      var li = document.createElement('li');
+      li.className = 'file' + (f.prod ? ' prod' : '') + (o.cls === 'del' ? ' deleted' : '');
+      li.innerHTML = '<span class="name"></span><span class="age"></span><span class="out ' + o.cls + '"></span>';
+      li.querySelector('.name').textContent = f.name;
+      li.querySelector('.age').textContent = f.age;
+      li.querySelector('.out').textContent = o.label;
+      list.appendChild(li);
+    });
+  }
+  function lock(on) { [ro, sb, cf, runBtn].forEach(function (el) { el.disabled = on; }); }
+  function reset() {
+    outcome = {}; pending = null; confirmBox.hidden = true; lock(false);
+    term.textContent = 'waiting…'; draw();
+    status.innerHTML = 'Reset. Tick a safeguard (or none), then press <strong>Clean up unused files</strong>.';
+  }
+
+  function run() {
+    outcome = {};
+    var targets = FILES.filter(function (f) { return f.days > 30; });
+    var allowed = [];
+    targets.forEach(function (f) {
+      if (ro.checked && f.name.indexOf('tmp/') !== 0) outcome[f.name] = { cls: 'block', label: 'blocked · read-only' };
+      else allowed.push(f);
+    });
+    term.textContent = 'found ' + targets.length + ' unused items. deleting ' + allowed.length + '…';
+    if (cf.checked && allowed.length) {
+      allowed.forEach(function (f) { outcome[f.name] = { cls: 'ask', label: 'waiting for you' }; });
+      pending = allowed; draw(); lock(true);
+      var hasProd = allowed.some(function (f) { return f.prod; });
+      $('confirm-text').innerHTML = 'The agent wants to delete <strong>' + allowed.length + ' item' + (allowed.length > 1 ? 's' : '') + '</strong>: ' +
+        allowed.map(function (f) { return '<code>' + f.name + '</code>'; }).join(', ') + '. ' + (hasProd ? 'One of them is <strong>prod</strong>. Allow?' : 'Allow?');
+      term.textContent = 'asking before deleting ' + allowed.length + ' items…';
+      confirmBox.hidden = false;
+      status.innerHTML = 'The agent paused and is <strong>asking for your yes</strong>. Read the list before you answer.';
+      $('allow').focus();
+      return;
+    }
+    finish(allowed, false);
+  }
+
+  function finish(toDelete, denied) {
+    confirmBox.hidden = true; lock(false); pending = null;
+    toDelete.forEach(function (f) {
+      if (denied) outcome[f.name] = { cls: 'keep', label: 'kept · you said no' };
+      else if (sb.checked) outcome[f.name] = { cls: 'sand', label: 'deleted in sandbox copy' };
+      else outcome[f.name] = { cls: 'del', label: 'deleted' };
+    });
+    draw();
+    var prodLost = outcome['prod/customers.db'] && outcome['prod/customers.db'].cls === 'del';
+    var junk = FILES.filter(function (f) { return f.name.indexOf('tmp/') === 0 && outcome[f.name] && outcome[f.name].cls === 'del'; }).length;
+    var msg;
+    if (prodLost) msg = '<span class="verdict">Prod is gone.</span> The agent did exactly what you asked. Try again with a safeguard ticked.';
+    else if (denied) msg = '<span class="verdict">Nothing deleted.</span> You said no, so the agent stopped. Confirmations only work if you read the list.';
+    else if (sb.checked && !toDelete.length) msg = '<span class="verdict">Prod is safe.</span> Nothing was deletable here.';
+    else if (sb.checked) msg = '<span class="verdict">Prod is safe.</span> The agent deleted things in its sandbox copy; the real files were never reachable.';
+    else if (ro.checked) msg = '<span class="verdict">Prod is safe.</span> It cleaned ' + junk + ' items in <code>tmp/</code>; everything else was blocked by read-only access.';
+    else msg = '<span class="verdict">Prod is safe.</span>';
+    term.textContent = prodLost ? 'done. deleted ' + toDelete.length + ' items, including prod/customers.db' :
+      denied ? 'ok, nothing deleted.' : sb.checked ? 'done (in sandbox).' : 'done. deleted ' + toDelete.length + ' items.';
+    status.innerHTML = msg;
+  }
+
+  runBtn.addEventListener('click', run);
+  $('allow').addEventListener('click', function () { finish(pending || [], false); runBtn.focus(); });
+  $('deny').addEventListener('click', function () { finish(pending || [], true); runBtn.focus(); });
+  $('reset').addEventListener('click', reset);
+  [ro, sb, cf].forEach(function (el) { el.addEventListener('change', function () { outcome = {}; draw(); term.textContent = 'waiting…'; }); });
+  draw();
+})();
+</script>
+</body>
+</html>
