@@ -25,7 +25,8 @@ test('the homepage is Butter-first and archives every Prior issue', () => {
   assert.match(html, /<img src="assets\/logo-ink\.png" alt="Butter"/);
   assert.match(html, /AI engineering, explained smooth\./);
   assert.match(html, /href="cheatsheets\/context\.html"/);
-  assert.match(html, /Archive: earlier issues \(Prior\)/);
+  assert.match(html, /Archive: earlier issues/);
+  assert.doesNotMatch(html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, ""), /\bPrior\b(?! (Mono|Display))/, "no visible Prior branding (founder, 2026-09-23)");
   for (const id of ['latest', 'archive', 'subscribe', 'experiment', 'learn', 'about', 'journey', 'episodes'])
     assert.match(html, new RegExp(`id="${id}"`), `anchor #${id} still resolves`);
   for (const f of fs.readdirSync('.').filter(f => /^no-\d+\.html$/.test(f)))
