@@ -19,20 +19,34 @@ test('the archived Prior brand tokens are unchanged', () => {
   assert.doesNotMatch(material, /@font-face|--font-(?:body|brand)\s*:|--brand-tracking\s*:/);
 });
 
-// Butter reskin (founder decision 2026-09-23): Butter-first homepage,
-// every old issue page kept and listed in the archive.
+// Butter B+ homepage (founder approval 2026-09-23): Butter-first, with every old
+// Prior issue page kept and listed in the archive, and Ep.02 behind the release gate.
 test('the homepage is Butter-first and archives every Prior issue', () => {
-  assert.match(html, /<img class="logo" src="assets\/butter-logo\.png"/);
-  assert.match(html, /AI engineering, explained smooth\. One concept per loop\./);
-  assert.match(html, /https:\/\/julianlaycock\.github\.io\/butter-explains\/context\.html/);
+  assert.match(html, /<img src="assets\/logo-ink\.png" alt="Butter"/);
+  assert.match(html, /AI engineering, explained smooth\./);
+  assert.match(html, /href="cheatsheets\/context\.html"/);
   assert.match(html, /Archive: earlier issues \(Prior\)/);
-  for (const id of ['latest', 'archive', 'subscribe', 'experiment', 'learn', 'about', 'journey'])
+  for (const id of ['latest', 'archive', 'subscribe', 'experiment', 'learn', 'about', 'journey', 'episodes'])
     assert.match(html, new RegExp(`id="${id}"`), `anchor #${id} still resolves`);
   for (const f of fs.readdirSync('.').filter(f => /^no-\d+\.html$/.test(f)))
     assert.ok(html.includes(`href="${f}"`), `archive lists ${f}`);
 });
 
+test('Ep.02 (prod) is only reachable through release-gated elements', () => {
+  for (const page of ['index.html', 'cheatsheets/index.html', 'cheatsheets/context.html']) {
+    const src = fs.readFileSync(page, 'utf8');
+    assert.ok(src.includes('release.js'), `${page} loads the release gate`);
+    // every element that links prod.html sits inside a data-release block
+    const stripped = src.replace(/<(section|article|li|div)\b[^>]*data-release="[^"]+"[^>]*>[\s\S]*?<\/\1>/g, '');
+    assert.doesNotMatch(stripped, /href="(?:cheatsheets\/)?prod\.html/, page);
+  }
+  assert.match(fs.readFileSync('style.css', 'utf8'), /\[data-release\]:not\(\.is-released\)\{display:none!important\}/);
+});
+
 test('every page links the shared Butter stylesheet', () => {
-  for (const f of fs.readdirSync('.').filter(f => f.endsWith('.html')))
+  // Old Prior pages use butter.css; the B+ pages (home, cheat sheets) use style.css;
+  // context.html / prod.html at the root are redirect stubs.
+  const bplus = new Set(['index.html', 'context.html', 'prod.html']);
+  for (const f of fs.readdirSync('.').filter(f => f.endsWith('.html') && !bplus.has(f)))
     assert.ok(fs.readFileSync(f, 'utf8').includes('href="assets/butter.css"'), f);
 });

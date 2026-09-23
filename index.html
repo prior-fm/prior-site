@@ -1,98 +1,175 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Butter · AI engineering, explained smooth</title>
-    <meta name="description" content="AI engineering, explained smooth. One concept per hand-drawn loop, with a cheat sheet for every episode. Plus the archive of earlier Prior issues." />
-    <meta property="og:title" content="Butter · AI engineering, explained smooth" />
-    <meta property="og:description" content="One AI-engineering concept per loop. Cheat sheets for every episode." />
-    <meta property="og:image" content="https://prior-fm.github.io/prior-site/assets/butter-ep01.jpg" />
-    <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#f4eee0" />
-    <link rel="stylesheet" href="assets/butter.css" />
-    <style>
-      .home { max-width: 680px; margin: 0 auto; padding: 20px 16px 24px; }
-      .home .logo { display: block; width: min(300px, 70%); height: auto; margin: 12px auto 10px; }
-      .home .tag { text-align: center; margin: 0 0 32px; color: var(--b-brown); font-size: 18px; }
-      .home h2 { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--b-blue); margin: 40px 0 12px; font-weight: 600; }
-      .ep { display: block; background: var(--b-card); border: 1.6px solid var(--b-ink); border-radius: 10px; overflow: hidden; text-decoration: none; color: inherit; margin-bottom: 14px; }
-      .ep img { display: block; width: 100%; aspect-ratio: 1/1; object-fit: cover; border-bottom: 1.6px solid var(--b-ink); }
-      .ep .b { padding: 14px 16px; }
-      .ep h3 { margin: 4px 0; font-size: 22px; line-height: 1.25; }
-      .kicker { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--b-blue); }
-      .btn { display: block; text-align: center; padding: 14px 16px; margin: 10px 0; border: 1.6px solid var(--b-ink); border-radius: 10px; background: var(--b-ink); color: var(--b-paper); text-decoration: none; font-weight: 600; }
-      .btn.alt { background: transparent; color: var(--b-ink); }
-      .note { color: var(--b-brown); font-size: 15px; margin: 0 0 14px; }
-      .issues { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-      .issue { display: flex; gap: 14px; align-items: center; background: var(--b-card); border: 1.6px solid var(--b-ink); border-radius: 10px; padding: 10px 14px 10px 10px; text-decoration: none; color: var(--b-ink); }
-      .issue:hover strong { color: var(--b-blue); }
-      .issue img { flex: 0 0 48px; width: 48px; height: 64px; object-fit: cover; border-radius: 6px; border: 1.2px solid var(--b-ink); }
-      .issue strong { display: block; font-size: 17px; line-height: 1.3; }
-      .issue .sum { display: block; color: var(--b-brown); font-size: 15px; line-height: 1.4; }
-      .more { margin: 14px 0 0; padding: 0; list-style: none; }
-      .more li { margin: 6px 0; }
-      .anchor { display: block; height: 0; }
-    </style>
-    <!-- Cookie-free analytics; described in privacy.html. -->
-    <script data-goatcounter="https://prior.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-  </head>
-  <body>
-    <main class="home">
-      <!-- Old homepage anchors, kept so existing links still land here. -->
-      <span class="anchor" id="journey"></span><span class="anchor" id="about"></span><span class="anchor" id="machine"></span><span class="anchor" id="mechanism"></span><span class="anchor" id="idea"></span>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Butter · AI engineering, explained smooth</title>
+<meta name="description" content="AI-engineering concepts explained as short hand-drawn engraved-ink animations. One concept per loop.">
+<meta property="og:image" content="https://prior-fm.github.io/prior-site/assets/ep01-poster.jpg">
+<meta name="theme-color" content="#f4eee0">
+<!-- Cookie-free analytics; described in privacy.html. -->
+<script data-goatcounter="https://prior.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="mast">
+  <div class="wrap">
+    <a class="logo" href="index.html"><img src="assets/logo-ink.png" alt="Butter" width="816" height="141"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#episodes">Episodes</a>
+      <a href="cheatsheets/index.html">Cheat sheets</a>
+      <a href="#archive">Archive</a>
+    </nav>
+  </div>
+</header>
 
-      <img class="logo" src="assets/butter-logo.png" alt="Butter" width="816" height="141" />
-      <p class="tag">AI engineering, explained smooth. One concept per loop.</p>
+<main id="main">
+  <!-- Old homepage anchors, kept so existing links still land here. -->
+  <span class="anchor" id="latest"></span><span class="anchor" id="journey"></span><span class="anchor" id="about"></span><span class="anchor" id="machine"></span><span class="anchor" id="mechanism"></span><span class="anchor" id="idea"></span><span class="anchor" id="subscribe"></span>
+  <!-- RELEASE GATE: Ep.02 hero shows from 2026-09-25 (release.js); Ep.01 hero until then. -->
+  <section class="hero hero-plus" data-release="2026-09-25">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="kicker">Latest · Ep.02 · One concept per loop</p>
+        <h1>AI engineering, explained smooth.</h1>
+        <p class="lede">Short hand-drawn loops that make one AI-engineering idea click, plus a one-page cheat sheet you can actually use at work.</p>
+        <div class="actions">
+          <a class="btn btn-ink" href="cheatsheets/prod.html">Get the cheat sheet</a>
+          <a class="btn btn-line" href="https://instagram.com/butter.explains">Follow on Instagram</a>
+        </div>
+      </div>
+      <div class="hero-media frame">
+        <video data-loop muted loop playsinline preload="metadata" poster="assets/ep02-poster.jpg" width="480" height="480"
+          aria-label="Episode 02 loop, captioned 'an AI agent drew every frame of this': an ant agent sweeps tmp files off a table while a developer watches from a laptop">
+          <source src="assets/ep02-loop.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+  <section class="hero hero-plus" data-until="2026-09-25">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="kicker">Latest · Ep.01 · One concept per loop</p>
+        <h1>AI engineering, explained smooth.</h1>
+        <p class="lede">Short hand-drawn loops that make one AI-engineering idea click, plus a one-page cheat sheet you can actually use at work.</p>
+        <div class="actions">
+          <a class="btn btn-ink" href="cheatsheets/context.html">Get the cheat sheet</a>
+          <a class="btn btn-line" href="https://instagram.com/butter.explains">Follow on Instagram</a>
+        </div>
+      </div>
+      <div class="hero-media frame">
+        <video data-loop muted loop playsinline preload="metadata" poster="assets/ep01-poster.jpg" width="480" height="480"
+          aria-label="Episode 01 loop: an ant agent on a melon slice, a basket of seeds and one golden seed, the instruction that sinks as the context fills">
+          <source src="assets/ep01-loop.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
 
-      <section id="latest" aria-labelledby="episodes-title">
-        <h2 id="episodes-title">Episodes</h2>
-        <a class="ep" href="https://julianlaycock.github.io/butter-explains/context.html">
-          <img src="assets/butter-ep01.jpg" alt="Episode 1: an ant, a basket of seeds and a golden seed" width="720" height="720" />
-          <div class="b">
-            <span class="kicker">Episode 01 &middot; Cheat sheet</span>
-            <h3>Why your AI agent forgets</h3>
-            <div>Context rot, lost in the middle, and the 3 fixes.</div>
-          </div>
+  <section class="section eps-plus" id="episodes" aria-labelledby="ep-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="ep-h">Episodes</h2><a href="cheatsheets/index.html">All cheat sheets →</a></div>
+
+      <!-- RELEASE GATE: Ep.02, shown from 2026-09-25 (release.js). -->
+      <article class="ep" data-release="2026-09-25">
+        <a class="ep-media frame" href="cheatsheets/prod.html" tabindex="-1" aria-hidden="true">
+          <video data-loop muted loop playsinline preload="none" poster="assets/ep02-4.6.jpg" width="480" height="480">
+            <source src="assets/ep02-loop.mp4" type="video/mp4">
+          </video>
         </a>
-        <a class="btn alt" href="https://julianlaycock.github.io/butter-explains/">All Butter episodes</a>
-      </section>
+        <div>
+          <div class="row"><span class="num">EP.02</span><span class="tag">Agent permissions</span><span class="badge">▶ interactive</span></div>
+          <h3><a href="cheatsheets/prod.html">The agent that cleaned up prod</a></h3>
+          <p>You said “clean up the unused files.” It found a database nobody had touched in three years. Why literal agents need scoped access.</p>
+          <p class="try">Try: <a href="cheatsheets/prod.html#try">set the agent’s permissions, then tell it to clean up →</a></p>
+          <a class="more" href="cheatsheets/prod.html">Read the cheat sheet →</a>
+        </div>
+      </article>
 
-      <section id="subscribe" aria-labelledby="follow-title">
-        <h2 id="follow-title">Follow</h2>
-        <a class="btn" href="https://instagram.com/butter.explains">Follow @butter.explains on Instagram</a>
-      </section>
+      <article class="ep">
+        <a class="ep-media frame" href="cheatsheets/context.html" tabindex="-1" aria-hidden="true">
+          <video data-loop muted loop playsinline preload="none" poster="assets/ep01-poster.jpg" width="480" height="480">
+            <source src="assets/ep01-loop.mp4" type="video/mp4">
+          </video>
+        </a>
+        <div>
+          <div class="row"><span class="num">EP.01</span><span class="tag">Context window</span><span class="badge">▶ interactive</span></div>
+          <h3><a href="cheatsheets/context.html">Why your AI agent forgets</a></h3>
+          <p>Your agent didn’t get dumber. Its context window got full, and your first instruction sank into the middle. Three fixes: compact, re-pin, retrieve.</p>
+          <p class="try">Try: <a href="cheatsheets/context.html#try">fill a context window and watch your rule sink →</a></p>
+          <a class="more" href="cheatsheets/context.html">Read the cheat sheet →</a>
+        </div>
+      </article>
+    </div>
+  </section>
 
-      <section id="archive" aria-labelledby="archive-title">
-        <h2 id="archive-title">Archive: earlier issues (Prior)</h2>
-        <p class="note">Before Butter, these films went out as Prior. Every issue page is still here.</p>
-        <ul class="issues">
-        <li><a class="issue" href="no-023.html"><img src="media/no-023.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 023</span><strong>Time to decide.</strong><span class="sum">Published times, from radar to the shot.</span></span></a></li>
-        <li><a class="issue" href="no-022.html"><img src="media/no-022.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 022</span><strong>Taking over the entire internet.</strong><span class="sum">Amodei&rsquo;s essay, and the line from it.</span></span></a></li>
-        <li><a class="issue" href="no-021.html"><img src="media/no-021.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 021</span><strong>It sounds like science fiction. It isn&rsquo;t.</strong><span class="sum">A CNN interview, in full.</span></span></a></li>
-        <li><a class="issue" href="no-019.html"><img src="media/no-019.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 019</span><strong>One Moon. Two bulges.</strong><span class="sum">A closer look at lunar tides.</span></span></a></li>
-        <li><a class="issue" href="no-018.html"><img src="media/no-018-p1.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 018</span><strong>A month of your screen time</strong><span class="sum">A way into machine learning.</span></span></a></li>
-        <li><a class="issue" href="no-017.html"><img src="media/no-017.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 017</span><strong>Not a Transformer. A brain.</strong><span class="sum">Learning while it thinks.</span></span></a></li>
-        <li><a class="issue" href="no-016.html"><img src="media/no-016.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 016</span><strong>A score, not a test</strong><span class="sum">What a bot detector actually sees.</span></span></a></li>
-        <li><a class="issue" href="no-015.html"><img src="media/no-015.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 015</span><strong>Seventeen minutes</strong><span class="sum">Finding the schedule that works.</span></span></a></li>
-        <li><a class="issue" href="no-011.html"><img src="media/no-011.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 011</span><strong>Chaos theory in 3D</strong><span class="sum">Small differences. Different futures.</span></span></a></li>
-        <li><a class="issue" href="no-010.html"><img src="media/no-010.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 010</span><strong>An image is a point</strong><span class="sum">A different way to see an image.</span></span></a></li>
-        <li><a class="issue" href="no-009.html"><img src="media/no-009.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 009</span><strong>Pathfinding</strong><span class="sum">The route, and how you find it.</span></span></a></li>
-        <li><a class="issue" href="no-008.html"><img src="media/no-008.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 008</span><strong>Tower of Hanoi</strong><span class="sum">The pattern inside the puzzle.</span></span></a></li>
-        <li><a class="issue" href="no-007.html"><img src="media/no-007.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 007</span><strong>Why time speeds up</strong><span class="sum">The changing scale of a lifetime.</span></span></a></li>
-        <li><a class="issue" href="no-006.html"><img src="media/no-006.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 006</span><strong>Valid parentheses</strong><span class="sum">A small problem with a deeper structure.</span></span></a></li>
-        <li><a class="issue" href="no-005.html"><img src="media/no-005.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 005</span><strong>Load balancing</strong><span class="sum">What moves when work is shared.</span></span></a></li>
-        <li><a class="issue" href="no-004.html"><img src="media/no-004.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 004</span><strong>Bubble sort</strong><span class="sum">Comparisons are cheap. Writes are not.</span></span></a></li>
-        <li><a class="issue" href="no-003.html"><img src="media/no-003.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 003</span><strong>The watermark is in the choosing</strong><span class="sum">Nothing is added to the text.</span></span></a></li>
-        <li><a class="issue" href="no-002.html"><img src="media/no-002.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 002</span><strong>MCP and APIs</strong><span class="sum">Why a second protocol.</span></span></a></li>
-        <li><a class="issue" href="no-001.html"><img src="media/no-001.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="kicker">No. 001</span><strong>Data science &amp; ML</strong><span class="sum">Charts that make the system visible.</span></span></a></li>
+  <section class="section" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="how-h">How it’s made</h2></div>
+      <div class="how-lead">
+        <figure style="margin:0">
+          <div class="frame">
+            <video data-loop muted loop playsinline preload="none" poster="assets/how-poster.jpg" width="480" height="480"
+              aria-label="A drawing being rebuilt in code: guides, then ink, then hatching and colour">
+              <source src="assets/how-rebuild.mp4" type="video/mp4">
+            </video>
+          </div>
+        </figure>
+        <div>
+          <h3>An AI agent draws every frame in code.</h3>
+          <div class="essay" style="margin-top:20px">
+            <p>There is no drawing tablet here. Every line in a Butter episode, from the cross-hatching on the ant to the grain in the table, is written as code by an AI agent, then rendered into a loop. It makes the same three passes an illustrator would, and it is a small demonstration of what the episodes explain: give an agent clear context and tight boundaries, and it does careful work.</p>
+          </div>
+        </div>
+      </div>
+      <ol class="passes">
+        <li><img src="assets/step-1.jpg" width="320" height="320" loading="lazy" alt="Pass 1: blue construction circles and dashed guide lines block out a melon slice and an ant"><div><span class="pn">01</span><b>Blue guides</b><span class="d">Construction circles and dashed lines block out the shapes.</span></div></li>
+        <li><img src="assets/step-2.jpg" width="320" height="320" loading="lazy" alt="Pass 2: ink contours drawn over the guides"><div><span class="pn">02</span><b>Ink</b><span class="d">Contours go down over the guides, with a slight hand-drawn wobble.</span></div></li>
+        <li><img src="assets/step-3.jpg" width="320" height="320" loading="lazy" alt="Pass 3: the finished frame with engraved hatching, flat colour and a gold seed"><div><span class="pn">03</span><b>Hatch &amp; colour</b><span class="d">Engraved hatching for shade, flat paper colours, one gold “important thing”.</span></div></li>
+      </ol>
+    </div>
+  </section>
+  <section class="section" id="archive" aria-labelledby="archive-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="archive-h">Archive: earlier issues (Prior)</h2></div>
+      <p class="arch-note">Before Butter, these films went out as Prior. Every issue page is still here.</p>
+      <ul class="issues">
+        <li><a class="issue" href="no-023.html"><img src="media/no-023.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 023</span><strong>Time to decide.</strong><span class="sum">Published times, from radar to the shot.</span></span></a></li>
+        <li><a class="issue" href="no-022.html"><img src="media/no-022.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 022</span><strong>Taking over the entire internet.</strong><span class="sum">Amodei&rsquo;s essay, and the line from it.</span></span></a></li>
+        <li><a class="issue" href="no-021.html"><img src="media/no-021.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 021</span><strong>It sounds like science fiction. It isn&rsquo;t.</strong><span class="sum">A CNN interview, in full.</span></span></a></li>
+        <li><a class="issue" href="no-019.html"><img src="media/no-019.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 019</span><strong>One Moon. Two bulges.</strong><span class="sum">A closer look at lunar tides.</span></span></a></li>
+        <li><a class="issue" href="no-018.html"><img src="media/no-018-p1.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 018</span><strong>A month of your screen time</strong><span class="sum">A way into machine learning.</span></span></a></li>
+        <li><a class="issue" href="no-017.html"><img src="media/no-017.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 017</span><strong>Not a Transformer. A brain.</strong><span class="sum">Learning while it thinks.</span></span></a></li>
+        <li><a class="issue" href="no-016.html"><img src="media/no-016.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 016</span><strong>A score, not a test</strong><span class="sum">What a bot detector actually sees.</span></span></a></li>
+        <li><a class="issue" href="no-015.html"><img src="media/no-015.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 015</span><strong>Seventeen minutes</strong><span class="sum">Finding the schedule that works.</span></span></a></li>
+        <li><a class="issue" href="no-011.html"><img src="media/no-011.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 011</span><strong>Chaos theory in 3D</strong><span class="sum">Small differences. Different futures.</span></span></a></li>
+        <li><a class="issue" href="no-010.html"><img src="media/no-010.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 010</span><strong>An image is a point</strong><span class="sum">A different way to see an image.</span></span></a></li>
+        <li><a class="issue" href="no-009.html"><img src="media/no-009.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 009</span><strong>Pathfinding</strong><span class="sum">The route, and how you find it.</span></span></a></li>
+        <li><a class="issue" href="no-008.html"><img src="media/no-008.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 008</span><strong>Tower of Hanoi</strong><span class="sum">The pattern inside the puzzle.</span></span></a></li>
+        <li><a class="issue" href="no-007.html"><img src="media/no-007.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 007</span><strong>Why time speeds up</strong><span class="sum">The changing scale of a lifetime.</span></span></a></li>
+        <li><a class="issue" href="no-006.html"><img src="media/no-006.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 006</span><strong>Valid parentheses</strong><span class="sum">A small problem with a deeper structure.</span></span></a></li>
+        <li><a class="issue" href="no-005.html"><img src="media/no-005.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 005</span><strong>Load balancing</strong><span class="sum">What moves when work is shared.</span></span></a></li>
+        <li><a class="issue" href="no-004.html"><img src="media/no-004.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 004</span><strong>Bubble sort</strong><span class="sum">Comparisons are cheap. Writes are not.</span></span></a></li>
+        <li><a class="issue" href="no-003.html"><img src="media/no-003.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 003</span><strong>The watermark is in the choosing</strong><span class="sum">Nothing is added to the text.</span></span></a></li>
+        <li><a class="issue" href="no-002.html"><img src="media/no-002.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 002</span><strong>MCP and APIs</strong><span class="sum">Why a second protocol.</span></span></a></li>
+        <li><a class="issue" href="no-001.html"><img src="media/no-001.jpg" alt="" loading="lazy" width="56" height="100" /><span><span class="no-k">No. 001</span><strong>Data science &amp; ML</strong><span class="sum">Charts that make the system visible.</span></span></a></li>
         </ul>
-        <ul class="more" id="experiment">
-          <li id="learn"><a href="lesson.html">Teach a tiny model (interactive)</a></li>
-          <li><a href="roadmap.html">A month of your screen time: the roadmap</a></li>
-        </ul>
-      </section>
-    </main>
-    <footer class="butter-footer"><a href="index.html">Butter</a> &middot; <a href="https://instagram.com/butter.explains">@butter.explains</a> &middot; <a href="privacy.html">Privacy</a></footer>
-  </body>
+      <ul class="more-links" id="experiment">
+        <li id="learn"><a href="lesson.html">Teach a tiny model (interactive)</a></li>
+        <li><a href="roadmap.html">A month of your screen time: the roadmap</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>Butter · <a href="https://instagram.com/butter.explains">@butter.explains</a></span>
+    <a href="privacy.html">Privacy</a>
+  </div>
+</footer>
+<script src="release.js"></script>
+<script src="loops.js" defer></script>
+</body>
 </html>

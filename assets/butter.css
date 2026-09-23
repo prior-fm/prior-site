@@ -12,7 +12,8 @@
   --b-card: #fff8ea;
   --b-ink: #1e131b;
   --b-brown: #442f2b;
-  --b-blue: #4a70b1;
+  --b-blue: #3b5d97; /* B+ --link: passes 4.5:1 */
+  --b-rule: #4a70b1;
   --b-gold: #f7d04d;
   --b-font: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
@@ -59,26 +60,31 @@ a:focus-visible, button:focus-visible, input:focus-visible, video:focus-visible 
   outline-offset: 3px;
 }
 
-/* ---------- the Butter top bar (added to every page) ---------- */
+/* ---------- the Butter top bar (matches the B+ masthead) ---------- */
 .butter-bar {
   position: relative;
   z-index: 50;
+  border-bottom: 1px solid var(--b-ink);
+  background: var(--b-paper);
+  font: 500 15px/1.4 var(--b-font);
+}
+.butter-bar .bb-wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 18px 16px 16px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 6px 18px;
-  max-width: 680px;
-  margin: 0 auto;
-  padding: 18px 16px 14px;
-  font: 500 15px/1.4 var(--b-font);
-  color: var(--b-ink);
-  background: transparent;
+  gap: 10px 16px;
 }
+@media (min-width: 760px) { .butter-bar .bb-wrap { padding: 18px 32px 16px; } }
+.butter-bar .bb-logo { display: inline-flex; }
+.butter-bar .bb-logo img { display: block; width: 112px; height: auto; }
+@media (min-width: 760px) { .butter-bar .bb-logo img { width: 140px; } }
+.butter-bar .bb-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
 .butter-bar a { color: var(--b-ink); text-decoration: none; }
-.butter-bar a:hover { color: var(--b-blue); }
-.butter-bar .bb-logo { display: inline-flex; margin-right: auto; }
-.butter-bar .bb-logo img { display: block; width: 104px; height: auto; }
-.butter-bar .bb-sep { color: var(--b-brown); opacity: .5; }
+.butter-bar a:hover { text-decoration: underline; }
 .butter-bar .bb-ig { color: var(--b-blue); }
 
 /* The old Prior header is replaced by the Butter bar. */
@@ -246,3 +252,17 @@ form button, button.btn, form.sub button {
 /* old dark-field copy with a hard-coded light grey (no-007) */
 .field .prose[style*="color"] { color: var(--b-ink) !important; }
 .butter-bar + main .butter-footer { width: 100%; }
+
+/* ===== Harmonise with the B+ site (style.css) ===== */
+a { text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.eyebrow { color: var(--b-brown); font-weight: 600; letter-spacing: .09em; }
+.huge, body main h1, body main h2 { font-weight: 800; letter-spacing: -.02em !important; }
+.btnlink, .butter-bar + main button, form button, form.sub button { border-radius: 4px; border-width: 1.5px; }
+.card, .card:nth-child(2n) { border-radius: 0; border-width: 1px; background: #fbf7ee; }
+.card .no { color: var(--b-brown); font-weight: 700; }
+.latest video, .card video, .card img, main video { border-radius: 0; border-width: 1px; }
+.field + .field { background-image: linear-gradient(rgb(30 19 27 / 18%), rgb(30 19 27 / 18%)) !important; background-size: calc(100% - 32px) 1px !important; }
+.butter-footer { border-top: 1px solid rgb(30 19 27 / 18%); }
+input[type="email"], input[type="text"] { border-radius: 4px; border-width: 1.5px; background: #fbf7ee; }
+.field.reading-hero .path-link { color: var(--b-paper); }
+.field.reading-hero .path-link[aria-current="page"] { color: var(--b-ink); }

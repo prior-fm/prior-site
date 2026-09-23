@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cheat sheets · Butter</title>
+<meta name="description" content="Every Butter episode, as a one-page cheat sheet. Search by concept.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="mast">
+  <div class="wrap">
+    <a class="logo" href="../index.html"><img src="../assets/logo-ink.png" alt="Butter" width="816" height="141"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="../index.html#episodes">Episodes</a>
+      <a href="index.html" aria-current="page">Cheat sheets</a>
+      <a href="../index.html#archive">Archive</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <div class="lib-head">
+    <p class="kicker">The library</p>
+    <h1>Cheat sheets</h1>
+    <p class="lede" style="max-width:640px">One page per episode: what’s going on, the fixes, and a checklist you can take back to your agent today.</p>
+  </div>
+
+  <div class="filters" role="search">
+    <label for="q" class="sr">Search cheat sheets</label>
+    <input id="q" class="search" type="search" placeholder="Search: context, prod, sandbox…" autocomplete="off">
+    <div class="chips" role="group" aria-label="Filter by concept">
+      <button class="chip" type="button" data-tag="" aria-pressed="true">All</button>
+      <button class="chip" type="button" data-tag="context window" aria-pressed="false">Context window</button>
+      <button class="chip" type="button" data-release="2026-09-25" data-tag="agent permissions" aria-pressed="false">Agent permissions</button>
+      <button class="chip" type="button" data-release="2026-09-25" data-tag="safety" aria-pressed="false">Safety</button>
+      <button class="chip" type="button" data-tag="interactive" aria-pressed="false">▶ Interactive</button>
+    </div>
+  </div>
+
+  <p id="count" class="meta" aria-live="polite" style="margin:16px 0 0">1 cheat sheet</p>
+
+  <ol class="index" id="list" reversed>
+    <!-- RELEASE GATE: Ep.02, shown from 2026-09-25 (release.js). -->
+    <li class="entry" data-release="2026-09-25" data-tags="agent permissions,safety,interactive" data-text="the agent that cleaned up prod deleted production database unused files read-only sandbox confirm before destroying credentials rm -rf approval">
+      <span class="no">02</span>
+      <a href="prod.html" tabindex="-1" aria-hidden="true"><img src="../assets/ep02-poster.jpg" alt="" width="160" height="160" loading="lazy"></a>
+      <div>
+        <p class="meta" style="margin:0 0 6px">Episode 02</p>
+        <h2><a href="prod.html">The agent that cleaned up prod</a></h2>
+        <p>Agents take instructions literally. Three fixes: read-only by default, sandbox it, confirm before destroying.</p>
+        <div class="row"><span class="badge">▶ interactive</span><span class="tag">Agent permissions</span><span class="tag">Safety</span><span class="meta">3 min read</span></div>
+        <p class="try">Try: <a href="prod.html#try">set the agent’s permissions, then tell it to clean up →</a></p>
+      </div>
+    </li>
+    <li class="entry" data-tags="context window,interactive" data-text="why your ai agent forgets context rot context window lost in the middle tokens compact re-pin retrieve system prompt instructions">
+      <span class="no">01</span>
+      <a href="context.html" tabindex="-1" aria-hidden="true"><img src="../assets/ep01-poster.jpg" alt="" width="160" height="160" loading="lazy"></a>
+      <div>
+        <p class="meta" style="margin:0 0 6px">Episode 01</p>
+        <h2><a href="context.html">Why your AI agent forgets</a></h2>
+        <p>Its context window got full and your first instruction sank. Three fixes: compact, re-pin, retrieve.</p>
+        <div class="row"><span class="badge">▶ interactive</span><span class="tag">Context window</span><span class="meta">3 min read</span></div>
+        <p class="try">Try: <a href="context.html#try">fill a context window and watch your rule sink →</a></p>
+      </div>
+    </li>
+  </ol>
+  <p id="empty" class="empty" hidden>No cheat sheet matches that yet. Try another word, or <a href="https://instagram.com/butter.explains">suggest a concept on Instagram</a>.</p>
+  <p class="soon">New cheat sheets land with every episode. <a href="https://instagram.com/butter.explains">Follow @butter.explains</a> to catch them.</p>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>Butter · <a href="https://instagram.com/butter.explains">@butter.explains</a></span>
+    <a href="../privacy.html">Privacy</a>
+  </div>
+</footer>
+<script src="../release.js"></script>
+<script>
+(function(){
+  var q=document.getElementById('q'),items=[].slice.call(document.querySelectorAll('#list .entry')),
+      chips=[].slice.call(document.querySelectorAll('.chip')),count=document.getElementById('count'),
+      empty=document.getElementById('empty'),tag='';
+  function run(){
+    var t=q.value.trim().toLowerCase(),n=0;
+    items.forEach(function(li){
+      var ok=(!tag||li.dataset.tags.split(',').indexOf(tag)>-1)&&(!t||(li.dataset.text+' '+li.dataset.tags).indexOf(t)>-1);
+      li.hidden=!ok;if(ok)n++;
+    });
+    count.textContent=n+(n===1?' cheat sheet':' cheat sheets');empty.hidden=n>0;
+  }
+  q.addEventListener('input',run);
+  chips.forEach(function(c){c.addEventListener('click',function(){
+    tag=c.dataset.tag;chips.forEach(function(x){x.setAttribute('aria-pressed',x===c)});run();
+  });});
+  run();
+})();
+</script>
+</body>
+</html>
