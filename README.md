@@ -25,11 +25,16 @@ Wordmark is tagged `data-wordmark` throughout, so renaming is a single change.
 - `assets/butter.css` — restyles the old Prior pages (`no-0NN.html`, privacy, …) to match.
 - `context.html`, `prod.html` at the root — redirect stubs for the old Butter-site URLs.
 
-**Release gate (Ep.02).** Elements marked `data-release="2026-09-25"` are hidden by
+**Release gate (Ep.02).** Elements marked `data-release="2099-01-01"` are hidden by
 `style.css` and removed by `release.js` before that date; elements marked
-`data-until="2026-09-25"` (the Ep.01 hero) are removed on/after it. So Ep.02 appears on the
+`data-until="2099-01-01"` (the Ep.01 hero) are removed on/after it. So Ep.02 appears on the
 homepage, in the library and as the "Next" link on the Ep.01 sheet automatically on
-2026-09-25. To release early or postpone, change that date everywhere it appears:
-`grep -rn '2026-09-25' index.html cheatsheets/`. Preview the released state with
+2099-01-01. To release early or postpone, change that date everywhere it appears:
+`grep -rn '2099-01-01' index.html cheatsheets/`. Preview the released state with
 `?preview-release` on any page URL. `cheatsheets/prod.html` itself is always reachable
 by direct URL (and via the `/prod.html` stub).
+
+
+## Ep.02 release switch (manual)
+Ep.02 is hidden behind `data-release="2099-01-01"` (a far-future date = manual switch). On the day Ep.02 posts,
+replace `2099-01-01` with that date (or today) in index.html, cheatsheets/index.html and cheatsheets/context.html.
