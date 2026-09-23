@@ -16,3 +16,25 @@ commercial use, subset here to only the glyphs this site renders. Archivo Black 
 is the fallback.
 
 Wordmark is tagged `data-wordmark` throughout, so renaming is a single change.
+
+## Butter (B+) site — 2026-09-23
+
+- `index.html` — Butter homepage (B+ design) + "Archive: earlier issues (Prior)".
+- `cheatsheets/` — the cheat-sheet library, `context.html` (Ep.01), `prod.html` (Ep.02).
+- `style.css`, `loops.js` — the B+ stylesheet and muted-loop player.
+- `assets/butter.css` — restyles the old Prior pages (`no-0NN.html`, privacy, …) to match.
+- `context.html`, `prod.html` at the root — redirect stubs for the old Butter-site URLs.
+
+**Release gate (Ep.02).** Elements marked `data-release="2099-01-01"` are hidden by
+`style.css` and removed by `release.js` before that date; elements marked
+`data-until="2099-01-01"` (the Ep.01 hero) are removed on/after it. So Ep.02 appears on the
+homepage, in the library and as the "Next" link on the Ep.01 sheet automatically on
+2099-01-01. To release early or postpone, change that date everywhere it appears:
+`grep -rn '2099-01-01' index.html cheatsheets/`. Preview the released state with
+`?preview-release` on any page URL. `cheatsheets/prod.html` itself is always reachable
+by direct URL (and via the `/prod.html` stub).
+
+
+## Ep.02 release switch (manual)
+Ep.02 is hidden behind `data-release="2099-01-01"` (a far-future date = manual switch). On the day Ep.02 posts,
+replace `2099-01-01` with that date (or today) in index.html, cheatsheets/index.html and cheatsheets/context.html.
